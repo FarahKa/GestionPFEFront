@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 import { AcceuilComponent } from './acceuil/acceuil.component';
 import { ValidationPFEComponent } from './validation-pfe/validation-pfe.component';
 import { ListePFEComponent } from './liste-pfe/liste-pfe.component';
@@ -15,7 +15,7 @@ import { HttpComponent } from './http/http.component';
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent,
+    NavigationComponent,
     AcceuilComponent,
     ValidationPFEComponent,
     ListePFEComponent,
