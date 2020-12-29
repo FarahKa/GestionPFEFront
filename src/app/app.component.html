@@ -1,5 +1,24 @@
-<app-navigation></app-navigation> 
-<div class="container">
-  <router-outlet></router-outlet>
-</div>
+<div class="fill-height">
+  <app-navigation></app-navigation>
+  <ng-sidebar-container>
+    <!-- A sidebar -->
+    <ng-sidebar
+      [(opened)]="_opened"
+      mode="push"
+      position="start"
+      keyClose="true"
+      autoFocus="false"
+    >
+      <app-pretty-sidebar
+        [sidebarMenuItems]="sidebarMenuItems"
+      ></app-pretty-sidebar>
+    </ng-sidebar>
 
+    <!-- Page content -->
+    <div ng-sidebar-content>
+      <button *ngIf="!hidden" (click)="_toggleSidebar()">Toggle sidebar</button>
+
+      <router-outlet></router-outlet>
+    </div>
+  </ng-sidebar-container>
+</div>

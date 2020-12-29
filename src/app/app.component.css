@@ -1,0 +1,9 @@
+.fill-height{
+  height: 100vh;
+}
+ng-sidebar-container{
+  height:calc(100vh - 48px - .5em);
+}
+app-navigation{
+  height: 48px;
+}

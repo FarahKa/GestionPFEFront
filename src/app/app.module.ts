@@ -11,6 +11,8 @@ import { SoutenancesComponent } from './soutenances/soutenances.component';
 import { CalendrierComponent } from './calendrier/calendrier.component';
 import { ROUTING } from './app.routing';
 import { HttpComponent } from './http/http.component';
+import { SidebarModule } from 'ng-sidebar';
+import { PrettySidebarComponent } from './components/pretty-sidebar/pretty-sidebar.component';
 
 @NgModule({
   declarations: [
@@ -21,11 +23,13 @@ import { HttpComponent } from './http/http.component';
     ListePFEComponent,
     SoutenancesComponent,
     CalendrierComponent,
-    HttpComponent
+    HttpComponent,
+    PrettySidebarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    SidebarModule.forRoot(),
     ROUTING
   ],
   providers: [],

@@ -1,0 +1,21 @@
+<div class="container navbar navbar-inverse" id="sidebar-wrapper">
+    <ul class="nav sidebar-nav">
+      <li  *ngFor="let menuItem of sidebarMenuItems">
+        <a href="#" >
+          {{ menuItem.item }}
+          <span class="caret"> </span>
+        </a><!--
+        <ul
+          *ngIf="menuItem.children"
+          class="dropdown-menu animated fadeInLeft"
+          role="menu"
+        >
+          <li *ngFor="let item of menuItem.children">
+            <a href="#">{{ item }}</a>
+          </li>
+        </ul>
+        -->
+      </li>
+    </ul>
+
+  </div>

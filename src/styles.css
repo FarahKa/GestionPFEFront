@@ -1,3 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-
-@import url("./assets/css/bootstrap.min.css")
+@import url("./assets/css/bootstrap.min.css");
+html, body
+{
+    height: 100%;
+ /*   background: rgb(253,45,84);
+  background: linear-gradient(0deg, rgba(253,45,84,0.12927169158679097) 0%, rgba(34,102,195,0.13767505293132876) 63%);*/
+}
