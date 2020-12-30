@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { NavigationService } from './components/navigation/navigation.service';
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -19,11 +20,11 @@ export class AppComponent {
 
   hidden: boolean;
   sidebarMenuItems;
-
+  sidebarIcon;
   constructor(private navigationService: NavigationService) { }
 
   ngOnInit(): void {
-
+      this.sidebarIcon=faPlus
       this.hidden = true
 
     //maybe i should nlem kol espace f tableau
@@ -127,7 +128,14 @@ export class AppComponent {
       }
     }
   }
-  _toggleSidebar() {
+  toggleSidebar() {
+    if (this._opened) {
+      this.sidebarIcon=faPlus
+    } else {
+      this.sidebarIcon=faMinus
+
+    }
     this._opened = !this._opened;
+
   }
 }

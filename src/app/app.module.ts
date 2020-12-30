@@ -13,6 +13,7 @@ import { ROUTING } from './app.routing';
 import { HttpComponent } from './http/http.component';
 import { SidebarModule } from 'ng-sidebar';
 import { PrettySidebarComponent } from './components/pretty-sidebar/pretty-sidebar.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { PrettySidebarComponent } from './components/pretty-sidebar/pretty-sideb
     BrowserModule,
     AppRoutingModule,
     SidebarModule.forRoot(),
-    ROUTING
+    ROUTING,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

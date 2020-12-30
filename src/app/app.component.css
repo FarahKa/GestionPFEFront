@@ -1,9 +1,12 @@
-.fill-height{
+.fill-height {
   height: 100vh;
 }
-ng-sidebar-container{
-  height:calc(100vh - 48px - .5em);
+ng-sidebar-container {
+  height: calc(100vh - 48px - 0.5em);
 }
-app-navigation{
+app-navigation {
   height: 48px;
+}
+.page-content{
+  padding: 15px;
 }
