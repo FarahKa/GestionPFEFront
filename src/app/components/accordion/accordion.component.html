@@ -1,0 +1,5 @@
+<div class="accordion">
+        <div  *ngFor="let session of sessions">
+            <app-item [label]="session.nom" [soutenances]="session.soutenances"></app-item>
+        </div>
+</div>

@@ -14,6 +14,10 @@ import { HttpComponent } from './http/http.component';
 import { SidebarModule } from 'ng-sidebar';
 import { PrettySidebarComponent } from './components/pretty-sidebar/pretty-sidebar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AccordionComponent } from './components/accordion/accordion.component';
+import { ItemComponent } from './components/accordion/item/item.component';
+import { CommonModule } from '@angular/common';
+import { EspaceAdminModule } from './espace-admin/espace-admin.module';
 
 @NgModule({
   declarations: [
@@ -33,6 +37,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SidebarModule.forRoot(),
     ROUTING,
     FontAwesomeModule,
+    EspaceAdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]
