@@ -1,1 +1,17 @@
-<app-accordion></app-accordion>
+<app-accordion>
+    <div  *ngFor="let session of sessions">
+        <app-item [label]="session.nom">
+            <app-accordion>
+                <div  *ngFor="let filiere of session.filieres">
+                    <app-item [label]="filiere.nom">   
+                        <div  *ngFor="let soutenance of filiere.soutenances">
+                            <app-item [label]="soutenance.nom">    
+                                {{soutenance.nom}}                                                    
+                            </app-item>
+                        </div>            
+                    </app-item>
+                </div>
+            </app-accordion>
+        </app-item>
+    </div>
+</app-accordion>

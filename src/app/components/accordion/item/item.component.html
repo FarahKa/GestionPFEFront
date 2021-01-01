@@ -3,5 +3,8 @@
     {{label}}
     <!-- <span class={{this.state.visibility? 'fas fa-minus': 'fas fa-plus'}}></span> -->
   </button>
-  <p class="accordion__content {{ activeStatus }}">{{soutenances}}</p>
+  <div class="accordion__content {{ activeStatus }}" *ngIf="visibility">
+    <ng-content></ng-content>
+  </div>
+
 </div>
