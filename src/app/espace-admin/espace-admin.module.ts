@@ -6,7 +6,9 @@ import { PfeComponent } from './pfe/pfe.component';
 import { SoutenancesComponent } from './soutenances/soutenances.component';
 import { AccordionComponent } from '../components/accordion/accordion.component';
 import { ItemComponent } from '../components/accordion/item/item.component';
-import { AppModule } from '../app.module';
+import { SearchbarComponent } from '../components/searchbar/searchbar.component';
+import { faIcons } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -18,10 +20,12 @@ import { AppModule } from '../app.module';
     SoutenancesComponent,
     AccordionComponent,
     ItemComponent,
+    SearchbarComponent
   ],
-  exports : [AccordionComponent, ItemComponent],
+  exports: [AccordionComponent, ItemComponent, SearchbarComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    FontAwesomeModule,
   ],
   providers: []
 })

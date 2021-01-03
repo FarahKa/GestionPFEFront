@@ -24,7 +24,7 @@ export class AppComponent {
   constructor(private navigationService: NavigationService) { }
 
   ngOnInit(): void {
-      this.sidebarIcon=faPlus
+      this.sidebarIcon=faMinus
       this.hidden = true
 
     //maybe i should nlem kol espace f tableau
@@ -36,7 +36,7 @@ export class AppComponent {
           { "item": "RT" },
           { "item": "IMI" },
           { "item": "IIA" },
-          { "item": "GL" },
+          { "item": "CH" },
           { "item": "BIO" },
         ]
       },
@@ -67,21 +67,29 @@ export class AppComponent {
 
     this.pfes = [
       {
-        "item": "PFEs",
+        "item": "PFEs courants",
         "children": [
           { "item": "GL" },
           { "item": "RT" },
           { "item": "IMI" },
           { "item": "IIA" },
-          { "item": "GL" },
+          { "item": "CH" },
           { "item": "BIO" },
         ]
       },
       {
-        "item": "PFEs non-validés"
+        "item": "PFEs courants non-validés",
+        "children": [
+          { "item": "GL" },
+          { "item": "RT" },
+          { "item": "IMI" },
+          { "item": "IIA" },
+          { "item": "CH" },
+          { "item": "BIO" },
+        ]
       },
       {
-        "item": "idk smth"
+        "item": "PFEs"
       }
     ]
 
@@ -93,7 +101,7 @@ export class AppComponent {
           { "item": "RT" },
           { "item": "IMI" },
           { "item": "IIA" },
-          { "item": "GL" },
+          { "item": "CH" },
           { "item": "BIO" },
         ]
       },
@@ -112,6 +120,8 @@ export class AppComponent {
   fillSidebarMenuItem(item: string) {
     {
       this.hidden = false
+      this._opened = true
+      this.sidebarIcon=faMinus
       if (item.includes("etudiants"))
         this.sidebarMenuItems = this.etudiants
       else if (item.includes("enseignants"))

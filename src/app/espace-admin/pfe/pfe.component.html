@@ -1,1 +1,28 @@
-<p>pfe works!</p>
+<app-searchbar></app-searchbar>
+<div class="card-deck">
+  <div class="card" *ngFor="let pfe of pfes">
+    <div class="card-content">
+      <div class="card-header">
+              <strong>Sujet : </strong>{{ pfe.subject }}
+
+  </div>
+      <div class="card-body">
+        <div class="media d-flex">
+          <div class="media-body text-left">
+            <strong>Etudiant : </strong>{{ pfe.student_name }}
+            {{ pfe.student_lastname }}<br />
+            <strong>Numéro d'inscription : </strong>{{ pfe.student_id }}
+            <hr />
+            <strong>Encadrant(s) : </strong>
+            <span *ngIf="pfe.encadrants && pfe.encadrants.length > 0">
+              <span *ngFor="let encadrant of pfe.encadrants">
+                {{ encadrant.name }},
+              </span>
+            </span>
+            <span *ngIf="!pfe.encadrants || pfe.encadrants.length==0">{{"{}"}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

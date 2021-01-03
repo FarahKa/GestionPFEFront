@@ -1,3 +1,4 @@
+
 .container{
   padding:0px;
   margin: 0px;
@@ -64,22 +65,24 @@ display: none;
     color: #fff;
     background-color: transparent/*a1a1a;*/
 }
-.sidebar-nav li:nth-child(5n+1):before {
+.sidebar-nav li:nth-child(6n+1):before {
     background-color: #ec1b5a;
 }
-.sidebar-nav li:nth-child(5n+2):before {
+.sidebar-nav li:nth-child(6n+2):before {
     background-color: #79aefe;
 }
-.sidebar-nav li:nth-child(5n+3):before {
+.sidebar-nav li:nth-child(6n+3):before {
     background-color: #314190;
 }
-.sidebar-nav li:nth-child(5n+4):before {
+.sidebar-nav li:nth-child(6n+4):before {
     background-color: #279636;
 }
 .sidebar-nav li:nth-child(5n+5):before {
     background-color: #7d5d81;
 }
-
+.sidebar-nav li:nth-child(6n+6):before {
+  background-color: #f7ec54;
+}
 .sidebar-nav li:hover:before,
 .sidebar-nav li.open:hover:before {
     width: 100%;
@@ -134,6 +137,9 @@ display: none;
 }
 .dropdown-menu.show {
     top: 0;
+}
+.dropdown-itemm{
+  padding-left: 30px;
 }
 /*Fontawesome icons
 .nav.sidebar-nav li a::before {

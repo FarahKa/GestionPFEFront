@@ -7,6 +7,8 @@ ng-sidebar-container {
 app-navigation {
   height: 48px;
 }
-.page-content{
+.page-content {
   padding: 15px;
+  display: flex;
+  flex-grow: grow;
 }

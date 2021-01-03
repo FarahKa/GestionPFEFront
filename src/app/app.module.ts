@@ -18,6 +18,8 @@ import { AccordionComponent } from './components/accordion/accordion.component';
 import { ItemComponent } from './components/accordion/item/item.component';
 import { CommonModule } from '@angular/common';
 import { EspaceAdminModule } from './espace-admin/espace-admin.module';
+import { SearchbarComponent } from './components/searchbar/searchbar.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { EspaceAdminModule } from './espace-admin/espace-admin.module';
     SidebarModule.forRoot(),
     ROUTING,
     FontAwesomeModule,
-    EspaceAdminModule
+    EspaceAdminModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
