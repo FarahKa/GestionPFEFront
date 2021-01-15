@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 parent">
+      <div class="card card-addition">
+        <div class="card-header">Création d'une nouvelle session</div>
+        <div class="card-body">
+          <form #formulaire="ngForm">
+            <label for="name">Nom de la session:</label><br />
+            <input
+              type="text"
+              id="name"
+              name="name"
+              ngModel
+              required
+              minlength="1"
+              maxlength="100"
+              class="form-control"
+            />
+            <label for="start_date">Date de début de la session:</label><br />
+            <input
+              type="date"
+              id="start_date"
+              name="start_date"
+              ngModel
+              required
+              class="form-control"
+            />
+            <label for="end_date">Date de fin de la session:</label><br />
+            <input
+              type="date"
+              id="end_date"
+              name="end_date"
+              ngModel
+              required
+              class="form-control"
+            /><br />
+            <button
+              class="btn btn-primary"
+              [disabled]="formulaire.invalid"
+              (click)="addSession(formulaire)"
+            >
+              Créer
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>

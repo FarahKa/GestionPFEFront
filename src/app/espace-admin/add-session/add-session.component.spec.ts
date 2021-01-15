@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ValidationPFEComponent } from './validation-pfe.component';
+import { AddSessionComponent } from './add-session.component';
 
-describe('ValidationPFEComponent', () => {
-  let component: ValidationPFEComponent;
-  let fixture: ComponentFixture<ValidationPFEComponent>;
+describe('AddSessionComponent', () => {
+  let component: AddSessionComponent;
+  let fixture: ComponentFixture<AddSessionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ValidationPFEComponent ]
+      declarations: [ AddSessionComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ValidationPFEComponent);
+    fixture = TestBed.createComponent(AddSessionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

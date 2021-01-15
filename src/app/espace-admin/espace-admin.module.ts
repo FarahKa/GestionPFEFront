@@ -9,6 +9,9 @@ import { ItemComponent } from '../components/accordion/item/item.component';
 import { SearchbarComponent } from '../components/searchbar/searchbar.component';
 import { faIcons } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ROUTING } from '../app.routing';
+import { AddSessionComponent } from './add-session/add-session.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -20,12 +23,15 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SoutenancesComponent,
     AccordionComponent,
     ItemComponent,
-    SearchbarComponent
+    SearchbarComponent,
+    AddSessionComponent
   ],
   exports: [AccordionComponent, ItemComponent, SearchbarComponent],
   imports: [
     CommonModule,
     FontAwesomeModule,
+    ROUTING,
+    FormsModule
   ],
   providers: []
 })

@@ -9,6 +9,6 @@ app-navigation {
 }
 .page-content {
   padding: 15px;
-  display: flex;
+  /* display: flex; */
   flex-grow: grow;
 }

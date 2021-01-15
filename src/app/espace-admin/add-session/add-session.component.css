@@ -1,0 +1,7 @@
+.parent{
+    display: flex;
+}
+
+.card-addition {
+    flex: 1;
+}

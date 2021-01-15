@@ -1,5 +1,6 @@
 import { RouterModule, Routes } from "@angular/router";
 import { CalendrierComponent } from "./calendrier/calendrier.component";
+import { AddSessionComponent } from "./espace-admin/add-session/add-session.component";
 import { EnseignantsComponent } from "./espace-admin/enseignants/enseignants.component";
 import { EtudiantsComponent } from "./espace-admin/etudiants/etudiants.component";
 import { PfeComponent } from "./espace-admin/pfe/pfe.component";
@@ -19,6 +20,7 @@ const APP_ROUTING: Routes = [
       { path: 'enseignants', component: EnseignantsComponent },
       { path: 'pfe', component: PfeComponent },
       { path: 'soutenances', component: SoutenancesComponent },
+      { path: 'addSession', component: AddSessionComponent },      
     ]
   },
   { path: 'calendrier', component: CalendrierComponent },
