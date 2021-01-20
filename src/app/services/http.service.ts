@@ -12,7 +12,7 @@ export class HttpService {
   ngOnInit(): void {
   }
 
-  addSoutenance(data : any) {
-    return this.http.get(this.url, data)
+  addSession(data : any) {
+    return this.http.post(this.url + "/session/createSession", data)
   }
 }

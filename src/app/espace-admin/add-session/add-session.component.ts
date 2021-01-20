@@ -16,8 +16,9 @@ export class AddSessionComponent implements OnInit {
 
   addSession (formulaire : NgForm) {
     console.log(formulaire.form.value)
-    this.http.addSoutenance(formulaire.form.value).subscribe(
+    this.http.addSession(formulaire.form.value).subscribe(
       (response) => {
+        console.log("got a good response")
         console.log(response)
       },
       error => console.log(error)
