@@ -15,4 +15,12 @@ export class HttpService {
   addSession(data : any) {
     return this.http.post(this.url + "/session/createSession", data)
   }
+
+  getSoutenances(){
+    return this.http.get(this.url + "/soutenance/all")
+  }
+
+  getSessions(){
+    return this.http.get(this.url + "/session/all")
+  }
 }

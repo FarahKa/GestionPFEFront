@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Filiere, Session } from 'src/app/models';
+import { HttpService } from 'src/app/services/http.service';
+
+
+
+
 
 @Component({
   selector: 'app-soutenances',
@@ -9,7 +14,7 @@ import { Filiere, Session } from 'src/app/models';
 export class SoutenancesComponent implements OnInit {
   sessions: Session[];
   filieres: Filiere[];
-  constructor() {}
+  constructor(private http: HttpService) {}
 
   ngOnInit(): void {
     this.filieres = [
@@ -36,8 +41,40 @@ export class SoutenancesComponent implements OnInit {
       },
     ];
     this.sessions = [
-      { nom: 'session1', filieres: this.filieres },
-      { nom: 'session2', filieres: this.filieres },
+      { id:1, nom: 'session1', filieres: this.filieres, start_date: new Date(), end_date : new Date() },
+      { id:2, nom: 'session2', filieres: this.filieres, start_date: new Date(), end_date : new Date()  },
     ];
+
+    let rawSoutenances;
+    console.log('aaaaaaaaaaa');
+    this.http.getSoutenances().subscribe(
+      (reponse) => {
+        rawSoutenances = reponse;
+        console.log(rawSoutenances);
+        let session = {
+          nom : "",
+          filieres: []
+        }
+      
+        //let sessions : Session[];
+        let sessions : Session[];
+        rawSoutenances.forEach(soutenance => {
+          var index = sessions.findIndex(x => x.id==soutenance.session.id); 
+          index === -1 ? sessions.push(soutenance.session) : console.log("object already exists")
+          index = sessions.findIndex(x => x.id==soutenance.session.id); 
+          if(soutenance.etudiant.filiere === "GL"){
+            //sessions[index].filieres.gl.soutenances.add(soutenance)
+          } else if(soutenance.etudiant.filiere === "RT"){
+            //sessions[index].filieres.rt.soutenances.add(soutenance)
+          }
+
+        });
+        console.log(sessions)
+
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

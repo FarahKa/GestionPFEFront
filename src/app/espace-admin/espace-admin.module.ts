@@ -12,6 +12,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ROUTING } from '../app.routing';
 import { AddSessionComponent } from './add-session/add-session.component';
 import { FormsModule } from '@angular/forms';
+import { HttpService } from '../services/http.service';
 
 
 

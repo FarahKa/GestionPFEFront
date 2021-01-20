@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class AddSessionComponent implements OnInit {
 
-  constructor(private http : HttpService) { }
+  constructor(private http : HttpService, private router : Router) { }
 
   ngOnInit(): void {
   }
@@ -20,6 +21,7 @@ export class AddSessionComponent implements OnInit {
       (response) => {
         console.log("got a good response")
         console.log(response)
+        this.router.navigate(["/admin/soutenances"])
       },
       error => console.log(error)
     )
