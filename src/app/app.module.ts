@@ -17,7 +17,7 @@ import { EspaceAdminModule } from './espace-admin/espace-admin.module';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-
+import { EspaceEtudiantModule } from './espace-etudiant/espace-etudiant.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +34,8 @@ import { FormsModule } from '@angular/forms';
     FontAwesomeModule,
     EspaceAdminModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    EspaceEtudiantModule
   ],
   providers: [],
   bootstrap: [AppComponent]

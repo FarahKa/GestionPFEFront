@@ -1,0 +1,77 @@
+
+<div class="container">
+    <div class="main-body">
+    
+        <div class="row gutters-sm">
+            <div class="col-md-8">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">First Name</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{etudiant.firstname}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Last Name</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{etudiant.lastname}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Id Number</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{etudiant.id_number}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Filiere</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{etudiant.filiere}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Year</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{etudiant.year}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row gutters-sm">
+                <div class="col-md-12">
+                  <div class="card mb-8">
+                    <div class="card-header">
+                      <ul class="nav nav-pills card-header-pills">
+                        <li class="nav-item" >
+                          <a class="nav-link" routerLink="/etudiant" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">PFE</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" routerLink="/etudiant/detailSoutenance" routerLinkActive="active">Soutenance</a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="card-body">
+                        <router-outlet></router-outlet>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        </div>
+    </div>

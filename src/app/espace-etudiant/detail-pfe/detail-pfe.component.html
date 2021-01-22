@@ -1,0 +1,120 @@
+<h5 class="card-title">Pfe details</h5>
+<div class="card-text">
+  <div class="row gutters-sm">
+      <div class="col-md-10">
+        <div class="card mb-5">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-5">
+                <h6 class="mb-0">State</h6>
+              </div>
+              <div class="col-sm-7 text-secondary">
+                  {{pfe.state}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-5">
+                <h6 class="mb-0">Sujet</h6>
+              </div>
+              <div class="col-sm-7 text-secondary">
+                {{pfe.subject}}
+              </div>
+          </div>
+          <hr>
+            <div class="row">
+              <div class="col-sm-5">
+                <h6 class="mb-0">Entreprise d'accueil</h6>
+              </div>
+              <div class="col-sm-7 text-secondary">
+                {{pfe.hosting_enterprise}}
+              </div>
+          </div>
+          <hr>
+            <div class="row">
+              <div class="col-sm-5">
+                <h6 class="mb-0">Rapport</h6>
+              </div>
+              <div class="col-sm-7 text-secondary">
+                  <a href="pfe.rapport">{{pfe.rapport}}</a> 
+              </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-5">
+              <h6 class="mb-0">Valide</h6>
+            </div>
+            <div class="col-sm-7 text-secondary">
+                {{pfe.valid}}
+            </div>
+        </div>
+
+        <hr>
+          <div class="row">
+            <div class="col-sm-5">
+              <h6 class="mb-0">Privé</h6>
+            </div>
+            <div class="col-sm-7 text-secondary">
+                {{pfe.private_}}
+            </div>
+        </div>
+  </div>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalLoginForm">
+    Edit
+  </button>
+<!-- Modal HTML Markup -->
+<div id="ModalLoginForm" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Edit PFE details</h1>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="onSubmit(formulaire)" #formulaire="ngForm">
+                    <input type="hidden" name="_token" value="">
+                    <div class="form-group">
+                        <label class="control-label">State</label>
+                        <div>
+                            <select class="form-control" name="state" [(ngModel)]="pfe.state">
+                                <option value="state1">state1</option>
+                                <option value="State2">state2</option>
+                              </select></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Sujet</label>
+                        <div>
+                            <input type="text" class="form-control input-lg" name="sujet" [(ngModel)]="pfe.subject" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Entreprise d'accueil</label>
+                        <div>
+                            <input type="text" class="form-control input-lg" name="entreprise" [(ngModel)]="pfe.hosting_enterprise" required>
+                        </div>
+                    </div>
+                    
+                      <div class="form-group">
+                        <label class="control-label">Rapport</label>
+                        <div>
+                          <input type="file" id="rapport" name="rapport"   required>
+                        </div>
+                      </div>
+                      <div class="form-check">
+                      <input type="checkbox" class="form-check-input" id="valid" name="valid" value="valid">
+                      <label class="form-check-label" for="valid"> Valide </label><br>
+                      <input type="checkbox" class="form-check-input" id="private" name="private" value="private">
+                      <label class="form-check-label" for="private"> Privé </label><br>
+                    </div>
+
+                    <div class="form-group">
+                        <div>
+                            <button type="submit" class="btn btn-success">
+                                Register
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
