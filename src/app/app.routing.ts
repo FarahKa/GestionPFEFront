@@ -5,6 +5,11 @@ import { EnseignantsComponent } from "./espace-admin/enseignants/enseignants.com
 import { EtudiantsComponent } from "./espace-admin/etudiants/etudiants.component";
 import { PfeComponent } from "./espace-admin/pfe/pfe.component";
 import { SoutenancesComponent } from "./espace-admin/soutenances/soutenances.component";
+import { DetailPfeComponent } from "./espace-etudiant/detail-pfe/detail-pfe.component";
+import { DetailSoutenanceComponent } from "./espace-etudiant/detail-soutenance/detail-soutenance.component";
+import { EditPfeComponent } from "./espace-etudiant/edit-pfe/edit-pfe.component";
+import { EspaceEtudiantModule } from "./espace-etudiant/espace-etudiant.module";
+import { EspaceEtudiantComponent } from "./espace-etudiant/espace-etudiant/espace-etudiant.component";
 
 const APP_ROUTING: Routes = [
   /*    { path: 'acceuil', component: AcceuilComponent },
@@ -24,6 +29,20 @@ const APP_ROUTING: Routes = [
     ]
   },
   { path: 'calendrier', component: CalendrierComponent },
+  { path: 'etudiant', component: EspaceEtudiantComponent,
+  children: [
+    {
+        path: '',
+        component: DetailPfeComponent,
+    },
+    {
+      path: 'detailSoutenance',
+      component: DetailSoutenanceComponent,
+  },
+ 
+    
+]}
+
 ];
 
 export const ROUTING = RouterModule.forRoot(APP_ROUTING);

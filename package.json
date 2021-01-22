@@ -27,6 +27,7 @@
     "@ng-bootstrap/ng-bootstrap": "^6.2.0",
     "bootstrap": "^4.4.0",
     "ng-sidebar": "^9.4.2",
+    "ng2-file-upload": "^1.4.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.14.1",
     "zone.js": "~0.10.2"

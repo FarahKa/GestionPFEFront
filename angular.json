@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "gestion-pfe-front"
+  "defaultProject": "gestion-pfe-front",
+  "cli": {
+    "analytics": "03c63eab-344f-46a9-87d7-4adcd59993ca"
+  }
 }
