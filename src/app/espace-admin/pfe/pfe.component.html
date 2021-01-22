@@ -1,25 +1,26 @@
 <app-searchbar></app-searchbar>
 <div class="card-deck">
-  <div class="card" *ngFor="let pfe of pfes">
+  <div class="card" *ngFor="let pfe of pfes_to_display">
     <div class="card-content">
       <div class="card-header">
-              <strong>Sujet : </strong>{{ pfe.subject }}
+              <strong>Sujet : </strong>{{ pfe.soutenance.pfe.subject }}
 
   </div>
       <div class="card-body">
         <div class="media d-flex">
           <div class="media-body text-left">
-            <strong>Etudiant : </strong>{{ pfe.student_name }}
-            {{ pfe.student_lastname }}<br />
-            <strong>Numéro d'inscription : </strong>{{ pfe.student_id }}
+            <strong>Etudiant : </strong>{{ pfe.firstname }}
+            {{ pfe.lastname }}<br />
+            <strong>Numéro d'inscription : </strong>{{ pfe.student_id_number }}
             <hr />
             <strong>Encadrant(s) : </strong>
-            <span *ngIf="pfe.encadrants && pfe.encadrants.length > 0">
-              <span *ngFor="let encadrant of pfe.encadrants">
-                {{ encadrant.name }},
+            <span *ngIf="pfe.soutenance.encadrants && pfe.soutenance.encadrants.length > 0">
+              <span *ngFor="let encadrant of pfe.soutenance.encadrants">
+                {{ encadrant.firstname }}
+                {{ encadrant.lastname }},
               </span>
             </span>
-            <span *ngIf="!pfe.encadrants || pfe.encadrants.length==0">{{"{}"}}</span>
+            <span *ngIf="!pfe.soutenance.encadrants || pfe.soutenance.encadrants.length==0">{{"-"}}</span>
           </div>
         </div>
       </div>

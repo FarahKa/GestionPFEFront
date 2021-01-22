@@ -17,9 +17,8 @@ const APP_ROUTING: Routes = [
       { path: 'etudiants', component: EtudiantsComponent },
       { path: 'enseignants', component: EnseignantsComponent },
       { path: 'pfe', component: PfeComponent },
-      { path: 'pfe/:option/:filiere', component: PfeComponent}, // for sidebar navigation
       { path: 'soutenances', component: SoutenancesComponent },
-      { path: 'addSession', component: AddSessionComponent },      
+      { path: 'addSession', component: AddSessionComponent },
     ]
   },
   { path: 'calendrier', component: CalendrierComponent },
@@ -33,8 +32,8 @@ const APP_ROUTING: Routes = [
       path: 'detailSoutenance',
       component: DetailSoutenanceComponent,
   },
- 
-    
+
+
 ]}
 
 ];

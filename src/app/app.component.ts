@@ -24,6 +24,8 @@ export class AppComponent {
   constructor(private navigationService: NavigationService) { }
 
   ngOnInit(): void {
+    // UPDATE CURRENT_YEAR WHEN WE CREATE NEW YEAR (to do nhar e5er)
+    localStorage.setItem("current_year", "2020")
     this.sidebarIcon = faMinus
     this.hidden = true
 
@@ -65,54 +67,78 @@ export class AppComponent {
       }
     ]
 
+    const pfes_courants = "admin/pfe/courant/"
+    const pfes_courants_non_valides = "admin/pfe/courants_non_valides/"
     this.pfes = [
       {
         "item": "PFEs courants",
         "children": [
           {
             "item": "Toutes les filières",
-            "path": "admin/pfe"
+            "option": "courants"
           },
           {
             "item": "GL",
-            "path": "admin/pfe/courant/gl"
+            "option": "courants"
           },
           {
             "item": "RT",
-            "path": "admin/pfe/courant/rt"
+            "option": "courants"
           },
           {
             "item": "IMI",
-            "path": "admin/pfe/courant/imi"
+            "option": "courants"
           },
           {
             "item": "IIA",
-            "path": "idk"
+            "option": "courants"
           },
           {
             "item": "CH",
-            "path": "idk"
+            "option": "courants"
           },
           {
             "item": "BIO",
-            "path": "idk"
+            "option": "courants"
           },
         ]
       },
       {
         "item": "PFEs courants non-validés",
         "children": [
-          { "item": "Toutes les filières" },
-          { "item": "GL" },
-          { "item": "RT" },
-          { "item": "IMI" },
-          { "item": "IIA" },
-          { "item": "CH" },
-          { "item": "BIO" },
+          {
+            "item": "Toutes les filières",
+            "option": "courants non valides"
+          },
+          {
+            "item": "GL",
+            "option": "courants non valides"
+          },
+          {
+            "item": "RT",
+            "option": "courants non valides"
+          },
+          {
+            "item": "IMI",
+            "option": "courants non valides"
+          },
+          {
+            "item": "IIA",
+            "option": "courants non valides"
+          },
+          {
+            "item": "CH",
+            "option": "courants non valides"
+          },
+          {
+            "item": "BIO",
+            "option": "courants non valides"
+          },
         ]
       },
       {
-        "item": "PFEs"
+        "item": "PFEs",
+        "option": "all"
       }
     ]
 
