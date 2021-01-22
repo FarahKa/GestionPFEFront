@@ -9,6 +9,9 @@ export class PfeService {
   constructor(private http: HttpClient) { }
 
   async get_all_pfes(){
+    this.http.get("localhost:3000/pfe/pfes_by_mentor_id_subject_host_ent_year").subscribe(data => {
+        console.log(data)
+    })
     return await this.http.get("localhost:3000/pfe/pfes_by_mentor_id_subject_host_ent_year")
   }
 }

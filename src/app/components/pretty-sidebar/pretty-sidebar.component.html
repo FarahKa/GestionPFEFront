@@ -12,7 +12,7 @@
           role="menu"
         >
           <li *ngFor="let item of menuItem.children" class="dropdown-itemm">
-            <a href="#">{{ item.item }}</a>
+            <a href="{{item.path}}">{{ item.item }}</a>
           </li>
         </ul>
 
