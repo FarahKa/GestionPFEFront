@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { PfeService } from './pfe.service';
 
 @Component({
@@ -8,12 +9,16 @@ import { PfeService } from './pfe.service';
 })
 export class PfeComponent implements OnInit {
 
-  constructor(private pfeService: PfeService) { }
-
   pfes
+  option
+  filiere
+  constructor(private pfeService: PfeService, private activatedRouteService : ActivatedRoute) { }
 
   ngOnInit(): void {
-    console.log(this.pfeService.get_all_pfes())
+    this.option = this.activatedRouteService.snapshot.paramMap.get("option")
+    this.filiere = this.activatedRouteService.snapshot.paramMap.get("filiere")
+    console.log(this.option + " -- "+ this.filiere)
+    console.log(this.pfeService.get_current_pfes())
     this.pfes = [
       {
         subject: "subject one heyyyy there woohoo",

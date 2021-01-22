@@ -24,8 +24,8 @@ export class AppComponent {
   constructor(private navigationService: NavigationService) { }
 
   ngOnInit(): void {
-      this.sidebarIcon=faMinus
-      this.hidden = true
+    this.sidebarIcon = faMinus
+    this.hidden = true
 
     //maybe i should nlem kol espace f tableau
     this.etudiants = [
@@ -69,17 +69,40 @@ export class AppComponent {
       {
         "item": "PFEs courants",
         "children": [
-          { "item": "GL" },
-          { "item": "RT" },
-          { "item": "IMI" },
-          { "item": "IIA" },
-          { "item": "CH" },
-          { "item": "BIO" },
+          {
+            "item": "Toutes les filières",
+            "path": "admin/pfe"
+          },
+          {
+            "item": "GL",
+            "path": "admin/pfe/courant/gl"
+          },
+          {
+            "item": "RT",
+            "path": "admin/pfe/courant/rt"
+          },
+          {
+            "item": "IMI",
+            "path": "admin/pfe/courant/imi"
+          },
+          {
+            "item": "IIA",
+            "path": "idk"
+          },
+          {
+            "item": "CH",
+            "path": "idk"
+          },
+          {
+            "item": "BIO",
+            "path": "idk"
+          },
         ]
       },
       {
         "item": "PFEs courants non-validés",
         "children": [
+          { "item": "Toutes les filières" },
           { "item": "GL" },
           { "item": "RT" },
           { "item": "IMI" },
@@ -121,7 +144,7 @@ export class AppComponent {
     {
       this.hidden = false
       this._opened = true
-      this.sidebarIcon=faMinus
+      this.sidebarIcon = faMinus
       if (item.includes("etudiants"))
         this.sidebarMenuItems = this.etudiants
       else if (item.includes("enseignants"))
@@ -140,9 +163,9 @@ export class AppComponent {
   }
   toggleSidebar() {
     if (this._opened) {
-      this.sidebarIcon=faPlus
+      this.sidebarIcon = faPlus
     } else {
-      this.sidebarIcon=faMinus
+      this.sidebarIcon = faMinus
 
     }
     this._opened = !this._opened;
