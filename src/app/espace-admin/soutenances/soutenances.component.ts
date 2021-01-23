@@ -27,7 +27,6 @@ export class SoutenancesComponent implements OnInit {
 
         sessions.forEach(session => {
           let filieres : Filiere[] = [];
-          if(session.soutenances){
             session.soutenances.forEach(soutenance => {
              let filiere = filieres.find(filiere => filiere.nom === soutenance.etudiant.filiere)
             if (filiere) {
@@ -36,10 +35,9 @@ export class SoutenancesComponent implements OnInit {
               filiere = {nom : soutenance.etudiant.filiere, soutenances : [soutenance]}
               filieres.push(filiere);
             }
-            let sessionng : Session = {id : session.id, nom : session.name, start_date : session.start_date, end_date : session.end_date, filieres: filieres}
-            sessionsng.push(sessionng);
           });
-          }
+          let sessionng : Session = {id : session.id, nom : session.name, start_date : session.start_date, end_date : session.end_date, filieres: filieres}
+          sessionsng.push(sessionng);
         });
         console.log(sessionsng);
         this.sessions = sessionsng
