@@ -1,21 +1,31 @@
 <div class="container navbar navbar-inverse" id="sidebar-wrapper">
   <ul class="nav sidebar-nav">
-    <li *ngFor="let menuItem of sidebarMenuItems" [ngClass]="{'dropdown': menuItem.children}">
-      <a href="#" data-toggle="dropdown" [ngClass]="{'dropdown-toggle': menuItem.children}">
+    <li
+      *ngFor="let menuItem of sidebarMenuItems"
+      [ngClass]="{ dropdown: menuItem.children }"
+    >
+      <div
+        data-toggle="dropdown"
+        [ngClass]="{ 'dropdown-toggle': menuItem.children }"
+        (click)="selectSidebarItem(menuItem)"
+      >
         {{ menuItem.item }}
         <span class="caret"> </span>
-      </a>
+      </div>
 
-        <ul
-          *ngIf="menuItem.children"
-          class="dropdown-menu animated fadeInLeft"
-          role="menu"
+      <ul
+        *ngIf="menuItem.children"
+        class="dropdown-menu animated fadeInLeft"
+        role="menu"
+      >
+        <li
+          *ngFor="let item of menuItem.children"
+          class="dropdown-itemm"
+          (click)="selectSidebarItem(item)"
         >
-          <li *ngFor="let item of menuItem.children" class="dropdown-itemm">
-            <a href="#">{{ item.item }} </a>
-          </li>
-        </ul>
-
+          <div>{{ item.item }}</div>
+        </li>
+      </ul>
     </li>
   </ul>
 </div>

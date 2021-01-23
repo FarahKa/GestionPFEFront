@@ -16,20 +16,13 @@ import { ListeEnseignantComponent } from "./shared/liste-enseignant/liste-enseig
 import { ListePfesComponent } from "./shared/liste-pfes/liste-pfes.component";
 
 const APP_ROUTING: Routes = [
-  /*    { path: 'acceuil', component: AcceuilComponent },
-      { path: 'validationPFE', component: ValidationPFEComponent },
-      { path: 'listePFE', component: ListePFEComponent },
-      { path: 'soutenances', component: SoutenancesComponent},
-      { path: 'calendrier', component : CalendrierComponent },
-      // { path: 'deconnexion'},
-  */
   {
     path: 'admin', children: [
       { path: 'etudiants', component: EtudiantsComponent },
       { path: 'enseignants', component: EnseignantsComponent },
       { path: 'pfe', component: PfeComponent },
       { path: 'soutenances', component: SoutenancesComponent },
-      { path: 'addSession', component: AddSessionComponent },      
+      { path: 'addSession', component: AddSessionComponent },
     ]
   },
   { path: 'calendrier', component: CalendrierComponent },

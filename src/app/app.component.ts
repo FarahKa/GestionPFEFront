@@ -24,8 +24,10 @@ export class AppComponent {
   constructor(private navigationService: NavigationService) { }
 
   ngOnInit(): void {
-      this.sidebarIcon=faMinus
-      this.hidden = true
+    // UPDATE CURRENT_YEAR WHEN WE CREATE NEW YEAR (to do nhar e5er)
+    localStorage.setItem("current_year", "2020")
+    this.sidebarIcon = faMinus
+    this.hidden = true
 
     //maybe i should nlem kol espace f tableau
     this.etudiants = [
@@ -65,31 +67,78 @@ export class AppComponent {
       }
     ]
 
+    const pfes_courants = "admin/pfe/courant/"
+    const pfes_courants_non_valides = "admin/pfe/courants_non_valides/"
     this.pfes = [
       {
         "item": "PFEs courants",
         "children": [
-          { "item": "GL" },
-          { "item": "RT" },
-          { "item": "IMI" },
-          { "item": "IIA" },
-          { "item": "CH" },
-          { "item": "BIO" },
+          {
+            "item": "Toutes les filières",
+            "option": "courants"
+          },
+          {
+            "item": "GL",
+            "option": "courants"
+          },
+          {
+            "item": "RT",
+            "option": "courants"
+          },
+          {
+            "item": "IMI",
+            "option": "courants"
+          },
+          {
+            "item": "IIA",
+            "option": "courants"
+          },
+          {
+            "item": "CH",
+            "option": "courants"
+          },
+          {
+            "item": "BIO",
+            "option": "courants"
+          },
         ]
       },
       {
         "item": "PFEs courants non-validés",
         "children": [
-          { "item": "GL" },
-          { "item": "RT" },
-          { "item": "IMI" },
-          { "item": "IIA" },
-          { "item": "CH" },
-          { "item": "BIO" },
+          {
+            "item": "Toutes les filières",
+            "option": "courants non valides"
+          },
+          {
+            "item": "GL",
+            "option": "courants non valides"
+          },
+          {
+            "item": "RT",
+            "option": "courants non valides"
+          },
+          {
+            "item": "IMI",
+            "option": "courants non valides"
+          },
+          {
+            "item": "IIA",
+            "option": "courants non valides"
+          },
+          {
+            "item": "CH",
+            "option": "courants non valides"
+          },
+          {
+            "item": "BIO",
+            "option": "courants non valides"
+          },
         ]
       },
       {
-        "item": "PFEs"
+        "item": "PFEs",
+        "option": "all"
       }
     ]
 
@@ -121,7 +170,7 @@ export class AppComponent {
     {
       this.hidden = false
       this._opened = true
-      this.sidebarIcon=faMinus
+      this.sidebarIcon = faMinus
       if (item.includes("etudiants"))
         this.sidebarMenuItems = this.etudiants
       else if (item.includes("enseignants"))
@@ -140,9 +189,9 @@ export class AppComponent {
   }
   toggleSidebar() {
     if (this._opened) {
-      this.sidebarIcon=faPlus
+      this.sidebarIcon = faPlus
     } else {
-      this.sidebarIcon=faMinus
+      this.sidebarIcon = faMinus
 
     }
     this._opened = !this._opened;

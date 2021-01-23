@@ -6,9 +6,15 @@ import { Injectable } from '@angular/core';
 })
 export class PfeService {
 
+  url ="http://localhost:3000"
   constructor(private http: HttpClient) { }
 
-  async get_all_pfes(){
-    return await this.http.get("localhost:3000/pfe/pfes_by_mentor_id_subject_host_ent_year")
+  get_current_pfes(){
+    return this.http.get(this.url + "/pfe/"+localStorage.getItem("current_year")+"/all")
   }
+
+  get_all_pfes() {
+    return this.http.get(this.url + "/pfe/all")
+  }
+
 }

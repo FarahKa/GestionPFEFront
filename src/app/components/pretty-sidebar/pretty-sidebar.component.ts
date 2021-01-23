@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { NavigationService } from '../navigation/navigation.service';
+import { PrettySidebarService } from './pretty-sidebar.service';
 
 @Component({
   selector: 'app-pretty-sidebar',
@@ -14,4 +15,10 @@ export class PrettySidebarComponent implements OnInit{
   ngOnInit(): void {
     console.log(this.sidebarMenuItems)
   }
+  constructor(private prettySidebarService: PrettySidebarService) { }
+
+  selectSidebarItem(item: string): void {
+    this.prettySidebarService.selectSidebarItem(item)
+  }
+
 }

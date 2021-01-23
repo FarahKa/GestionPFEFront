@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Filiere, Session } from 'src/app/models';
 import { HttpService } from 'src/app/services/http.service';
+import { SoutenancesService } from './soutenances.service';
 
 
 
@@ -14,66 +15,37 @@ import { HttpService } from 'src/app/services/http.service';
 export class SoutenancesComponent implements OnInit {
   sessions: Session[];
   filieres: Filiere[];
-  constructor(private http: HttpService) {}
+  constructor(private soutenancesService: SoutenancesService, private http : HttpService) {}
 
   ngOnInit(): void {
-    this.filieres = [
-      {
-        nom: 'gl',
-        soutenances: [
-          { nom: 'une soutenance', etudiant: 'machintruc' },
-          { nom: 'une soutenance', etudiant: 'machintruc' },
-        ],
-      },
-      {
-        nom: 'rt',
-        soutenances: [
-          { nom: 'une soutenance', etudiant: 'machintruc' },
-          { nom: 'une soutenance', etudiant: 'machintruc' },
-        ],
-      },
-      {
-        nom: 'cd',
-        soutenances: [
-          { nom: 'une soutenance', etudiant: 'machintruc' },
-          { nom: 'une soutenance', etudiant: 'machintruc' },
-        ],
-      },
-    ];
-    this.sessions = [
-      { id:1, nom: 'session1', filieres: this.filieres, start_date: new Date(), end_date : new Date() },
-      { id:2, nom: 'session2', filieres: this.filieres, start_date: new Date(), end_date : new Date()  },
-    ];
-
-    let rawSoutenances;
-    console.log('aaaaaaaaaaa');
-    this.http.getSoutenances().subscribe(
+    this.http.getSessions().subscribe(
       (reponse) => {
-        rawSoutenances = reponse;
-        console.log(rawSoutenances);
-        let session = {
-          nom : "",
-          filieres: []
-        }
-      
-        //let sessions : Session[];
-        let sessions : Session[];
-        rawSoutenances.forEach(soutenance => {
-          var index = sessions.findIndex(x => x.id==soutenance.session.id); 
-          index === -1 ? sessions.push(soutenance.session) : console.log("object already exists")
-          index = sessions.findIndex(x => x.id==soutenance.session.id); 
-          if(soutenance.etudiant.filiere === "GL"){
-            //sessions[index].filieres.gl.soutenances.add(soutenance)
-          } else if(soutenance.etudiant.filiere === "RT"){
-            //sessions[index].filieres.rt.soutenances.add(soutenance)
-          }
+        console.log(reponse)
+        let sessions : any;
+        sessions = reponse as Array<Object>;
+        let sessionsng : Session[] = [];
 
+        sessions.forEach(session => {
+          let filieres : Filiere[] = [];
+            session.soutenances.forEach(soutenance => {
+             let filiere = filieres.find(filiere => filiere.nom === soutenance.etudiant.filiere)
+            if (filiere) {
+              filiere.soutenances.push(soutenance)
+            } else {
+              filiere = {nom : soutenance.etudiant.filiere, soutenances : [soutenance]}
+              filieres.push(filiere);
+            }
+          });
+          let sessionng : Session = {id : session.id, nom : session.name, start_date : session.start_date, end_date : session.end_date, filieres: filieres}
+          sessionsng.push(sessionng);
         });
-        console.log(sessions)
+        console.log(sessionsng);
+        this.sessions = sessionsng
 
       },
       (error) => {
         console.log(error);
+        this.sessions = this.soutenancesService.getFakeSessions();
       }
     );
   }
