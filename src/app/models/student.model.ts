@@ -7,11 +7,12 @@ export class Student extends User{
   year: number;
   constructor(cin: string,
             firstname: string, lastname: string,
-            id_number: number, year: number) {
+            email: string, phoneNumber: number,
+            id_number: number, filiere: FiliereEnum, year: number) {
 
-    super(cin, firstname, lastname);
+    super(cin, firstname, lastname, email, phoneNumber);
     this.id_number = id_number;
-    this.filiere = FiliereEnum.gl;
+    this.filiere = filiere;
     this.year = year
   }
 }

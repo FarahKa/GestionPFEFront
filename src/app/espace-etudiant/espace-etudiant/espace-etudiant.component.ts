@@ -5,11 +5,13 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './espace-etudiant.component.html',
   styleUrls: ['./espace-etudiant.component.css']
 })
+
 export class EspaceEtudiantComponent implements OnInit {
 
   constructor() { }
 
   ngOnInit(): void {
   }
+  
 
 }

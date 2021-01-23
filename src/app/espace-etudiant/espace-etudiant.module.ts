@@ -8,9 +8,10 @@ import { DetailEtudiantComponent } from './detail-etudiant/detail-etudiant.compo
 import { DetailPfeComponent } from './detail-pfe/detail-pfe.component';
 import { DetailSoutenanceComponent } from './detail-soutenance/detail-soutenance.component';
 import { EditPfeComponent } from './edit-pfe/edit-pfe.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
-  declarations: [ EspaceEtudiantComponent, DetailEtudiantComponent, DetailPfeComponent, DetailSoutenanceComponent, EditPfeComponent],
+  declarations: [ EspaceEtudiantComponent, DetailEtudiantComponent, DetailPfeComponent, DetailSoutenanceComponent, EditPfeComponent, HeaderComponent],
   exports: [ EspaceEtudiantComponent ],
   imports: [
     CommonModule,

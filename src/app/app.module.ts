@@ -18,6 +18,8 @@ import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { EspaceEtudiantModule } from './espace-etudiant/espace-etudiant.module';
+import { ListeEnseignantComponent } from './shared/liste-enseignant/liste-enseignant.component';
+import { ListePfesComponent } from './shared/liste-pfes/liste-pfes.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +27,8 @@ import { EspaceEtudiantModule } from './espace-etudiant/espace-etudiant.module';
     AcceuilComponent,
     CalendrierComponent,
     PrettySidebarComponent,
+    ListeEnseignantComponent,
+    ListePfesComponent,
   ],
   imports: [
     BrowserModule,

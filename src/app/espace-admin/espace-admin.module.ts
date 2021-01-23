@@ -13,6 +13,8 @@ import { ROUTING } from '../app.routing';
 import { AddSessionComponent } from './add-session/add-session.component';
 import { FormsModule } from '@angular/forms';
 import { HttpService } from '../services/http.service';
+import { EspaceAdminComponent } from './espace-admin/espace-admin.component';
+import { AppModule } from '../app.module';
 
 
 
@@ -25,14 +27,15 @@ import { HttpService } from '../services/http.service';
     AccordionComponent,
     ItemComponent,
     SearchbarComponent,
-    AddSessionComponent
+    AddSessionComponent,
+    EspaceAdminComponent
   ],
   exports: [AccordionComponent, ItemComponent, SearchbarComponent],
   imports: [
     CommonModule,
     FontAwesomeModule,
     ROUTING,
-    FormsModule
+    FormsModule,
   ],
   providers: []
 })

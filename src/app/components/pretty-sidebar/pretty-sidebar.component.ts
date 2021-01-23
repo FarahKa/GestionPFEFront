@@ -8,10 +8,13 @@ import { PrettySidebarService } from './pretty-sidebar.service';
   templateUrl: './pretty-sidebar.component.html',
   styleUrls: ['./pretty-sidebar.component.css']
 })
-export class PrettySidebarComponent {
-
+export class PrettySidebarComponent implements OnInit{
+  
   @Input() sidebarMenuItems;
 
+  ngOnInit(): void {
+    console.log(this.sidebarMenuItems)
+  }
   constructor(private prettySidebarService: PrettySidebarService) { }
 
   selectSidebarItem(item: string): void {
