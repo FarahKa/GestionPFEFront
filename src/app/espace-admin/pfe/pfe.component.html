@@ -1,4 +1,6 @@
-<app-searchbar></app-searchbar>
+<app-searchbar
+[search_fields]="search_fields"
+></app-searchbar>
 <div class="card-deck">
   <div class="card" *ngFor="let pfe of pfes_to_display">
     <div class="card-content">

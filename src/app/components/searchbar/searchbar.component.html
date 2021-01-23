@@ -5,7 +5,8 @@
         <input
           type="text"
           class="form-control"
-          placeholder="Search for snippets"
+          placeholder="{{ search_fields[0].label }}"
+          [(ngModel)]="search_fields[0].input"
         />
         <div class="input-group-btn">
           <div class="btn-group" role="group">
@@ -20,31 +21,49 @@
               </button>
               <div class="dropdown-menu dropdown-menu-right" role="menu">
                 <form class="form-horizontal" role="form">
-                  <div class="form-group">
-                    <label for="filter">Filter by</label>
-                    <select class="form-control">
-                      <option value="0" selected>All Snippets</option>
-                      <option value="1">Featured</option>
-                      <option value="2">Most popular</option>
-                      <option value="3">Top rated</option>
-                      <option value="4">Most commented</option>
-                    </select>
+                  <div class="row">
+                    <div
+                      class="form-group col"
+                      *ngFor="let field of search_fields"
+                    >
+                      <label for="contain">
+                        {{ field.label }}
+                        <input
+                        type="checkbox"
+                        [(ngModel)]="isEnabled"
+                        name="check"
+                        *ngIf="field.type"
+                      />
+                      </label>
+                      <input
+                        *ngIf="field.type"
+                        class="form-control"
+                        type="{{ field.type }}"
+                        name="{{ field.label }}"
+                        [(ngModel)]="field.input"
+                        [disabled]="!isEnabled"
+                      />
+
+                      <input
+                        *ngIf="!field.type"
+                        class="form-control"
+                        type="text"
+                        name="{{ field.label }}"
+                        [(ngModel)]="field.input"
+                      />
+                    </div>
                   </div>
-                  <div class="form-group">
-                    <label for="contain">Author</label>
-                    <input class="form-control" type="text" />
-                  </div>
-                  <div class="form-group">
-                    <label for="contain">Contains the words</label>
-                    <input class="form-control" type="text" />
-                  </div>
-                  <button type="submit" class="btn btn-primary">
+                  <button
+                    type="submit"
+                    class="btn btn-primary row"
+                    (click)="search()"
+                  >
                     <fa-icon [icon]="searchIcon"></fa-icon>
                   </button>
                 </form>
               </div>
             </div>
-            <button type="button" class="btn btn-primary">
+            <button type="button" class="btn btn-primary" (click)="search()">
               <fa-icon [icon]="searchIcon"></fa-icon>
             </button>
           </div>

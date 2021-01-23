@@ -1,5 +1,11 @@
 .dropdown-menu{
-  width: 300px;
+  width: 500px;
+}
+.dropdown-toggle{
+  border: 1px solid lightgray;
+}
+.form-group{
+  min-width : 200px
 }
 .to-the-right{
   float:right;
@@ -45,4 +51,7 @@ border-bottom-left-radius: 4px;
   .dropdown.dropdown-lg .dropdown-menu {
       min-width: 300px;
   }
+}
+.second-btn{
+  width:100%
 }
