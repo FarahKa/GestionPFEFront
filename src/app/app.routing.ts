@@ -1,3 +1,5 @@
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './espace-admin/register/register.component';
 import { elementEventFullName } from "@angular/compiler/src/view_compiler/view_compiler";
 import { RouterModule, Routes } from "@angular/router";
 import { CalendrierComponent } from "./calendrier/calendrier.component";
@@ -23,6 +25,7 @@ const APP_ROUTING: Routes = [
       { path: 'pfe', component: PfeComponent },
       { path: 'soutenances', component: SoutenancesComponent },
       { path: 'addSession', component: AddSessionComponent },
+      {path :'addUser',component:RegisterComponent},
     ]
   },
   { path: 'calendrier', component: CalendrierComponent },
@@ -40,7 +43,8 @@ const APP_ROUTING: Routes = [
     
 ]},
 {path: 'enseignants', component: ListeEnseignantComponent},
-{path: 'pfes', component: ListePfesComponent}
+{path: 'pfes', component: ListePfesComponent},
+{path: 'login', component: LoginComponent}
 
 ];
 

@@ -1,3 +1,5 @@
+import { AppRoutingModule } from './../app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EtudiantsComponent } from './etudiants/etudiants.component';
@@ -11,10 +13,14 @@ import { faIcons } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ROUTING } from '../app.routing';
 import { AddSessionComponent } from './add-session/add-session.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpService } from '../services/http.service';
 import { EspaceAdminComponent } from './espace-admin/espace-admin.component';
 import { AppModule } from '../app.module';
+import { RegisterComponent } from './register/register.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserModule } from '@angular/platform-browser';
+import { ModalEditComponent } from './modal-edit/modal-edit.component';
 
 
 
@@ -28,7 +34,10 @@ import { AppModule } from '../app.module';
     ItemComponent,
     SearchbarComponent,
     AddSessionComponent,
-    EspaceAdminComponent
+    EspaceAdminComponent,
+    RegisterComponent,
+    ModalEditComponent,
+
   ],
   exports: [AccordionComponent, ItemComponent, SearchbarComponent],
   imports: [
@@ -36,6 +45,11 @@ import { AppModule } from '../app.module';
     FontAwesomeModule,
     ROUTING,
     FormsModule,
+    ReactiveFormsModule,
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    NgbModule
   ],
   providers: []
 })
