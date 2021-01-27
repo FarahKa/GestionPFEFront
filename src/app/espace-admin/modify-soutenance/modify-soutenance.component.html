@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8 parent">
+        <div class="card card-addition">
+          <div class="card-header">Modifier une soutenance:</div>
+          <div class="card-body">
+            <form #formulaire="ngForm">
+              <label for="name">Session:</label><br />
+              <!-- make a select with all sessions, their id as value -->
+              <input
+                type="text"
+                id="name"
+                name="name"
+                ngModel
+                required
+                minlength="1"
+                maxlength="100"
+                class="form-control"
+              />
+              <label for="name">Encadrant:</label><br />
+              <!-- make a select with all teachers, their id as value -->
+              <input
+                type="text"
+                id="name"
+                name="name"
+                ngModel
+                required
+                minlength="1"
+                maxlength="100"
+                class="form-control"
+              />
+              <label for="name">Jury:</label><br />
+              <!-- make a select with all teachers, their id as value -->
+              <input
+                type="text"
+                id="name"
+                name="name"
+                ngModel
+                required
+                minlength="1"
+                maxlength="100"
+                class="form-control"
+              />
+              <label for="start_date">Date de la soutenance:</label><br />
+              <input
+                type="date"
+                id="start_date"
+                name="start_date"
+                ngModel
+                required
+                class="form-control"
+              />
+              <button
+                class="btn btn-primary"
+                [disabled]="formulaire.invalid"
+              >
+                Modifier
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+  

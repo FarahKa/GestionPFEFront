@@ -23,4 +23,8 @@ export class HttpService {
   getSessions(){
     return this.http.get(this.url + "/session/all")
   }
+
+  getEnseignants(){
+    return this.http.get(this.url + "/enseignants/all")
+  }
 }

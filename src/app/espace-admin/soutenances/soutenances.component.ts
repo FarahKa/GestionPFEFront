@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Filiere, Session } from 'src/app/models';
 import { HttpService } from 'src/app/services/http.service';
 import { SoutenancesService } from './soutenances.service';
@@ -15,7 +16,7 @@ import { SoutenancesService } from './soutenances.service';
 export class SoutenancesComponent implements OnInit {
   sessions: Session[];
   filieres: Filiere[];
-  constructor(private soutenancesService: SoutenancesService, private http : HttpService) {}
+  constructor(private soutenancesService: SoutenancesService, private http : HttpService, private router : Router) {}
 
   ngOnInit(): void {
     this.http.getSessions().subscribe(
@@ -48,5 +49,10 @@ export class SoutenancesComponent implements OnInit {
         this.sessions = this.soutenancesService.getFakeSessions();
       }
     );
+  }
+  modifySoutenance(soutenance) : void {
+    this.soutenancesService.setCurrentSoutenance(soutenance);
+    this.router.navigate(['/admin/modifySoutenance'])
+
   }
 }

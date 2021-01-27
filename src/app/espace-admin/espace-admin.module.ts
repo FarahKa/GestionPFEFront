@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpService } from '../services/http.service';
 import { EspaceAdminComponent } from './espace-admin/espace-admin.component';
 import { AppModule } from '../app.module';
+import { ModifySoutenanceComponent } from './modify-soutenance/modify-soutenance.component';
 
 
 
@@ -28,7 +29,8 @@ import { AppModule } from '../app.module';
     ItemComponent,
     SearchbarComponent,
     AddSessionComponent,
-    EspaceAdminComponent
+    EspaceAdminComponent,
+    ModifySoutenanceComponent
   ],
   exports: [AccordionComponent, ItemComponent, SearchbarComponent],
   imports: [

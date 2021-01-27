@@ -5,6 +5,7 @@ import { AddSessionComponent } from "./espace-admin/add-session/add-session.comp
 import { EnseignantsComponent } from "./espace-admin/enseignants/enseignants.component";
 import { EspaceAdminComponent } from "./espace-admin/espace-admin/espace-admin.component";
 import { EtudiantsComponent } from "./espace-admin/etudiants/etudiants.component";
+import { ModifySoutenanceComponent } from "./espace-admin/modify-soutenance/modify-soutenance.component";
 import { PfeComponent } from "./espace-admin/pfe/pfe.component";
 import { SoutenancesComponent } from "./espace-admin/soutenances/soutenances.component";
 import { DetailPfeComponent } from "./espace-etudiant/detail-pfe/detail-pfe.component";
@@ -23,6 +24,7 @@ const APP_ROUTING: Routes = [
       { path: 'pfe', component: PfeComponent },
       { path: 'soutenances', component: SoutenancesComponent },
       { path: 'addSession', component: AddSessionComponent },
+      {path: 'modifySoutenance', component: ModifySoutenanceComponent}
     ]
   },
   { path: 'calendrier', component: CalendrierComponent },

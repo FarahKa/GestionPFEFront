@@ -9,7 +9,7 @@
                             <app-item [label]="soutenance.pfe.subject">    
                                 Sujet: {{soutenance.pfe.subject}}  <span class="floatright">{{soutenance.date}}</span> 
                                 <br> Etudiant: {{soutenance.etudiant.firstname}} {{soutenance.etudiant.lastname}} <br>
-                                <button class="btn btn-dark floatright">Modifier</button>
+                                <button class="btn btn-dark floatright" (click)="modifySoutenance(soutenance)">Modifier</button>
                                 <br>                                                
                             </app-item>
                         </div>            
