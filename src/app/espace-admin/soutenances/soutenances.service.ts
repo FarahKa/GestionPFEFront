@@ -7,7 +7,13 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class SoutenancesService {
 
-
+currentSoutenance : any;
+getCurrentSoutenance() : any {
+return this.currentSoutenance;
+}
+setCurrentSoutenance(soutenance : any) : void {
+this.currentSoutenance = soutenance;
+}
   constructor(private http: HttpService) {}
 
    getFakeSessions(){

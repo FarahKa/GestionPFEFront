@@ -21,6 +21,7 @@ import { RegisterComponent } from './register/register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { ModalEditComponent } from './modal-edit/modal-edit.component';
+import { ModifySoutenanceComponent } from './modify-soutenance/modify-soutenance.component';
 
 
 
@@ -37,6 +38,7 @@ import { ModalEditComponent } from './modal-edit/modal-edit.component';
     EspaceAdminComponent,
     RegisterComponent,
     ModalEditComponent,
+    ModifySoutenanceComponent
 
   ],
   exports: [AccordionComponent, ItemComponent, SearchbarComponent],
