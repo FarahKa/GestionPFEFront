@@ -1,7 +1,7 @@
-import { baseURL } from './../shared/baseUrl';
+import { User } from './../models/user.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../models/user.model';
+
 
 
 
@@ -9,24 +9,26 @@ import { User } from '../models/user.model';
 export class UserService {
     constructor(private http: HttpClient) { }
 
-    getAll() {
+    getAllAdmins() {
+        return this.http.get<User[]>(`/users`);
+    }
+    getAllUsers() {
         return this.http.get<User[]>(`/users`);
     }
 
-    getById(id: number) {
-        return this.http.get<User>(`/users/` + id);
+    getAdminById(cin: number) {
+        return this.http.get<User>(`/users/` + cin);
     }
 
-    register(user: User) {
-       return this.http.post(`/users/register`, user);
-
+    registerAdmin(user: User) {
+        return this.http.post(`/users/register`, user);
     }
 
-    update(user: User) {
+    updateAdmin(user: User) {
         return this.http.put(`/users/` + user.cin, user);
     }
 
-    delete(id: number) {
-        return this.http.delete(`/users/` + id);
+    deleteAdmin(cin: number) {
+        return this.http.delete(`/users/` + cin);
     }
 }

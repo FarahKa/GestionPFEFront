@@ -3,130 +3,135 @@ import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTT
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
+// array in local storage for registered users
+let users = JSON.parse(localStorage.getItem('users')) || [];
+
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
-
-    constructor() { }
-
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        // array in local storage for registered users
-        let users: any[] = JSON.parse(localStorage.getItem('users')) || [];
+        const { url, method, headers, body } = request;
 
         // wrap in delayed observable to simulate server api call
-        return of(null).pipe(mergeMap(() => {
+        return of(null)
+            .pipe(mergeMap(handleRoute))
+            .pipe(materialize()) // call materialize and dematerialize to ensure delay even if an error is thrown (https://github.com/Reactive-Extensions/RxJS/issues/648)
+            .pipe(delay(500))
+            .pipe(dematerialize());
 
-            // authenticate
-            if (request.url.endsWith('/users/authenticate') && request.method === 'POST') {
-                // find if any user matches login credentials
-                let filteredUsers = users.filter(user => {
-                    return user.username === request.body.username && user.password === request.body.password;
-                });
+        function handleRoute() {
+            switch (true) {
+                case url.endsWith('/users/authenticate') && method === 'POST':
+                    return authenticate();
+                case url.endsWith('/users/register') && method === 'POST':
+                    return register();
+                case url.endsWith('/users') && method === 'GET':
+                    return getUsers();
+                case url.match(/\/users\/\d+$/) && method === 'GET':
+                    return getUserById();
+                case url.match(/\/users\/\d+$/) && method === 'PUT':
+                    return updateUser();
+                case url.match(/\/users\/\d+$/) && method === 'DELETE':
+                    return deleteUser();
+                default:
+                    // pass through any requests not handled above
+                    return next.handle(request);
+            }    
+        }
 
-                if (filteredUsers.length) {
-                    // if login details are valid return 200 OK with user details and fake jwt token
-                    let user = filteredUsers[0];
-                    let body = {
-                        id: user.id,
-                        username: user.username,
-                        firstName: user.firstName,
-                        lastName: user.lastName,
-                        role: user.role,
-                        token: 'fake-jwt-token'
-                    };
+        // route functions
 
-                    return of(new HttpResponse({ status: 200, body: body }));
-                } else {
-                    // else return 400 bad request
-                    return throwError({ error: { message: 'Username or password is incorrect' } });
-                }
+        function authenticate() {
+            const { email, password } = body;
+            const user = users.find(x => x.email === email && x.password === password);
+            if (!user) return error('email or password is incorrect');
+            return ok({
+                cin: user.cin,
+                email: user.email,
+                firstname: user.firstname,
+                lastname: user.lastname,
+                phoneNumber:user.phoneNumber,
+                token: 'fake-jwt-token'
+            })
+        }
+
+        function register() {
+            const user = body
+
+            if (users.find(x => x.email === user.email)) {
+                return error('email "' + user.email + '" is already taken')
             }
 
-            // get users
-            if (request.url.endsWith('/users') && request.method === 'GET') {
-                // check for fake auth token in header and return users if valid, this security is implemented server side in a real application
-                if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
-                    return of(new HttpResponse({ status: 200, body: users }));
-                } else {
-                    // return 401 not authorised if token is null or invalid
-                    return throwError({ status: 401, error: { message: 'Unauthorised' } });
-                }
+            //user.cin = users.length ? Math.max(...users.map(x => x.cin)) + 1 : 1;
+            users.push(user);
+            localStorage.setItem('users', JSON.stringify(users));
+            return ok();
+        }
+
+        function getUsers() {
+            if (!isLoggedIn()) return unauthorized();
+            return ok(users);
+        }
+
+        function getUserById() {
+            if (!isLoggedIn()) return unauthorized();
+
+            const user = users.find(x => parseInt(x.cin) === idFromUrl());
+            console.log('ddd',user);
+            return ok(user);
+        }
+
+        function updateUser() {
+            if (!isLoggedIn()) return unauthorized();
+
+            let params = body;
+            let user = users.find(x => parseInt(x.cin) === idFromUrl());
+
+            // only update password if entered
+            if (!params.password) {
+                delete params.password;
             }
 
-            // get user by id
-            if (request.url.match(/\/users\/\d+$/) && request.method === 'GET') {
-                // check for fake auth token in header and return user if valid, this security is implemented server side in a real application
-                if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
-                    // find user by id in users array
-                    let urlParts = request.url.split('/');
-                    let id = parseInt(urlParts[urlParts.length - 1]);
-                    let matchedUsers = users.filter(user => { return user.id === id; });
-                    let user = matchedUsers.length ? matchedUsers[0] : null;
+            // update and save user
+            Object.assign(user, params);
+            localStorage.setItem('users', JSON.stringify(users));
 
-                    return of(new HttpResponse({ status: 200, body: user }));
-                } else {
-                    // return 401 not authorised if token is null or invalid
-                    return throwError({ status: 401, error: { message: 'Unauthorised' } });
-                }
-            }
+            return ok();
+        }
 
-            // register user
-            if (request.url.endsWith('/users/register') && request.method === 'POST') {
-                // get new user object from post body
-                let newUser = request.body;
+        function deleteUser() {
+            if (!isLoggedIn()) return unauthorized();
 
-                // validation
-                let duplicateUser = users.filter(user => { return user.username === newUser.username; }).length;
-                if (duplicateUser) {
-                    return throwError({ error: { message: 'Username "' + newUser.username + '" is already taken' } });
-                }
+            users = users.filter(x => parseInt(x.cin) !== idFromUrl());
+            localStorage.setItem('users', JSON.stringify(users));
+            return ok();
+        }
 
-                // save new user
-                newUser.id = users.length + 1;
-                users.push(newUser);
-                localStorage.setItem('users', JSON.stringify(users));
+        // helper functions
 
-                // respond 200 OK
-                return of(new HttpResponse({ status: 200 }));
-            }
+        function ok(body?) {
+            return of(new HttpResponse({ status: 200, body }))
+        }
 
-            // delete user
-            if (request.url.match(/\/users\/\d+$/) && request.method === 'DELETE') {
-                // check for fake auth token in header and return user if valid, this security is implemented server side in a real application
-                if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
-                    // find user by id in users array
-                    let urlParts = request.url.split('/');
-                    let id = parseInt(urlParts[urlParts.length - 1]);
-                    for (let i = 0; i < users.length; i++) {
-                        let user = users[i];
-                        if (user.id === id) {
-                            // delete user
-                            users.splice(i, 1);
-                            localStorage.setItem('users', JSON.stringify(users));
-                            break;
-                        }
-                    }
+        function error(message) {
+            return throwError({ error: { message } });
+        }
 
-                    // respond 200 OK
-                    return of(new HttpResponse({ status: 200 }));
-                } else {
-                    // return 401 not authorised if token is null or invalid
-                    return throwError({ status: 401, error: { message: 'Unauthorised' } });
-                }
-            }
+        function unauthorized() {
+            return throwError({ status: 401, error: { message: 'Unauthorised' } });
+        }
 
-            // pass through any requests not handled above
-            return next.handle(request);
-            
-        }))
+        function isLoggedIn() {
+            return headers.get('Authorization') === 'Bearer fake-jwt-token';
+        }
 
-        // call materialize and dematerialize to ensure delay even if an error is thrown (https://github.com/Reactive-Extensions/RxJS/issues/648)
-        .pipe(materialize())
-        .pipe(delay(500))
-        .pipe(dematerialize());
+        function idFromUrl() {
+            const urlParts = url.split('/');
+            return parseInt(urlParts[urlParts.length - 1]);
+        }
     }
 }
 
-export let fakeBackendProvider = {
+export const fakeBackendProvider = {
     // use fake backend in place of Http service for backend-less development
     provide: HTTP_INTERCEPTORS,
     useClass: FakeBackendInterceptor,

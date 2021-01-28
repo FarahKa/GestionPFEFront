@@ -17,11 +17,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpService } from '../services/http.service';
 import { EspaceAdminComponent } from './espace-admin/espace-admin.component';
 import { AppModule } from '../app.module';
-import { RegisterComponent } from './register/register.component';
+import { RegisterEtudiantComponent } from './register-etudiant/register-etudiant.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
-import { ModalEditComponent } from './modal-edit/modal-edit.component';
+import { ModalEditAdminComponent } from './modal-edit-admin/modal-edit-admin.component';
 import { ModifySoutenanceComponent } from './modify-soutenance/modify-soutenance.component';
+import { RegisterEnseignantComponent } from './register-enseignant/register-enseignant.component';
+import { RegisterAdminComponent } from './register-admin/register-admin.component';
+import { AdminsComponent } from './admins/admins.component';
 
 
 
@@ -36,9 +39,12 @@ import { ModifySoutenanceComponent } from './modify-soutenance/modify-soutenance
     SearchbarComponent,
     AddSessionComponent,
     EspaceAdminComponent,
-    RegisterComponent,
-    ModalEditComponent,
-    ModifySoutenanceComponent
+    RegisterEtudiantComponent,
+    ModalEditAdminComponent,
+    ModifySoutenanceComponent,
+    RegisterEnseignantComponent,
+    RegisterAdminComponent,
+    AdminsComponent
 
   ],
   exports: [AccordionComponent, ItemComponent, SearchbarComponent],

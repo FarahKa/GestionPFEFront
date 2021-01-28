@@ -1,27 +1,26 @@
-
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
-import { AlertService } from 'src/app/services/alert.service';
 import { UserService } from 'src/app/services/user.service';
-import { AuthentificationService } from 'src/app/services/authentification.service';
-
-
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators , FormArray } from '@angular/forms';
+import { first } from 'rxjs/operators';
+import { AlertService } from '../../services/alert.service';
+import { Role } from '../../models/role.model';
 @Component({
-    selector: 'app-register',
-    templateUrl: 'register.component.html',
-    styleUrls: ['./register.component.css'] 
+  selector: 'app-register-admin',
+  templateUrl: './register-admin.component.html',
+  styleUrls: ['./register-admin.component.css']
 })
-export class RegisterComponent implements OnInit {
-    registerForm: FormGroup;
+export class RegisterAdminComponent implements OnInit {
+
+  registerForm: FormGroup;
     loading = false;
     submitted = false;
+    values = Object.values;
+    roles =Role;
 
     constructor(
         private formBuilder: FormBuilder,
-        private router: Router,
-        private authenticationService: AuthentificationService,
+        //private router: Router,
+        //private authenticationService: AuthentificationService,
         private userService: UserService,
         private alertService: AlertService
     ) { 
@@ -33,11 +32,14 @@ export class RegisterComponent implements OnInit {
 
     ngOnInit() {
         this.registerForm = this.formBuilder.group({
-            firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
-            username: ['', Validators.required],
+            firstname: ['', Validators.required],
+            lastname: ['', Validators.required,],
+            cin: ['', [Validators.required, Validators.pattern("^[0-9]*$"),Validators.maxLength(8),Validators.minLength(8)]],
+            phoneNumber: ['', [Validators.required, Validators.pattern("^[0-9]*$"),Validators.maxLength(8),Validators.minLength(8)]],
+            email: ['', [Validators.required,Validators.email]],
             password: ['', [Validators.required, Validators.minLength(6)]],
-            role:['Etudiant',Validators.required]
+            role:['Admin',Validators.required],
+           
         });
     }
 
@@ -46,14 +48,15 @@ export class RegisterComponent implements OnInit {
 
     onSubmit() {
         this.submitted = true;
-
+        console.log(this.registerForm.value);
         // stop here if form is invalid
         if (this.registerForm.invalid) {
+            console.log("invalid form");
             return;
         }
 
         this.loading = true;
-        this.userService.register(this.registerForm.value)
+        this.userService.registerAdmin(this.registerForm.value)
             .pipe(first())
             .subscribe(
                 data => {

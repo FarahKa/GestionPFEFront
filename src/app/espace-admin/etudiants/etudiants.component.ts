@@ -1,7 +1,7 @@
 import { first } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { AuthentificationService } from 'src/app/services/authentification.service';
-import { UserService } from 'src/app/services/user.service';
+import { StudentService } from 'src/app/services/student.service';
 import { User } from './../../models/user.model';
 import { FiliereEnum } from './../../enums/filere.enum';
 import { Student } from './../../models/student.model';
@@ -17,12 +17,12 @@ export class EtudiantsComponent implements OnInit {
 
   currentUser: User; 
   currentUserSubscription: Subscription;
-  users: User[] = [];
+  users: Student[] = [];
 
 
   constructor(
       private authenticationService: AuthentificationService,
-      private userService: UserService
+      private studentService: StudentService
   ) {
       this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
           this.currentUser = user;
@@ -30,12 +30,12 @@ export class EtudiantsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   /* this.etudiants = [
+    this.etudiants = [
       new  Student("123", "people1", "people1","people1@gamil",123, 123,FiliereEnum.gl,2020),
       new  Student("462", "people2", "people2", "people2@gmail", 462,462 ,FiliereEnum.gl,2020),
       new  Student("642", "people3","people3", "people3@gmail", 8745,8745 ,FiliereEnum.gl,2020)
-    ];*/
-    this.loadAllUsers();
+    ];
+    //this.loadAllUsers();
 
   }
 
@@ -48,16 +48,15 @@ export class EtudiantsComponent implements OnInit {
 
   
   deleteUser(id: number) {
-      this.userService.delete(id).pipe(first()).subscribe(() => {
+      this.studentService.deleteStudent(id).pipe(first()).subscribe(() => {
           this.loadAllUsers()
       });
   }
 
   private loadAllUsers() {
-      this.userService.getAll().pipe(first()).subscribe(users => {
-          this.users = users;
-          console.log(this.users);
-          console.log(users);
+      this.studentService.getAllStudents().pipe(first()).subscribe(etudiants => {
+          this.etudiants = etudiants;
+          console.log(this.etudiants);
       });
   }
 }

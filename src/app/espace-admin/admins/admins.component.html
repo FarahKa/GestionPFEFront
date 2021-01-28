@@ -1,8 +1,3 @@
-<!--<div class="list-group">
-    <a *ngFor="let enseignant of enseignants" href="#" 
-    class="list-group-item list-group-item-action">{{enseignant.firstname}} {{enseignant.lastname}}</a>
-</div>-->
-
 
 <div class="container">
     <div class="row">
@@ -35,9 +30,6 @@
                                 Téléphone
                             </th>
                             <th>
-                                Departement
-                            </th>
-                            <th>
                                 Edit
                             </th>
                             <th class="text-right">
@@ -47,34 +39,30 @@
                         <tbody>
 
 
-                            <tr *ngFor="let enseignant of enseignants">
+                            <tr *ngFor="let user of users">
                                 <td>
-                                    {{enseignant.cin}}
+                                    {{user.cin}}
                                  </td>
                                 <td>
-                                    {{enseignant.firstname}}
+                                    {{user.firstname}}
                                 </td>
                                 <td>
-                                    {{enseignant.lastname}} 
+                                    {{user.lastname}} 
                                 </td>
                                 <td>
-                                   {{enseignant.email}}
+                                   {{user.email}}
                                 </td>
                                 <td>
-                                    {{enseignant.phoneNumber}}
+                                    {{user.phoneNumber}}
                                  </td>
-                                 <td>
-                                    {{enseignant.departement}}
-                                 </td>
-
                                
                                 <td>
-                                <!--edit modal of cin
-                            <app-modal-edit  [(cin)]="enseignant.cin"></app-modal-edit>
--->
+                                <!--edit modal of cin-->
+                            <app-modal-edit-admin  [(cin)]="user.cin"></app-modal-edit-admin>
+
                                 </td>
                                 <td class="text-right">
-                                    <button (click)="deleteUser(enseignant.cin)" class="btn btn-danger ">
+                                    <button (click)="deleteUser(user.cin)" class="btn btn-danger ">
                                         <svg class="bi bi-x-circle" width="1.5em" height="1.5em" viewBox="0 0 16 16"
                                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd"

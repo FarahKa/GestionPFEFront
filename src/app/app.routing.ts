@@ -1,5 +1,10 @@
+import { AdminsComponent } from './espace-admin/admins/admins.component';
+import { AuthGuard } from './guard/auth.guard';
+import { Role } from './models/role.model';
+import { RegisterAdminComponent } from './espace-admin/register-admin/register-admin.component';
+import { RegisterEnseignantComponent } from './espace-admin/register-enseignant/register-enseignant.component';
 import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './espace-admin/register/register.component';
+
 import { elementEventFullName } from "@angular/compiler/src/view_compiler/view_compiler";
 import { RouterModule, Routes } from "@angular/router";
 import { CalendrierComponent } from "./calendrier/calendrier.component";
@@ -17,20 +22,28 @@ import { EspaceEtudiantModule } from "./espace-etudiant/espace-etudiant.module";
 import { EspaceEtudiantComponent } from "./espace-etudiant/espace-etudiant/espace-etudiant.component";
 import { ListeEnseignantComponent } from "./shared/liste-enseignant/liste-enseignant.component";
 import { ListePfesComponent } from "./shared/liste-pfes/liste-pfes.component";
+import { RegisterEtudiantComponent } from './espace-admin/register-etudiant/register-etudiant.component';
 
 const APP_ROUTING: Routes = [
   {
     path: 'admin', children: [
       { path: 'etudiants', component: EtudiantsComponent },
       { path: 'enseignants', component: EnseignantsComponent },
+      { path: 'admins', component:  AdminsComponent},
       { path: 'pfe', component: PfeComponent },
       { path: 'soutenances', component: SoutenancesComponent },
       { path: 'addSession', component: AddSessionComponent },
-      {path :'addUser',component:RegisterComponent},
+      {path :'addStudent',component:RegisterEtudiantComponent},
+      {path :'addTeacher',component:RegisterEnseignantComponent},
+      //{path :'addAdmin',component:RegisterAdminComponent},
       {path: 'modifySoutenance', component: ModifySoutenanceComponent}
-    ]
+    ],
+    canActivate: [AuthGuard],
+   // data: { roles: [Role.Admin] }
   },
-  { path: 'calendrier', component: CalendrierComponent },
+  { path: 'calendrier', component: CalendrierComponent,
+   canActivate: [AuthGuard]
+},
   { path: 'etudiant', component: EspaceEtudiantComponent,
   children: [
     {
@@ -40,13 +53,25 @@ const APP_ROUTING: Routes = [
     {
       path: 'detailSoutenance',
       component: DetailSoutenanceComponent,
+  },   
+], canActivate: [AuthGuard]},
+{path: 'enseignants', component: ListeEnseignantComponent,canActivate: [AuthGuard]
+},
+{path: 'pfes', component: ListePfesComponent,canActivate: [AuthGuard]
+},
+
+{path: 'login', component: LoginComponent},
+
+{
+  path: '', 
+  component: RegisterAdminComponent,
+   //canActivate: [AuthGuard]
+},
+{ path: '**', 
+  redirectTo: '', 
   },
- 
-    
-]},
-{path: 'enseignants', component: ListeEnseignantComponent},
-{path: 'pfes', component: ListePfesComponent},
-{path: 'login', component: LoginComponent}
+
+
 
 ];
 

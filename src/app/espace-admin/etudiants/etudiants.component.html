@@ -15,19 +15,28 @@
                     <table class="table">
                         <thead class=" text-primary">
                             <th>
-                                First Name
+                                Carte d'identité
                             </th>
                             <th>
-                                Last Name
+                                Carte d'étudiant
+                            </th>
+                            <th>
+                                Prénom
+                            </th>
+                            <th>
+                                Nom
                             </th>
                             <th>
                                 Email
                             </th>
                             <th>
-                                Instructor
+                                Téléphone
                             </th>
                             <th>
-                                OnBoarder
+                                Filiere
+                            </th>
+                            <th>
+                                Année
                             </th>
                             <th>
                                 Edit
@@ -39,43 +48,39 @@
                         <tbody>
 
 
-                            <tr *ngFor="let user of users">
+                            <tr *ngFor="let etudiant of etudiants">
                                 <td>
-                                    {{user.firstName}}
+                                    {{etudiant.cin}}
+                                 </td>
+                                 <td>
+                                    {{etudiant.id_number}}
+                                 </td>
+                                <td>
+                                    {{etudiant.firstname}}
                                 </td>
                                 <td>
-                                    {{user.lastName}} 
+                                    {{etudiant.lastname}} 
                                 </td>
                                 <td>
-                                   {{user.username}}
+                                   {{etudiant.email}}
                                 </td>
-                                
-                                <div [ngSwitch]="user.role">
-                                    <div *ngSwitchCase="'Admin'">
-                                        <td>
-                                            No 
-                                           </td>
-                                           <td>
-                                            Yes
-                                           </td>
-                                    </div>
-                                    <div *ngSwitchDefault="'User'">
-                                        <td>
-                                            Yes 
-                                           </td>
-                                           <td>
-                                            No 
-                                           </td>
-                                    </div>
-                                </div>
+                                <td>
+                                    {{etudiant.phoneNumber}}
+                                 </td>
+                                 <td>
+                                    {{etudiant.filiere}}
+                                 </td>
+                                 <td>
+                                    {{etudiant.year}}
+                                 </td>
                                
                                 <td>
-                                
-                            <app-modal-edit  [(id)]="user.id"></app-modal-edit>
-
+                                <!--edit modal of cin
+                            <app-modal-edit  [(cin)]="etudiant.cin"></app-modal-edit>
+-->
                                 </td>
                                 <td class="text-right">
-                                    <button (click)="deleteUser(user.id)" class="btn btn-danger ">
+                                    <button (click)="deleteUser(etudiant.cin)" class="btn btn-danger ">
                                         <svg class="bi bi-x-circle" width="1.5em" height="1.5em" viewBox="0 0 16 16"
                                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd"

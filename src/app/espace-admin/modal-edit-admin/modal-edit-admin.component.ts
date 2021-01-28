@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/services/user.service';
 
 
 
@@ -8,9 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AlertService } from '../../services/alert.service';
-import { UserService } from 'src/app/services/user.service';
-import { User } from 'src/app/models/user.model';
-
+import { User } from '../../models/user.model';
 
 
 
@@ -18,14 +17,14 @@ import { User } from 'src/app/models/user.model';
 
 
 @Component({
-  selector: 'app-modal-edit',
-  templateUrl: './modal-edit.component.html',
-  styleUrls: ['./modal-edit.component.css'],
+  selector: 'app-modal-edit-admin',
+  templateUrl: './modal-edit-admin.component.html',
+  styleUrls: ['./modal-edit-admin.component.css'],
   providers: [NgbModalConfig, NgbModal]
 })
-export class ModalEditComponent implements OnInit {
+export class ModalEditAdminComponent implements OnInit {
   form: FormGroup;
-  @Input() id: number;
+  @Input() cin: number;
   loading = false;
   submitted = false;
   user:User;
@@ -41,30 +40,37 @@ export class ModalEditComponent implements OnInit {
   }
 ngOnInit(){
 
- 
-  
- 
-
   this.form = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      username: ['', Validators.required],
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      email: ['', [Validators.required,Validators.email]],
+      cin: ['', [Validators.required, Validators.pattern("^[0-9]*$"),Validators.maxLength(8),Validators.minLength(8)]],
+      phoneNumber: ['', [Validators.required, Validators.pattern("^[0-9]*$"),Validators.maxLength(8),Validators.minLength(8)]],
       password: ['', Validators.minLength(6)]
   });
 
-
-      this.userService.getById(this.id)
-          .pipe(first())
-          .subscribe(x => {
-              this.f.firstName.setValue(x.firstname);
-              this.f.lastName.setValue(x.lastname);
-              this.f.username.setValue(x.username);
-          });
+      this.reset();
   
-
 }
 
-get f() { return this.form.controls; }
+
+  get f() { return this.form.controls; }
+
+  reset()
+  { 
+    this.userService.getAdminById(this.cin)
+    .pipe(first())
+    .subscribe(user => {
+      console.log("dsfds",user);
+        this.f.firstname.setValue(user.firstname);
+        this.f.lastname.setValue(user.lastname);
+        this.f.cin.setValue(user.cin);
+        this.f.phoneNumber.setValue(user.phoneNumber);
+        this.f.email.setValue(user.email);
+
+    });
+  
+  }
 
   open(content) {
     this.modalService.open(content);
@@ -88,12 +94,12 @@ get f() { return this.form.controls; }
 
 private updateUser() {
   
-  this.userService.update(this.form.value)
+  this.userService.updateAdmin(this.form.value)
       .pipe(first())
       .subscribe(
           data => {
               this.alertService.success('Update successful', { keepAfterRouteChange: true });
-              this.router.navigate(['..', { relativeTo: this.route }]);
+             this.loading = false;
           },
           error => {
               this.alertService.error(error);
