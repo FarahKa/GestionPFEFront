@@ -1,56 +1,86 @@
 <div class="container">
-    <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-8 parent">
-        <div class="card card-addition">
-          <div class="card-header">Modifier une soutenance:</div>
-          <div class="card-body">
-            <form #formulaire="ngForm">
-              <label for="name">Session:</label><br />
-              <!-- make a select with all sessions, their id as value -->
-              <ejs-dropdownlist id='ddlelement' #samples [dataSource]='sessions' [fields]='fieldsS' [placeholder]='textS'>
-              </ejs-dropdownlist>
-              <label for="name">Encadrant: {{encadrant.firstname}} {{encadrant.lastname}}</label><br />
-              <!-- make a select with all teachers, their id as value -->
-              <ejs-dropdownlist id='ddlelement' #samples [dataSource]='enseignants' [fields]='fieldsE' [placeholder]='textE'>
-                <ng-template #itemTemplate let-data> 
-                  <div> 
-                      <div class="name"> {{data.firstname}} {{data.lastname}} </div> 
-                  </div> 
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 parent">
+      <div class="card card-addition">
+        <div class="card-header">Modifier une soutenance:</div>
+        <div class="card-body">
+          <form #formulaire="ngForm">
+            <label for="name">Session:</label><br />
+            <!-- make a select with all sessions, their id as value -->
+            <ejs-dropdownlist
+              ngModel
+              name="session"
+              id="ddlelement"
+              #samples
+              [dataSource]="sessions"
+              [fields]="fieldsS"
+              [placeholder]="textS"
+            >
+            </ejs-dropdownlist>
+            <label for="name"
+              >Encadrant: {{ encadrant.firstname }}
+              {{ encadrant.lastname }}</label
+            ><br />
+            <!-- make a select with all teachers, their id as value -->
+            <ejs-dropdownlist
+              ngModel
+              name="encadrant"
+              id="ddlelement"
+              #samples
+              [dataSource]="enseignantsSansEncadrant"
+              [fields]="fieldsE"
+              [placeholder]="textE"
+            >
+              <ng-template #itemTemplate let-data>
+                <div>
+                  <div class="name">
+                    {{ data.firstname }} {{ data.lastname }}
+                  </div>
+                </div>
               </ng-template>
-              </ejs-dropdownlist>
-              <label for="name">Jury:</label><br />
-              <!-- make a select with all teachers, their id as value -->
-              <input
-                type="text"
-                id="name"
-                name="name"
-                ngModel
-                required
-                minlength="1"
-                maxlength="100"
-                class="form-control"
-              />
-              <label for="start_date">Date de la soutenance:</label><br />
-              <input
-                type="date"
-                id="start_date"
-                name="start_date"
-                ngModel
-                required
-                class="form-control"
-              />
-              <button
-                class="btn btn-primary"
-                [disabled]="formulaire.invalid"
-              >
-                Modifier
-              </button>
-            </form>
-          </div>
+            </ejs-dropdownlist>
+            <label for="name">Jury:</label><br />
+            <!-- make a select with all teachers, their id as value -->
+            <ejs-multiselect
+              ngModel
+              name="jury"
+              id="multiselectelement"
+              [dataSource]="enseignants"
+              [fields]="fieldsJ"
+              [placeholder]="placeholderJ"
+            >
+              <ng-template #itemTemplate let-data>
+                <div>
+                  <div class="name">
+                    {{ data.firstname }} {{ data.lastname }}
+                  </div>
+                </div>
+              </ng-template>
+            </ejs-multiselect>
+            <label for="date">Date de la soutenance:</label><br />
+            <input
+              type="date"
+              id="date"
+              name="date"
+              ngModel
+              class="form-control"
+            />
+            <br>
+            <button
+              class="btn btn-primary m-1"
+              [disabled]="formulaire.invalid"
+              (click)="handleForm(formulaire)"
+            >
+              Modifier
+            </button>
+            <button (click)="handleAnnuler()" class="btn btn-secondary m-1">
+              Annuler
+            </button>
+          </form>
         </div>
       </div>
-      <div class="col-md-2"></div>
     </div>
+    <div class="col-md-2"></div>
   </div>
-  
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DropDownListComponent } from '@syncfusion/ej2-angular-dropdowns';
 import { Observable } from 'rxjs';
@@ -16,12 +17,16 @@ export class ModifySoutenanceComponent implements OnInit {
   soutenance : any;
   sessions : any;
   enseignants : any;
+  enseignantsSansEncadrant : any;
   encadrant : any = {firstname : "", lastname : ""};
   sessionName : string;
 
 
   public fieldsE = { text: 'lastname', value: 'cin' }
   public textE: string = "Changer Encadrant";
+
+  public fieldsJ = { text: 'lastname', value: 'cin' }
+  public placeholderJ: string = "Changer Jury";
 
   public fieldsS = { text: 'name', value: 'id' }
   public textS: string = "Changer la Session";
@@ -39,12 +44,20 @@ export class ModifySoutenanceComponent implements OnInit {
         this.encadrant = response
       })
       this.http.getEnseignants().subscribe((response : any) => {
-        this.enseignants= response.filter((enseignant) => enseignant.cin !== this.encadrant.cin);
+        this.enseignants= response
+        this.enseignantsSansEncadrant= this.enseignants.filter((enseignant) => enseignant.cin !== this.encadrant.cin);
       })
       this.http.getSessions().subscribe((response) => {
         this.sessions = response
       })
     }
+  }
+
+  handleForm(formulaire : NgForm){
+    console.log(formulaire.form.value)
+  }
+  handleAnnuler(){
+    this.router.navigate(["/admin/soutenances"])
   }
 }
 

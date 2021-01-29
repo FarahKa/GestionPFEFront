@@ -26,6 +26,7 @@ import { RegisterEnseignantComponent } from './register-enseignant/register-ense
 import { RegisterAdminComponent } from './register-admin/register-admin.component';
 import { AdminsComponent } from './admins/admins.component';
 import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
+import { MultiSelectModule } from '@syncfusion/ej2-angular-dropdowns';
 
 
 
@@ -59,7 +60,8 @@ import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-    DropDownListModule
+    DropDownListModule,
+    MultiSelectModule
   ],
   providers: []
 })
