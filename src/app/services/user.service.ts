@@ -7,28 +7,28 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-    constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-    getAllAdmins() {
-        return this.http.get<User[]>(`/users`);
-    }
-    getAllUsers() {
-        return this.http.get<User[]>(`/users`);
-    }
+  getAllAdmins() {
+    return this.http.get<User[]>(`/users`);
+  }
+  getAllUsers() {
+    return this.http.get<User[]>(`/users`);
+  }
 
-    getAdminById(cin: number) {
-        return this.http.get<User>(`/users/` + cin);
-    }
+  getAdminById(cin: number) {
+    return this.http.get<User>(`/users/` + cin);
+  }
 
-    registerAdmin(user: User) {
-        return this.http.post(`/users/register`, user);
-    }
+  registerAdmin(user: User) {
+    return this.http.post(`/users/register`, user);
+  }
 
-    updateAdmin(user: User) {
-        return this.http.put(`/users/` + user.cin, user);
-    }
+  updateAdmin(user: User) {
+    return this.http.put(`/users/` + user.cin, user);
+  }
 
-    deleteAdmin(cin: number) {
-        return this.http.delete(`/users/` + cin);
-    }
+  deleteAdmin(cin: number) {
+    return this.http.delete(`/users/` + cin);
+  }
 }

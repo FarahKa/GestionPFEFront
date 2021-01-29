@@ -10,55 +10,55 @@
 
                     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                         <div class="form-group">
-                            <label for="firstName">Prénom</label>
+                            <label for="firstname">Prénom</label>
                             <input type="text" formControlName="firstname" class="form-control"
-                                [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
-                            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-                                <div *ngIf="f.firstName.errors.required">Prénom est obligatoire</div>
+                                [ngClass]="{ 'is-invalid': submitted && fields.firstname.errors }" />
+                            <div *ngIf="submitted && fields.firstname.errors" class="invalid-feedback">
+                                <div *ngIf="fields.firstname.errors.required">Prénom est obligatoire</div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="lastName">Nom</label>
+                            <label for="lastname">Nom</label>
                             <input type="text" formControlName="lastname" class="form-control"
-                                [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
-                            <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-                                <div *ngIf="f.lastName.errors.required">Nom est obligatoire</div>
+                                [ngClass]="{ 'is-invalid': submitted && fields.lastname.errors }" />
+                            <div *ngIf="submitted && fields.lastname.errors" class="invalid-feedback">
+                                <div *ngIf="fields.lastname.errors.required">Nom est obligatoire</div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="cin">Carte d'identité</label>
                             <input type="text" formControlName="cin" class="form-control"
-                                [ngClass]="{ 'is-invalid': submitted && f.cin.errors }" />
-                            <div *ngIf="submitted && f.cin.errors" class="invalid-feedback">
-                                <div *ngIf="f.cin.errors.required">Carte d'identité est obligatoire</div>
-                                <div *ngIf="f.cin.errors.minlength || f.cin.errors.maxlength || f.cin.errors.pattern">Carte d'identité doit être 8 nombres </div>
+                                [ngClass]="{ 'is-invalid': submitted && fields.cin.errors }" />
+                            <div *ngIf="submitted && fields.cin.errors" class="invalid-feedback">
+                                <div *ngIf="fields.cin.errors.required">Carte d'identité est obligatoire</div>
+                                <div *ngIf="fields.cin.errors.minlength || fields.cin.errors.maxlength || fields.cin.errors.pattern">Carte d'identité doit être 8 nombres </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="phone">Téléphone</label>
                             <input type="text" formControlName="phoneNumber" class="form-control"
-                                [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
-                            <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
-                                <div *ngIf="f.phoneNumber.errors.required">Téléphone est obligatoire</div>
-                                <div *ngIf="f.phoneNumber.errors.minlength || f.phoneNumber.errors.maxlength || f.phoneNumber.errors.pattern">Téléphone doit être 8 nombres </div>
+                                [ngClass]="{ 'is-invalid': submitted && fields.phoneNumber.errors }" />
+                            <div *ngIf="submitted && fields.phoneNumber.errors" class="invalid-feedback">
+                                <div *ngIf="fields.phoneNumber.errors.required">Téléphone est obligatoire</div>
+                                <div *ngIf="fields.phoneNumber.errors.minlength || fields.phoneNumber.errors.maxlength || fields.phoneNumber.errors.pattern">Téléphone doit être 8 nombres </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" formControlName="email" class="form-control"
-                                [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-                            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                                <div *ngIf="f.email.errors.required">Email est obligatoire</div>
-                                <div *ngIf="f.email.errors.email">Email est invalide</div>
+                                [ngClass]="{ 'is-invalid': submitted && fields.email.errors }" />
+                            <div *ngIf="submitted && fields.email.errors" class="invalid-feedback">
+                                <div *ngIf="fields.email.errors.required">Email est obligatoire</div>
+                                <div *ngIf="fields.email.errors.email">Email est invalide</div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="password">mot de passe</label>
                             <input type="password" formControlName="password" class="form-control"
-                                [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                                <div *ngIf="f.password.errors.required">mot de passe est obligatoire</div>
-                                <div *ngIf="f.password.errors.minlength">mot de passe doit être au moins de 6 caractères</div>
+                                [ngClass]="{ 'is-invalid': submitted && fields.password.errors }" />
+                            <div *ngIf="submitted && fields.password.errors" class="invalid-feedback">
+                                <div *ngIf="fields.password.errors.required">mot de passe est obligatoire</div>
+                                <div *ngIf="fields.password.errors.minlength">mot de passe doit être au moins de 6 caractères</div>
                             </div>
                         </div>
                         <div class="text-center">

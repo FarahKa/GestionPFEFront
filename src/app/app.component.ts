@@ -21,11 +21,11 @@ export class AppComponent {
   hidden: boolean;
   sidebarMenuItems;
   sidebarIcon;
-  constructor(private navigationService: NavigationService) { }
+  constructor(private navigationService: NavigationService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     // UPDATE CURRENT_YEAR WHEN WE CREATE NEW YEAR (to do nhar e5er)
-    localStorage.setItem("current_year", "2020")
+    localStorage.setItem("currentYear", "2020")
     this.sidebarIcon = faMinus
     this.hidden = true
 
@@ -67,8 +67,6 @@ export class AppComponent {
       }
     ]
 
-    const pfes_courants = "admin/pfe/courant/"
-    const pfes_courants_non_valides = "admin/pfe/courants_non_valides/"
     this.pfes = [
       {
         "item": "PFEs courants",
@@ -163,7 +161,7 @@ export class AppComponent {
     ]
 
     this.navigationService.subjectSelectedItem.pipe(distinctUntilChanged()).subscribe(
-      (item: string) => this.fillSidebarMenuItem(item))
+      (item: string) => { this.fillSidebarMenuItem(item); console.log("hi"); console.log(item); console.log("hi"); })
   }
 
   fillSidebarMenuItem(item: string) {
@@ -171,15 +169,26 @@ export class AppComponent {
       this.hidden = false
       this._opened = true
       this.sidebarIcon = faMinus
-      if (item.includes("etudiants"))
-        this.sidebarMenuItems = this.etudiants
-      else if (item.includes("enseignants"))
-        this.sidebarMenuItems = this.enseignants
-      else if (item.includes("pfes"))
-        this.sidebarMenuItems = this.pfes
-      else if (item.includes("soutenances"))
-        this.sidebarMenuItems = this.soutenances
+      console.log(location.pathname)
+      console.log(location.href)
+      console.log(this.route.url)
+      //const url = this.route.snapshot.url.split("&")[0]
+      const url="/admin/"
+      console.log(url)
+
+      console.log(url.includes("/admin"))
+      if (item.includes("etudiants") && url.includes("/admin"))
+          this.sidebarMenuItems = this.etudiants
+      else if (item.includes("enseignants") && url.includes("/admin"))
+          this.sidebarMenuItems = this.enseignants
+      else if (item.includes("pfes") && url.includes("/admin")){
+          this.sidebarMenuItems = this.pfes
+          console.log(this.sidebarMenuItems)
+        }
+      else if (item.includes("soutenances") && url.includes("/admin"))
+          this.sidebarMenuItems = this.soutenances
       else {
+        console.log("fl else")
         this.hidden = true
         if (this._opened) {
           this._opened = false

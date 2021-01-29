@@ -19,10 +19,15 @@ export class PfeComponent implements OnInit {
   option
   filiere
   search_fields
+  searchFieldsSubject
+  pfesSubject
+  selectedItemSubject
+  sidebar
   constructor(private pfeService: PfeService, private sidebarService: PrettySidebarService, private searchbarService: SearchbarService) { }
 
   ngOnInit(): void {
-    this.searchbarService.subjectSearchFields.subscribe((data) => this.search(data))
+    this.searchFieldsSubject = this.searchbarService.subjectSearchFields
+    this.searchFieldsSubject.subscribe((data) => this.search(data))
 
     this.search_fields = [
       {
@@ -43,13 +48,15 @@ export class PfeComponent implements OnInit {
       }
     ]
 
-    this.pfeService.get_current_pfes().subscribe(
+    this.pfesSubject = this.pfeService.get_current_pfes()
+    this.pfesSubject.subscribe(
       (reponse) => {
         this.pfes = reponse
         this.pfes_to_display = reponse
       })
 
-    this.sidebarService.subjectSelectedItem.subscribe(
+    this.selectedItemSubject = this.sidebarService.subjectSelectedItem
+    this.selectedItemSubject.subscribe(
       (item) => {
         this.filiere = item["item"]
         this.option = item["option"]
@@ -293,6 +300,13 @@ export class PfeComponent implements OnInit {
     this.pfes_to_display = this.pfes
 
   }
+
+ /* ngOnDestroy() {
+    // unsubscribe to ensure no memory leaks
+    this.pfesSubject.unsubscribe();
+    this.searchFieldsSubject.unsubscribe();
+    this.selectedItemSubject.unsubscribe();
+}*/
 
   changePFEsOnDisplay() {
     if (this.option == "all") {

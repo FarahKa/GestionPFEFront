@@ -29,46 +29,52 @@ const APP_ROUTING: Routes = [
     path: 'admin', children: [
       { path: 'etudiants', component: EtudiantsComponent },
       { path: 'enseignants', component: EnseignantsComponent },
-      { path: 'admins', component:  AdminsComponent},
+      { path: 'admins', component: AdminsComponent },
       { path: 'pfe', component: PfeComponent },
       { path: 'soutenances', component: SoutenancesComponent },
       { path: 'addSession', component: AddSessionComponent },
-      {path :'addStudent',component:RegisterEtudiantComponent},
-      {path :'addTeacher',component:RegisterEnseignantComponent},
+      { path: 'addStudent', component: RegisterEtudiantComponent },
+      { path: 'addTeacher', component: RegisterEnseignantComponent },
       //{path :'addAdmin',component:RegisterAdminComponent},
-      {path: 'modifySoutenance', component: ModifySoutenanceComponent}
+      { path: 'modifySoutenance', component: ModifySoutenanceComponent }
     ],
     canActivate: [AuthGuard],
-   // data: { roles: [Role.Admin] }
+    // data: { roles: [Role.Admin] }
   },
-  { path: 'calendrier', component: CalendrierComponent,
-   canActivate: [AuthGuard]
-},
-  { path: 'etudiant', component: EspaceEtudiantComponent,
-  children: [
-    {
+  {
+    path: 'calendrier', component: CalendrierComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'etudiant', component: EspaceEtudiantComponent,
+    children: [
+      {
         path: '',
         component: DetailPfeComponent,
-    },
-    {
-      path: 'detailSoutenance',
-      component: DetailSoutenanceComponent,
-  },   
-], canActivate: [AuthGuard]},
-{path: 'enseignants', component: ListeEnseignantComponent,canActivate: [AuthGuard]
-},
-{path: 'pfes', component: ListePfesComponent,canActivate: [AuthGuard]
-},
+      },
+      {
+        path: 'detailSoutenance',
+        component: DetailSoutenanceComponent,
+      },
+    ], canActivate: [AuthGuard]
+  },
+  {
+    path: 'enseignants', component: ListeEnseignantComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'pfes', component: ListePfesComponent, canActivate: [AuthGuard]
+  },
 
-{path: 'login', component: LoginComponent},
+  { path: 'login', component: LoginComponent },
 
-{
-  path: '', 
-  component: RegisterAdminComponent,
-   //canActivate: [AuthGuard]
-},
-{ path: '**', 
-  redirectTo: '', 
+  {
+    path: '',
+    component: RegisterAdminComponent,
+    //canActivate: [AuthGuard]
+  },
+  {
+    path: '**',
+    redirectTo: '',
   },
 
 

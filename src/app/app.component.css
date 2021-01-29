@@ -12,3 +12,6 @@ app-navigation {
   /* display: flex; */
   flex-grow: grow;
 }
+.make-cursor-pointer{
+  cursor: pointer;
+}
