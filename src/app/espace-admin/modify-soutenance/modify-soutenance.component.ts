@@ -55,6 +55,14 @@ export class ModifySoutenanceComponent implements OnInit {
 
   handleForm(formulaire : NgForm){
     console.log(formulaire.form.value)
+    this.http.patchSoutenance(this.soutenance.id, formulaire.form.value).subscribe(
+      (response) => {
+        console.log("got a good response")
+        console.log(response)
+        this.router.navigate(["/admin/soutenances"])
+      },
+      error => console.log(error)
+    )
   }
   handleAnnuler(){
     this.router.navigate(["/admin/soutenances"])

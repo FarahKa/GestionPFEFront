@@ -36,4 +36,8 @@ export class HttpService {
   getEncadrant(idS : number){
     return this.http.get(this.url + "/soutenance/encadrant/" + idS)   
   }
+
+  patchSoutenance(idS : number, data : any){
+    return this.http.post(this.url + "/soutenance/patchSoutenance/" + idS, data)
+  }
 }
