@@ -27,6 +27,8 @@ import { AlertComponent } from './shared/alert/alert.component';
 import { LoginComponent } from './login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+//import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +54,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     EspaceEtudiantModule,
     CommonModule,
     NgbModule,
+
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

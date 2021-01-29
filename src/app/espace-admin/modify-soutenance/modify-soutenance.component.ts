@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DropDownListComponent } from '@syncfusion/ej2-angular-dropdowns';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpService } from 'src/app/services/http.service';
 import { SoutenancesService } from '../soutenances/soutenances.service';
@@ -12,18 +14,37 @@ import { SoutenancesService } from '../soutenances/soutenances.service';
 export class ModifySoutenanceComponent implements OnInit {
 
   soutenance : any;
+  sessions : any;
   enseignants : any;
+  encadrant : any = {firstname : "", lastname : ""};
+  sessionName : string;
+
+
+  public fieldsE = { text: 'lastname', value: 'cin' }
+  public textE: string = "Changer Encadrant";
+
+  public fieldsS = { text: 'name', value: 'id' }
+  public textS: string = "Changer la Session";
 
   constructor(private soutenancesService: SoutenancesService, private router : Router, private http : HttpService) { }
 
+  
   ngOnInit(): void {
     this.soutenance = this.soutenancesService.getCurrentSoutenance();
     console.log(this.soutenance)
     if(this.soutenance === undefined){
       this.router.navigate(["/admin/soutenances"])
     } else {
-      this.enseignants=this.http.getEnseignants()
+      this.http.getEncadrant(this.soutenance.id).subscribe((response) => {
+        this.encadrant = response
+      })
+      this.http.getEnseignants().subscribe((response : any) => {
+        this.enseignants= response.filter((enseignant) => enseignant.cin !== this.encadrant.cin);
+      })
+      this.http.getSessions().subscribe((response) => {
+        this.sessions = response
+      })
     }
   }
-
 }
+

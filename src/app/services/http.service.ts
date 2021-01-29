@@ -25,6 +25,15 @@ export class HttpService {
   }
 
   getEnseignants(){
-    return this.http.get(this.url + "/enseignants/all")
+    console.log("trying to get all teachers")
+    return this.http.get(this.url + "/soutenance/allEnseignants")
+  }
+
+  assignEncadrant(idS : number, idE : string){
+    return this.http.get(this.url + "/soutenance/all/" + idS + "/" + idE)
+  }
+
+  getEncadrant(idS : number){
+    return this.http.get(this.url + "/soutenance/encadrant/" + idS)   
   }
 }

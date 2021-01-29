@@ -25,6 +25,7 @@ import { ModifySoutenanceComponent } from './modify-soutenance/modify-soutenance
 import { RegisterEnseignantComponent } from './register-enseignant/register-enseignant.component';
 import { RegisterAdminComponent } from './register-admin/register-admin.component';
 import { AdminsComponent } from './admins/admins.component';
+import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
 
 
 
@@ -57,7 +58,8 @@ import { AdminsComponent } from './admins/admins.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    DropDownListModule
   ],
   providers: []
 })
