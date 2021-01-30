@@ -1,5 +1,5 @@
-<!--<div class="list-group">
-    <a *ngFor="let enseignant of enseignants" href="#" 
+<div class="list-group">
+    <a *ngFor="let enseignant of enseignants" [routerLink]="['/enseignant', enseignant.cin]"
     class="list-group-item list-group-item-action">{{enseignant.firstname}} {{enseignant.lastname}}</a>
 </div>-->
 

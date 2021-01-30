@@ -1,13 +1,13 @@
 <div class="side-buttons"><button type="button" [routerLink]="'/admin/addSession'" class="btn btn-dark">Nouvelle Session</button></div>
 <app-accordion>
     <div  *ngFor="let session of sessions">
-        <app-item [label]="session.nom + ' - de ' + session.start_date + ' à ' + session.end_date">
+        <app-item [label]="session.nom + session.dates">
             <app-accordion>
                 <span  *ngFor="let filiere of session.filieres">
                     <app-item [label]="filiere.nom">   
                         <div  *ngFor="let soutenance of filiere.soutenances">
                             <app-item [label]="soutenance.pfe.subject">    
-                                Sujet: {{soutenance.pfe.subject}}  <span class="floatright">{{soutenance.date}}</span> 
+                                Sujet: {{soutenance.pfe.subject}}  <span class="floatright">{{soutenance.date | date:"dd/MM/yyyy hh:mm a"}}</span> 
                                 <br> Etudiant: {{soutenance.etudiant.firstname}} {{soutenance.etudiant.lastname}} <br>
                                 <button class="btn btn-dark floatright" (click)="modifySoutenance(soutenance)">Modifier</button>
                                 <br>                                                

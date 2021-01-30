@@ -23,9 +23,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EspaceEtudiantModule } from './espace-etudiant/espace-etudiant.module';
 import { ListeEnseignantComponent } from './shared/liste-enseignant/liste-enseignant.component';
 import { ListePfesComponent } from './shared/liste-pfes/liste-pfes.component';
+import { DetailEnseignantComponent } from './shared/detail-enseignant/detail-enseignant.component';
 import { AlertComponent } from './shared/alert/alert.component';
 import { LoginComponent } from './login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+//import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     PrettySidebarComponent,
     ListeEnseignantComponent,
     ListePfesComponent,
+    DetailEnseignantComponent,
     AlertComponent,
     LoginComponent,
   ],
@@ -52,6 +56,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     EspaceEtudiantModule,
     CommonModule,
     NgbModule,
+
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
