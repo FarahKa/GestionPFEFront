@@ -5,6 +5,7 @@
       <div class="card card-addition">
         <div class="card-header">Modifier une soutenance:</div>
         <div class="card-body">
+          <p>Tout champ vide sera ignoré.</p>
           <form #formulaire="ngForm">
             <label for="name">Session:</label><br />
             <!-- make a select with all sessions, their id as value -->
@@ -59,13 +60,7 @@
               </ng-template>
             </ejs-multiselect>
             <label for="date">Date de la soutenance:</label><br />
-            <input
-              type="date"
-              id="date"
-              name="date"
-              ngModel
-              class="form-control"
-            />
+            <ejs-datetimepicker id="date" name="date" ngModel  width="300px"></ejs-datetimepicker>
             <br>
             <button
               class="btn btn-primary m-1"

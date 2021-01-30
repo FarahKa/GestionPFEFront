@@ -26,7 +26,7 @@ import { RegisterAdminComponent } from './register-admin/register-admin.componen
 import { AdminsComponent } from './admins/admins.component';
 import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
 import { MultiSelectModule } from '@syncfusion/ej2-angular-dropdowns';
-
+import { DateTimePickerModule } from "@syncfusion/ej2-angular-calendars";
 
 @NgModule({
   declarations: [
@@ -58,7 +58,8 @@ import { MultiSelectModule } from '@syncfusion/ej2-angular-dropdowns';
     HttpClientModule,
     NgbModule,
     DropDownListModule,
-    MultiSelectModule
+    MultiSelectModule,
+    DateTimePickerModule
   ],
   providers: []
 })
