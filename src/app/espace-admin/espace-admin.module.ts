@@ -15,7 +15,6 @@ import { ROUTING } from '../app.routing';
 import { AddSessionComponent } from './add-session/add-session.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpService } from '../services/http.service';
-import { EspaceAdminComponent } from './espace-admin/espace-admin.component';
 import { AppModule } from '../app.module';
 import { RegisterEtudiantComponent } from './register-etudiant/register-etudiant.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -39,7 +38,6 @@ import { MultiSelectModule } from '@syncfusion/ej2-angular-dropdowns';
     ItemComponent,
     SearchbarComponent,
     AddSessionComponent,
-    EspaceAdminComponent,
     RegisterEtudiantComponent,
     ModalEditAdminComponent,
     ModifySoutenanceComponent,

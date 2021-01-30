@@ -39,7 +39,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     PrettySidebarComponent,
     ListeEnseignantComponent,
     ListePfesComponent,
-    espace_etudiant
     DetailEnseignantComponent,
     AlertComponent,
     LoginComponent,

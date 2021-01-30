@@ -62,9 +62,6 @@ const APP_ROUTING: Routes = [
   {
     path: 'pfes', component: ListePfesComponent, canActivate: [AuthGuard]
   },
- 
-    
-]},
 {path: 'enseignants', component: ListeEnseignantComponent},
 {path: 'pfes', component: ListePfesComponent},
 {path: 'enseignant/:cin', component: DetailEnseignantComponent},
