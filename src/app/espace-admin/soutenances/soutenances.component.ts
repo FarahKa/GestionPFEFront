@@ -53,7 +53,12 @@ export class SoutenancesComponent implements OnInit {
 
         sessions.forEach(session => {
           let filieres : Filiere[] = [];
-            session.soutenances.forEach(soutenance => {
+            session.soutenances.forEach(async soutenance => {
+              // let test = this.http.getEncadrant(soutenance.id).subscribe((response)=>{
+              //   return response
+              // })
+              // let encadrant = await test()
+              // soutenance.encadrant = encadrant;
              let filiere = filieres.find(filiere => filiere.nom === soutenance.etudiant.filiere)
             if (filiere) {
               filiere.soutenances.push(soutenance)

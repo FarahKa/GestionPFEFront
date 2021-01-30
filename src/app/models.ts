@@ -13,5 +13,5 @@ export class Session {
 }
 export class Filiere {
   nom: string;
-  soutenances: Soutenance[];
+  soutenances: any[];
 }
