@@ -23,4 +23,21 @@ export class HttpService {
   getSessions(){
     return this.http.get(this.url + "/session/all")
   }
+
+  getEnseignants(){
+    console.log("trying to get all teachers")
+    return this.http.get(this.url + "/soutenance/allEnseignants")
+  }
+
+  assignEncadrant(idS : number, idE : string){
+    return this.http.get(this.url + "/soutenance/all/" + idS + "/" + idE)
+  }
+
+  getEncadrant(idS : number){
+    return this.http.get(this.url + "/soutenance/encadrant/" + idS)   
+  }
+
+  patchSoutenance(idS : number, data : any){
+    return this.http.post(this.url + "/soutenance/patchSoutenance/" + idS, data)
+  }
 }

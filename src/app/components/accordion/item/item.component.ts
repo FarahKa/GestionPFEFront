@@ -20,17 +20,7 @@ export class ItemComponent implements OnInit {
   }
 
   handleToggleVisibility() {
-    console.log("she clikk")
-    console.log(this.visibility)
-    // console.log(this.activeStatus)
     this.visibility = !this.visibility;
-    // if(this.visibility){
-    //   this.activeStatus = "active";
-    // } else {
-    //   this.activeStatus = "";
-    // }
-    // console.log(this.visibility)
-    // console.log(this.activeStatus)
   }
 
 }

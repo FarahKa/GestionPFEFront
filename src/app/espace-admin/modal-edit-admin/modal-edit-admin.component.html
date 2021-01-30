@@ -1,0 +1,104 @@
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Mettre à jour</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for="firstname">Prénom</label>
+                    <input type="text" formControlName="firstname" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" />
+                    <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                        <div *ngIf="f.firstname.errors.required">Prénom est obligatoire</div>
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <label for="lastname">Nom</label>
+                    <input type="text" formControlName="lastname" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }" />
+                    <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+                        <div *ngIf="f.lastname.errors.required">Nom est obligatoire</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for="cin">Carte d'identité</label>
+                    <input type="text" formControlName="cin" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.cin.errors }" />
+                    <div *ngIf="submitted && f.cin.errors" class="invalid-feedback">
+                        <div *ngIf="f.cin.errors.required">Carte d'identité est obligatoire</div>
+                        <div *ngIf="f.cin.errors.minlength || f.cin.errors.maxlength || f.cin.errors.pattern">Carte d'identité doit être 8 nombres </div>
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <label for="phone">Téléphone</label>
+                    <input type="text" formControlName="phoneNumber" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" />
+                    <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
+                        <div *ngIf="f.phoneNumber.errors.required">Téléphone est obligatoire</div>
+                        <div *ngIf="f.phoneNumber.errors.minlength || f.phoneNumber.errors.maxlength || f.phoneNumber.errors.pattern">Téléphone doit être 8 nombres </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for="email">Email</label>
+                    <input type="email" formControlName="email" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email est obligatoire</div>
+                        <div *ngIf="f.email.errors.email">Email est invalide</div>
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <label for="password">
+                        Password
+                        <em >(Leave blank to keep the same password)</em>
+                    </label>
+                    <input type="password" formControlName="password" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                        <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                    </div>
+                </div>
+            </div>   
+            <div class="modal-footer ">
+                <div class="form-group">
+                    
+                    <button [disabled]="loading" class="btn btn-primary">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                        Save
+                    </button>
+                    <a  (click)="d('Cross click')" class="btn btn-link">Cancel</a>
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+
+
+
+</ng-template>
+
+
+<button (click)="open(content)" class="btn btn-primary ">
+    <svg class="bi bi-pencil-square" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+            d="M15.502 1.94a.5.5 0 010 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 01.707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 00-.121.196l-.805 2.414a.25.25 0 00.316.316l2.414-.805a.5.5 0 00.196-.12l6.813-6.814z" />
+        <path fill-rule="evenodd"
+            d="M1 13.5A1.5 1.5 0 002.5 15h11a1.5 1.5 0 001.5-1.5v-6a.5.5 0 00-1 0v6a.5.5 0 01-.5.5h-11a.5.5 0 01-.5-.5v-11a.5.5 0 01.5-.5H9a.5.5 0 000-1H2.5A1.5 1.5 0 001 2.5v11z"
+            clip-rule="evenodd" />
+    </svg>
+</button>

@@ -1,4 +1,4 @@
-<div class="container navbar navbar-inverse" id="sidebar-wrapper">
+<div class="container navbar navbar-inverse" id="sidebar-wrapper" *ngIf="currentUser">
   <ul class="nav sidebar-nav">
     <li
       *ngFor="let menuItem of sidebarMenuItems"

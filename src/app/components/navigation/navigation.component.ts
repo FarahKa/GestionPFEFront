@@ -1,8 +1,9 @@
+import { User } from './../../models/user.model';
+import { AuthentificationService } from 'src/app/services/authentification.service';
 import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavigationService } from './navigation.service';
-
 
 declare interface RouteInfo {
   path: string;
@@ -31,9 +32,12 @@ export const ROUTES: RouteInfo[] = [
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-
+  currentUser: User;
   menuItems: any[];
-  constructor(private navigationbarService: NavigationService) { }
+  constructor(private navigationbarService: NavigationService,private router: Router,
+    private authenticationService: AuthentificationService) { 
+      this.authenticationService.currentUser.subscribe(x => this.currentUser = x); 
+    }
 
   ngOnInit(): void {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
@@ -53,4 +57,9 @@ export class NavigationComponent implements OnInit {
     else
       this.navigationbarService.selectNavBarMenuItem("")
   }
+
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
+}
 }

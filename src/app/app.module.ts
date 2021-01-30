@@ -1,3 +1,6 @@
+import { ErrorInterceptor } from './helpers/error.interceptor';
+import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { fakeBackendProvider } from './helpers/fake-backend';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -15,12 +18,18 @@ import { ItemComponent } from './components/accordion/item/item.component';
 import { CommonModule } from '@angular/common';
 import { EspaceAdminModule } from './espace-admin/espace-admin.module';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EspaceEtudiantModule } from './espace-etudiant/espace-etudiant.module';
 import { ListeEnseignantComponent } from './shared/liste-enseignant/liste-enseignant.component';
 import { ListePfesComponent } from './shared/liste-pfes/liste-pfes.component';
 import { DetailEnseignantComponent } from './shared/detail-enseignant/detail-enseignant.component';
+import { AlertComponent } from './shared/alert/alert.component';
+import { LoginComponent } from './login/login.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+//import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +39,10 @@ import { DetailEnseignantComponent } from './shared/detail-enseignant/detail-ens
     PrettySidebarComponent,
     ListeEnseignantComponent,
     ListePfesComponent,
+    espace_etudiant
     DetailEnseignantComponent,
+    AlertComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,10 +52,20 @@ import { DetailEnseignantComponent } from './shared/detail-enseignant/detail-ens
     FontAwesomeModule,
     EspaceAdminModule,
     HttpClientModule,
+    ReactiveFormsModule,
     FormsModule,
-    EspaceEtudiantModule
+    EspaceEtudiantModule,
+    CommonModule,
+    NgbModule,
+
   ],
-  providers: [],
+  providers: [ { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+    // provider used to create fake backend
+   fakeBackendProvider
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
