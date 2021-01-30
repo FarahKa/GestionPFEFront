@@ -23,6 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EspaceEtudiantModule } from './espace-etudiant/espace-etudiant.module';
 import { ListeEnseignantComponent } from './shared/liste-enseignant/liste-enseignant.component';
 import { ListePfesComponent } from './shared/liste-pfes/liste-pfes.component';
+import { DetailEnseignantComponent } from './shared/detail-enseignant/detail-enseignant.component';
 import { AlertComponent } from './shared/alert/alert.component';
 import { LoginComponent } from './login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -38,6 +39,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     PrettySidebarComponent,
     ListeEnseignantComponent,
     ListePfesComponent,
+    espace_etudiant
+    DetailEnseignantComponent,
     AlertComponent,
     LoginComponent,
   ],

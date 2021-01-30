@@ -17,7 +17,7 @@ import { HeaderComponent } from './header/header.component';
     CommonModule,
     FontAwesomeModule,
     FormsModule,
-    ROUTING
+    ROUTING,
   ],
 })
 export class EspaceEtudiantModule { }
