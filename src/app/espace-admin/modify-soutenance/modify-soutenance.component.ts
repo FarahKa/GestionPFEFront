@@ -41,7 +41,9 @@ export class ModifySoutenanceComponent implements OnInit {
       this.router.navigate(["/admin/soutenances"])
     } else {
       this.http.getEncadrant(this.soutenance.id).subscribe((response) => {
-        this.encadrant = response
+        if(response !== null){
+          this.encadrant = response
+        }
       })
       this.http.getEnseignants().subscribe((response : any) => {
         this.enseignants= response
