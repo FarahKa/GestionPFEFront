@@ -29,7 +29,6 @@ import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
 import { MultiSelectModule } from '@syncfusion/ej2-angular-dropdowns';
 
 
-
 @NgModule({
   declarations: [
     EtudiantsComponent,
