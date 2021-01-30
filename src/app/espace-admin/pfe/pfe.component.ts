@@ -4,6 +4,7 @@ import { distinctUntilChanged } from 'rxjs/operators';
 import { PrettySidebarService } from 'src/app/components/pretty-sidebar/pretty-sidebar.service';
 import { SearchbarComponent } from 'src/app/components/searchbar/searchbar.component';
 import { SearchbarService } from 'src/app/components/searchbar/searchbar.service';
+import { FiliereEnum } from 'src/app/enums/filere.enum';
 import { PfeService } from './pfe.service';
 
 @Component({
@@ -23,9 +24,11 @@ export class PfeComponent implements OnInit {
   pfesSubject
   selectedItemSubject
   sidebar
+  pfe: any;
   constructor(private pfeService: PfeService, private sidebarService: PrettySidebarService, private searchbarService: SearchbarService) { }
 
   ngOnInit(): void {
+    this.pfe = undefined
     this.searchFieldsSubject = this.searchbarService.subjectSearchFields
     this.searchFieldsSubject.subscribe((data) => this.search(data))
 
@@ -332,7 +335,13 @@ export class PfeComponent implements OnInit {
         })
       }
 
-      if (["GL", "RT", "IIA", "IMI", "BIO", "CH"].indexOf(this.filiere) > -1) {
+      if (Object.values(FiliereEnum).includes(this.filiere)) {
+        this.pfes_to_display = this.pfes_to_display.filter((p) => {
+          return p.filiere == this.filiere
+        })
+      }
+      if (this.filiere == "Master") {
+        // somehow filter Master
         this.pfes_to_display = this.pfes_to_display.filter((p) => {
           return p.filiere == this.filiere
         })
@@ -372,5 +381,10 @@ export class PfeComponent implements OnInit {
       }
       return true
     })
+  }
+
+  viewPFEDetails(pfe){
+    console.log(pfe)
+    this.pfe = pfe;
   }
 }
