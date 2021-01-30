@@ -12,11 +12,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ROUTING } from '../app.routing';
 import { AddSessionComponent } from './add-session/add-session.component';
 import { FormsModule } from '@angular/forms';
-import { HttpService } from '../services/http.service';
-import { EspaceAdminComponent } from './espace-admin/espace-admin.component';
-import { AppModule } from '../app.module';
-
-
 
 @NgModule({
   declarations: [
@@ -28,7 +23,6 @@ import { AppModule } from '../app.module';
     ItemComponent,
     SearchbarComponent,
     AddSessionComponent,
-    EspaceAdminComponent
   ],
   exports: [AccordionComponent, ItemComponent, SearchbarComponent],
   imports: [
