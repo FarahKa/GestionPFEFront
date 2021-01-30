@@ -9,6 +9,16 @@
                             <app-item [label]="soutenance.pfe.subject">    
                                 Sujet: {{soutenance.pfe.subject}}  <span class="floatright">{{soutenance.date | date:"dd/MM/yyyy hh:mm a"}}</span> 
                                 <br> Etudiant: {{soutenance.etudiant.firstname}} {{soutenance.etudiant.lastname}} <br>
+                                <span *ngIf="soutenance.encadrant">Encadrant : {{soutenance.encadrant.firstname}} {{soutenance.encadrant.lastname}}</span>
+                                <br>
+                                <span *ngIf="soutenance.jury">
+                                    Jury:
+                                    <ul>
+                                        <li *ngFor="let jure of soutenance.jury">
+                                            {{jure.firstname}} {{jure.lastname}}
+                                        </li>
+                                    </ul>
+                                </span>
                                 <button class="btn btn-dark floatright" (click)="modifySoutenance(soutenance)">Modifier</button>
                                 <br>                                                
                             </app-item>

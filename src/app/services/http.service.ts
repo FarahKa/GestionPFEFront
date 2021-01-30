@@ -44,4 +44,8 @@ export class HttpService {
   getRogues() {
     return this.http.get(this.url + "/soutenance/rogue")
   }
+
+  getJury(idSoutenance) {
+    return this.http.get(this.url + "/soutenance/jury/" + idSoutenance)
+  }
 }
