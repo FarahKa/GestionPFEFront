@@ -53,10 +53,10 @@
   role="dialog"
   aria-hidden="true"
 >
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Détails PFE</h5>
+        <h5 class="modal-title">Détails PFE</h5>
         <button
           type="button"
           class="close"
@@ -66,49 +66,12 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <br />
+      <!--<hr />-->
       <div class="modal-body">
-          <div class="card-content">
-            <div class="card-header">
-              <strong>Sujet : </strong>{{ pfe.soutenance.pfe.subject }}
-            </div>
-            <div class="card-body">
-              <div class="media d-flex">
-                <div class="media-body text-left">
-                  <strong>Etudiant : </strong>{{ pfe.firstname }}
-                  {{ pfe.lastname }}<br />
-                  <strong>Numéro d'inscription : </strong
-                  >{{ pfe.student_id_number }}
-                  <hr />
-                  <strong>Encadrant(s) : </strong>
-                  <span
-                    *ngIf="
-                      pfe.soutenance.encadrants &&
-                      pfe.soutenance.encadrants.length > 0
-                    "
-                  >
-                    <span *ngFor="let encadrant of pfe.soutenance.encadrants">
-                      {{ encadrant.firstname }}
-                      {{ encadrant.lastname }},
-                    </span>
-                  </span>
-                  <span
-                    *ngIf="
-                      !pfe.soutenance.encadrants ||
-                      pfe.soutenance.encadrants.length == 0
-                    "
-                    >{{ "-" }}</span
-                  >
-                </div>
-              </div>
-            </div>
-        </div>
+        <app-view-pfe-details [(pfe)]="pfe" [allow_edit]="true"> </app-view-pfe-details>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" >
-          Modifier
-        </button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-      </div>
+
     </div>
   </div>
 </div>

@@ -27,6 +27,7 @@ import { AdminsComponent } from './admins/admins.component';
 import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
 import { MultiSelectModule } from '@syncfusion/ej2-angular-dropdowns';
 import { DateTimePickerModule } from "@syncfusion/ej2-angular-calendars";
+import { ViewPfeDetailsComponent } from '../components/view-pfe-details/view-pfe-details.component';
 
 @NgModule({
   declarations: [
@@ -43,10 +44,11 @@ import { DateTimePickerModule } from "@syncfusion/ej2-angular-calendars";
     ModifySoutenanceComponent,
     RegisterEnseignantComponent,
     RegisterAdminComponent,
-    AdminsComponent
+    AdminsComponent,
+    ViewPfeDetailsComponent
 
   ],
-  exports: [AccordionComponent, ItemComponent, SearchbarComponent],
+  exports: [AccordionComponent, ItemComponent, SearchbarComponent, ViewPfeDetailsComponent],
   imports: [
     CommonModule,
     FontAwesomeModule,
