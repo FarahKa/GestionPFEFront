@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PrettySidebarService } from 'src/app/components/pretty-sidebar/pretty-sidebar.service';
 import { Filiere, Session } from 'src/app/models';
 import { HttpService } from 'src/app/services/http.service';
 import { SoutenancesService } from './soutenances.service';
@@ -10,6 +11,9 @@ import { SoutenancesService } from './soutenances.service';
   styleUrls: ['./soutenances.component.css'],
 })
 export class SoutenancesComponent implements OnInit {
+
+  selectedItemSubject;
+
   sessions: Session[];
   filieres: Filiere[];
   rogues: Session = {
@@ -23,7 +27,8 @@ export class SoutenancesComponent implements OnInit {
   constructor(
     private soutenancesService: SoutenancesService,
     private http: HttpService,
-    private router: Router
+    private router: Router,
+    private sidebarService : PrettySidebarService
   ) {}
 
   ngOnInit(): void {
@@ -109,6 +114,16 @@ export class SoutenancesComponent implements OnInit {
         this.sessions = this.soutenancesService.getFakeSessions();
       }
     );
+      //TODO: delete this when in prod and roles work correctly
+    localStorage.setItem('gestion_pfe_role', 'admin');
+    this.selectedItemSubject = this.sidebarService.subjectSelectedItem
+    this.selectedItemSubject.subscribe(
+      (item) => {
+        this.soutenancesService.currentFiliere = item.item
+        this.router.navigate(['/admin/soutenances/filieres', item.item])
+      })
+
+
   }
   modifySoutenance(soutenance): void {
     this.soutenancesService.setCurrentSoutenance(soutenance);

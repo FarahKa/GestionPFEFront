@@ -29,6 +29,7 @@ import { MultiSelectModule } from '@syncfusion/ej2-angular-dropdowns';
 import { DateTimePickerModule,  DatePickerModule } from "@syncfusion/ej2-angular-calendars";
 import { ModifySessionComponent } from './modify-session/modify-session.component';
 import { ViewPfeDetailsComponent } from '../components/view-pfe-details/view-pfe-details.component';
+import { SoutenanceFiliereComponent } from './soutenances/soutenance-filiere/soutenance-filiere.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { ViewPfeDetailsComponent } from '../components/view-pfe-details/view-pfe
     RegisterAdminComponent,
     AdminsComponent,
     ModifySessionComponent,
-    ViewPfeDetailsComponent
+    ViewPfeDetailsComponent,
+    SoutenanceFiliereComponent
 
   ],
   exports: [AccordionComponent, ItemComponent, SearchbarComponent, ViewPfeDetailsComponent],

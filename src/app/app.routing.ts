@@ -22,6 +22,7 @@ import { ListeEnseignantComponent } from "./shared/liste-enseignant/liste-enseig
 import { ListePfesComponent } from "./shared/liste-pfes/liste-pfes.component";
 import { RegisterEtudiantComponent } from './espace-admin/register-etudiant/register-etudiant.component';
 import { ModifySessionComponent } from './espace-admin/modify-session/modify-session.component';
+import { SoutenanceFiliereComponent } from './espace-admin/soutenances/soutenance-filiere/soutenance-filiere.component';
 
 const APP_ROUTING: Routes = [
   {
@@ -36,7 +37,8 @@ const APP_ROUTING: Routes = [
       { path: 'addTeacher', component: RegisterEnseignantComponent },
       //{path :'addAdmin',component:RegisterAdminComponent},
       { path: 'modifySoutenance', component: ModifySoutenanceComponent },
-      { path: 'modifySession', component: ModifySessionComponent }
+      { path: 'modifySession', component: ModifySessionComponent },
+      { path: 'soutenances/filieres/:filiere', component: SoutenanceFiliereComponent }
     ],
     canActivate: [AuthGuard],
     // data: { roles: [Role.Admin] }

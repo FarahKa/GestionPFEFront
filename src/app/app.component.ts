@@ -232,7 +232,7 @@ export class AppComponent {
         "item": "Calendrier"
       },
       {
-        "item": "smth"
+        "item": "Export PDF"
       }
     ]
 
