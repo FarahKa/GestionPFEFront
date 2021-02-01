@@ -25,13 +25,8 @@ export class ModifySessionComponent implements OnInit {
 
 
   public fieldsE = { text: 'lastname', value: 'cin' }
-  public textE: string = "Changer Encadrant";
+  public textE: string = "Changer President";
 
-  public fieldsJ = { text: 'lastname', value: 'cin' }
-  public placeholderJ: string = "Changer Jury";
-
-  public fieldsS = { text: 'name', value: 'id' }
-  public textS: string = "Changer la Session";
 
   constructor(private soutenancesService : SoutenancesService, private router : Router, private http : HttpService) { }
 

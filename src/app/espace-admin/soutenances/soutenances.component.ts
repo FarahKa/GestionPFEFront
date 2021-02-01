@@ -58,16 +58,21 @@ export class SoutenancesComponent implements OnInit {
         sessions.forEach((session) => {
           let filieres: Filiere[] = [];
           session.soutenances.forEach((soutenance) => {
-            
-            this.http.getEncadrant(soutenance.id).subscribe((response)=>{
-              soutenance.encadrant = response
-            }, error => console.log(error))
+            this.http.getEncadrant(soutenance.id).subscribe(
+              (response) => {
+                soutenance.encadrant = response;
+              },
+              (error) => console.log(error)
+            );
 
-            this.http.getJury(soutenance.id).subscribe((response)=>{
-              soutenance.jury = response
-              console.log(soutenance)
-            }, error => console.log(error))
-            
+            this.http.getJury(soutenance.id).subscribe(
+              (response) => {
+                soutenance.jury = response;
+                console.log(soutenance);
+              },
+              (error) => console.log(error)
+            );
+
             let filiere = filieres.find(
               (filiere) => filiere.nom === soutenance.etudiant.filiere
             );
@@ -91,7 +96,12 @@ export class SoutenancesComponent implements OnInit {
           };
           sessionsng.push(sessionng);
         });
-        this.sessions = sessionsng;
+        this.sessions = sessionsng
+        // .sort((a, b) => {
+        //   var dateA = new Date(a.start_date);
+        //   var dateB = new Date(b.start_date);
+        //   return dateA < dateB;
+        // });
         this.sessions.unshift(this.rogues);
       },
       (error) => {

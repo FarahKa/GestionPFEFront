@@ -37,12 +37,22 @@
                   </div>
                 </ng-template>
               </ejs-dropdownlist>
-              <label for="start_date">Date de début:</label><br />
-              <ejs-datepicker id="start_date" name="start_date" ngModel  format='yyyy-MM-dd' width="300px"></ejs-datepicker>
-              <br>
-              <label for="end_date">Date de fin:</label><br />
-              <ejs-datepicker id="end_date" name="end_date" ngModel format='yyyy-MM-dd' width="300px"></ejs-datepicker>
-              <br>
+              <label for="start_date">Date de début de la session:</label><br />
+              <input
+                type="date"
+                id="start_date"
+                name="start_date"
+                ngModel
+                class="form-control"
+              />
+              <label for="end_date">Date de fin de la session:</label><br />
+              <input
+                type="date"
+                id="end_date"
+                name="end_date"
+                ngModel
+                class="form-control"
+              /><br />
               <button
                 class="btn btn-primary m-1"
                 [disabled]="formulaire.invalid"
