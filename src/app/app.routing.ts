@@ -66,12 +66,12 @@ const APP_ROUTING: Routes = [
 {path: 'pfes', component: ListePfesComponent},
 {path: 'enseignant/:cin', component: DetailEnseignantComponent},
 
-  { path: 'login', component: LoginComponent },
+{ path: 'login', component: LoginComponent },
 
-  {
-    path: '',
-    component: RegisterAdminComponent,
-    //canActivate: [AuthGuard]
+{
+  path: '',
+  component: RegisterAdminComponent,
+  //canActivate: [AuthGuard]
   },
   {
     path: '**',
