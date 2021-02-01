@@ -1,0 +1,264 @@
+<div class="modal-header">
+  <div class="fix-padding">
+    <h6 class="float-left student-info">
+      <span class="font-weight-bold"> NOM : </span>{{ pfe.lastname }}
+      {{ pfe.firstname }}
+    </h6>
+    <h6 class="float-right student-info">
+      <span class="font-weight-bold"> CIN : </span>{{ pfe.cin }}
+    </h6>
+  </div>
+  <br />
+  <div class="fix-padding">
+    <!--
+          ADD NGIF BCH IF MASTER CHANGE TO DISPLAY MASTER CHNWA I THINK
+          -->
+    <h6 class="float-left student-info">
+      <span class="font-weight-bold"> FILIERE : </span>{{ pfe.filiere }}
+    </h6>
+    <h6 class="float-right student-info">
+      <span class="font-weight-bold"> ID : </span>{{ pfe.student_id_number }}
+    </h6>
+    <br />
+  </div>
+</div>
+
+<div class="accordion">
+  <!-- Accordion item 0 -->
+  <div class="card accordion-card">
+    <div id="hostent" class="card-header bg-white shadow-sm border-0">
+      <h6 class="mb-0 font-weight-bold">
+        <a
+          href="#"
+          data-toggle="collapse"
+          data-target="#collapseZero"
+          aria-expanded="false"
+          aria-controls="collapseZero"
+          class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2"
+          >Entreprise d'acceuil :</a
+        >
+      </h6>
+    </div>
+    <div
+      id="collapseZero"
+      aria-labelledby="hostent"
+      data-parent="#accordionExample"
+      class="collapse"
+    >
+      <div class="card-body p-5">
+        <p class="font-weight-light m-0" *ngIf="!edit">
+          <span *ngIf="pfe.soutenance.pfe.hosting_enterprise">
+            {{ pfe.soutenance.pfe.hosting_enterprise }}
+          </span>
+          <span *ngIf="!pfe.soutenance.pfe.hosting_enterprise">
+            Host ent not here
+          </span>
+        </p>
+        <div *ngIf="edit">
+          <textarea class="form-control">{{
+            pfe.soutenance.pfe.hosting_enterprise
+          }}</textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Accordion item 1 -->
+  <div class="card accordion-card">
+    <div id="sujet" class="card-header bg-white shadow-sm border-0">
+      <h6 class="mb-0 font-weight-bold">
+        <a
+          href="#"
+          data-toggle="collapse"
+          data-target="#collapseOne"
+          aria-expanded="false"
+          aria-controls="collapseOne"
+          class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2"
+          >Sujet :</a
+        >
+      </h6>
+    </div>
+    <div
+      id="collapseOne"
+      aria-labelledby="sujet"
+      data-parent="#accordionExample"
+      class="collapse"
+    >
+      <div class="card-body p-5">
+        <p class="font-weight-light m-0" *ngIf="!edit">
+          <span *ngIf="pfe.soutenance.pfe.subject">
+            {{ pfe.soutenance.pfe.subject }}
+          </span>
+          <span *ngIf="!pfe.soutenance.pfe.subject"> Sujet not here </span>
+        </p>
+        <div *ngIf="edit">
+          <textarea class="form-control">{{
+            pfe.soutenance.pfe.subject
+          }}</textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Accordion item 2 -->
+  <div class="card accordion-card">
+    <div id="rapport" class="card-header bg-white shadow-sm border-0">
+      <h6 class="mb-0 font-weight-bold">
+        <a
+          href="#"
+          data-toggle="collapse"
+          data-target="#collapseTwo"
+          aria-expanded="false"
+          aria-controls="collapseTwo"
+          class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2"
+          >Rapport :</a
+        >
+      </h6>
+    </div>
+    <div
+      id="collapseTwo"
+      aria-labelledby="rapport"
+      data-parent="#accordionExample"
+      class="collapse"
+    >
+      <div class="card-body p-5">
+        <p class="font-weight-light m-0">
+          <span *ngIf="pfe.soutenance.pfe.rapport"> Rapport here </span>
+          <span *ngIf="!pfe.soutenance.pfe.rapport"> Rapport not here </span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- Accordion item 3 -->
+  <div class="card accordion-card">
+    <div id="encadrants" class="card-header bg-white shadow-sm border-0">
+      <h6 class="mb-0 font-weight-bold">
+        <a
+          href="#"
+          data-toggle="collapse"
+          data-target="#collapseThree"
+          aria-expanded="false"
+          aria-controls="collapseThree"
+          class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2"
+          >Encadrants :</a
+        >
+      </h6>
+    </div>
+    <div
+      id="collapseThree"
+      aria-labelledby="encadrants"
+      data-parent="#accordionExample"
+      class="collapse"
+    >
+      <div class="card-body p-5">
+        <p class="font-weight-light m-0">
+          <span *ngIf="pfe.soutenance.encadrants"> loop encadrants here </span>
+          <span *ngIf="!pfe.soutenance.encadrants"> encadrants not here </span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Accordion item 4 -->
+  <div class="card accordion-card">
+    <div id="soutenance" class="card-header bg-white shadow-sm border-0">
+      <h6 class="mb-0 font-weight-bold">
+        <a
+          href="#"
+          data-toggle="collapse"
+          data-target="#collapseFour"
+          aria-expanded="false"
+          aria-controls="collapseFour"
+          class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2"
+          >Soutenance :</a
+        >
+      </h6>
+    </div>
+    <div
+      id="collapseFour"
+      aria-labelledby="soutenance"
+      data-parent="#accordionExample"
+      class="collapse"
+    >
+      <div class="card-body p-5">
+        <p class="font-weight-light m-0">
+          <span *ngIf="pfe.soutenance"> soutenance here </span>
+          <span *ngIf="!pfe.soutenance"> soutenance not here </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<div class="fix-padding">
+  <h6 class="float-left student-info" *ngIf="!edit">
+    <span class="font-weight-bold"> IDK : </span>
+    <span *ngIf="pfe.soutenance.pfe.private"> privé </span>
+    <span *ngIf="!pfe.soutenance.pfe.private"> public </span>
+  </h6>
+  <div class="float-left student-info" *ngIf="edit">
+    <input
+      type="radio"
+      id="public"
+      name="pub_priv"
+      value="public"
+      [attr.checked]="!pfe.soutenance.pfe.private ? 'checked' : null"
+    />
+    <label for="public">Public</label> &nbsp;&nbsp;
+    <input
+      type="radio"
+      id="private"
+      name="pub_priv"
+      value="private"
+      [attr.checked]="pfe.soutenance.pfe.private ? 'checked' : null"
+    />
+    <label for="private">Privé</label>
+  </div>
+
+  <h6 class="float-right student-info" *ngIf="!edit">
+    <span class="font-weight-bold"> IDK : </span>
+    <span *ngIf="pfe.soutenance.pfe.valid"> validé </span>
+    <span *ngIf="!pfe.soutenance.pfe.valid"> non validé </span>
+  </h6>
+  <div class="float-right student-info" *ngIf="edit">
+    <input
+      type="radio"
+      id="valid"
+      name="val"
+      value="valid"
+      [attr.checked]="pfe.soutenance.pfe.valid ? 'checked' : null"
+    />
+    <label for="valid">Validé</label>&nbsp;&nbsp;
+    <input
+      type="radio"
+      id="invalid"
+      name="val"
+      value="invalid"
+      [attr.checked]="!pfe.soutenance.pfe.valid ? 'checked' : null"
+    />
+    <label for="invalid">Non validé</label>
+  </div>
+</div>
+<br />
+<hr />
+<br />
+<div class="fix-padding float-right">
+  <button
+    *ngIf="!edit"
+    type="button"
+    class="btn btn-primary"
+    (click)="modifierPFE()"
+  >
+    Modifier
+  </button>
+  <button *ngIf="edit" type="button" class="btn btn-primary" (click)="save()">
+    Enregistrer
+  </button>
+  <button
+    *ngIf="edit"
+    type="button"
+    class="btn btn-secondary"
+    (click)="cancel()"
+  >
+    Annuler
+  </button>
+</div>

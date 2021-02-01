@@ -43,8 +43,8 @@ this.currentSoutenance = soutenance;
         },
       ];
       sessions = [
-        { id:1, nom: 'session1', filieres: filieres, start_date: new Date(), end_date : new Date() },
-        { id:2, nom: 'session2', filieres: filieres, start_date: new Date(), end_date : new Date()  },
+        { id:1, nom: 'session1', filieres: filieres, start_date: new Date(), end_date : new Date(), dates: "" },
+        { id:2, nom: 'session2', filieres: filieres, start_date: new Date(), end_date : new Date(), dates: ""  },
       ];
       return sessions
 

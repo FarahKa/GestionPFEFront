@@ -28,6 +28,7 @@ import { AlertComponent } from './shared/alert/alert.component';
 import { LoginComponent } from './login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ViewPfeDetailsComponent } from './components/view-pfe-details/view-pfe-details.component';
 
 //import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
 
@@ -43,6 +44,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DetailEnseignantComponent,
     AlertComponent,
     LoginComponent,
+    //ViewPfeDetailsComponent,
   ],
   imports: [
     BrowserModule,

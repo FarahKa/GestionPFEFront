@@ -40,4 +40,12 @@ export class HttpService {
   patchSoutenance(idS : number, data : any){
     return this.http.post(this.url + "/soutenance/patchSoutenance/" + idS, data)
   }
+
+  getRogues() {
+    return this.http.get(this.url + "/soutenance/rogue")
+  }
+
+  getJury(idSoutenance) {
+    return this.http.get(this.url + "/soutenance/jury/" + idSoutenance)
+  }
 }

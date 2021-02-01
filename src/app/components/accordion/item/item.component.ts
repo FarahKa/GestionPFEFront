@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Soutenance } from 'src/app/models';
 
 @Component({
   selector: 'app-item',

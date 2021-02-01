@@ -1,31 +1,77 @@
-<app-searchbar
-[search_fields]="search_fields"
-></app-searchbar>
+<app-searchbar [search_fields]="search_fields"></app-searchbar>
 <div class="card-deck">
-  <div class="card" *ngFor="let pfe of pfes_to_display">
+  <div
+    class="card"
+    *ngFor="let pfe of pfes_to_display"
+    data-toggle="modal"
+    data-target="#pfeModal"
+    title="afficher détails"
+    (click)="viewPFEDetails(pfe)"
+  >
     <div class="card-content">
       <div class="card-header">
-              <strong>Sujet : </strong>{{ pfe.soutenance.pfe.subject }}
-
-  </div>
+        <strong>Sujet : </strong>{{ pfe.soutenance.pfe.subject }}
+      </div>
       <div class="card-body">
         <div class="media d-flex">
           <div class="media-body text-left">
-            <strong>Etudiant : </strong>{{ pfe.firstname }}
-            {{ pfe.lastname }}<br />
+            <strong>Etudiant : </strong>{{ pfe.firstname }} {{ pfe.lastname
+            }}<br />
             <strong>Numéro d'inscription : </strong>{{ pfe.student_id_number }}
             <hr />
             <strong>Encadrant(s) : </strong>
-            <span *ngIf="pfe.soutenance.encadrants && pfe.soutenance.encadrants.length > 0">
+            <span
+              *ngIf="
+                pfe.soutenance.encadrants &&
+                pfe.soutenance.encadrants.length > 0
+              "
+            >
               <span *ngFor="let encadrant of pfe.soutenance.encadrants">
                 {{ encadrant.firstname }}
                 {{ encadrant.lastname }},
               </span>
             </span>
-            <span *ngIf="!pfe.soutenance.encadrants || pfe.soutenance.encadrants.length==0">{{"-"}}</span>
+            <span
+              *ngIf="
+                !pfe.soutenance.encadrants ||
+                pfe.soutenance.encadrants.length == 0
+              "
+              >{{ "-" }}</span
+            >
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="pfeModal"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Détails PFE</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <br />
+      <!--<hr />-->
+      <div class="modal-body">
+        <app-view-pfe-details [(pfe)]="pfe" [allow_edit]="true"> </app-view-pfe-details>
+      </div>
+
     </div>
   </div>
 </div>
