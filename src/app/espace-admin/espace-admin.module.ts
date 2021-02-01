@@ -26,7 +26,8 @@ import { RegisterAdminComponent } from './register-admin/register-admin.componen
 import { AdminsComponent } from './admins/admins.component';
 import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
 import { MultiSelectModule } from '@syncfusion/ej2-angular-dropdowns';
-import { DateTimePickerModule } from "@syncfusion/ej2-angular-calendars";
+import { DateTimePickerModule,  DatePickerModule } from "@syncfusion/ej2-angular-calendars";
+import { ModifySessionComponent } from './modify-session/modify-session.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { DateTimePickerModule } from "@syncfusion/ej2-angular-calendars";
     ModifySoutenanceComponent,
     RegisterEnseignantComponent,
     RegisterAdminComponent,
-    AdminsComponent
+    AdminsComponent,
+    ModifySessionComponent
 
   ],
   exports: [AccordionComponent, ItemComponent, SearchbarComponent],
@@ -59,7 +61,8 @@ import { DateTimePickerModule } from "@syncfusion/ej2-angular-calendars";
     NgbModule,
     DropDownListModule,
     MultiSelectModule,
-    DateTimePickerModule
+    DateTimePickerModule,
+    DatePickerModule
   ],
   providers: []
 })

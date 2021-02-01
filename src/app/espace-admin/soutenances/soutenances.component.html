@@ -1,6 +1,7 @@
 <div class="side-buttons"><button type="button" [routerLink]="'/admin/addSession'" class="btn btn-dark">Nouvelle Session</button></div>
 <app-accordion>
     <div  *ngFor="let session of sessions">
+        <button class="btn btn-dark floatright" (click)="modifySession(session)">Modifier Session</button>
         <app-item [label]="session.nom + session.dates">
             <app-accordion>
                 <span  *ngFor="let filiere of session.filieres">

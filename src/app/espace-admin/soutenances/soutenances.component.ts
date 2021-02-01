@@ -104,4 +104,8 @@ export class SoutenancesComponent implements OnInit {
     this.soutenancesService.setCurrentSoutenance(soutenance);
     this.router.navigate(['/admin/modifySoutenance']);
   }
+  modifySession(session): void {
+    this.soutenancesService.setCurrentSession(session);
+    this.router.navigate(['/admin/modifySession']);
+  }
 }

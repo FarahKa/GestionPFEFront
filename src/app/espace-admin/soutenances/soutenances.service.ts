@@ -14,6 +14,15 @@ return this.currentSoutenance;
 setCurrentSoutenance(soutenance : any) : void {
 this.currentSoutenance = soutenance;
 }
+
+currentSession : any;
+getCurrentSession() : any {
+return this.currentSession;
+}
+setCurrentSession(session : any) : void {
+this.currentSession = session;
+}
+
   constructor(private http: HttpService) {}
 
    getFakeSessions(){

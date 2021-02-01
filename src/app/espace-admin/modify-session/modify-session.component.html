@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8 parent">
+        <div class="card card-addition">
+          <div class="card-header">Modifier une session:</div>
+          <div class="card-body">
+            <p>Tout champ vide sera ignoré.</p>
+            <form #formulaire="ngForm">
+              <label for="name">Nom de la session:</label><br />
+              <!-- make a select with all sessions, their id as value -->
+              <input
+                ngModel
+                name="name"
+                id="name"
+                class="form-control"
+              >
+              <label for="president"
+                >President: {{ president.firstname }}
+                {{ president.lastname }}</label
+              ><br />
+              <!-- make a select with all teachers, their id as value -->
+              <ejs-dropdownlist
+                ngModel
+                name="president"
+                id="president"
+                #samples
+                [dataSource]="enseignantsSansPresident"
+                [fields]="fieldsE"
+                [placeholder]="textE"
+              >
+                <ng-template #itemTemplate let-data>
+                  <div>
+                    <div class="name">
+                      {{ data.firstname }} {{ data.lastname }}
+                    </div>
+                  </div>
+                </ng-template>
+              </ejs-dropdownlist>
+              <label for="start_date">Date de début:</label><br />
+              <ejs-datepicker id="start_date" name="start_date" ngModel  format='yyyy-MM-dd' width="300px"></ejs-datepicker>
+              <br>
+              <label for="end_date">Date de fin:</label><br />
+              <ejs-datepicker id="end_date" name="end_date" ngModel format='yyyy-MM-dd' width="300px"></ejs-datepicker>
+              <br>
+              <button
+                class="btn btn-primary m-1"
+                [disabled]="formulaire.invalid"
+                (click)="handleForm(formulaire)"
+              >
+                Modifier
+              </button>
+              <button (click)="handleAnnuler()" class="btn btn-secondary m-1">
+                Annuler
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+  

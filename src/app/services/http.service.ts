@@ -37,8 +37,15 @@ export class HttpService {
     return this.http.get(this.url + "/soutenance/encadrant/" + idS)   
   }
 
+  getPresident(idS : number){
+    return this.http.get(this.url + "/session/president/" + idS)   
+  }
+
   patchSoutenance(idS : number, data : any){
     return this.http.post(this.url + "/soutenance/patchSoutenance/" + idS, data)
+  }
+  patchSession(idS : number, data : any){
+    return this.http.post(this.url + "/session/patchSession/" + idS, data)
   }
 
   getRogues() {

@@ -21,6 +21,7 @@ import { DetailEnseignantComponent } from "./shared/detail-enseignant/detail-ens
 import { ListeEnseignantComponent } from "./shared/liste-enseignant/liste-enseignant.component";
 import { ListePfesComponent } from "./shared/liste-pfes/liste-pfes.component";
 import { RegisterEtudiantComponent } from './espace-admin/register-etudiant/register-etudiant.component';
+import { ModifySessionComponent } from './espace-admin/modify-session/modify-session.component';
 
 const APP_ROUTING: Routes = [
   {
@@ -34,7 +35,8 @@ const APP_ROUTING: Routes = [
       { path: 'addStudent', component: RegisterEtudiantComponent },
       { path: 'addTeacher', component: RegisterEnseignantComponent },
       //{path :'addAdmin',component:RegisterAdminComponent},
-      { path: 'modifySoutenance', component: ModifySoutenanceComponent }
+      { path: 'modifySoutenance', component: ModifySoutenanceComponent },
+      { path: 'modifySession', component: ModifySessionComponent }
     ],
     canActivate: [AuthGuard],
     // data: { roles: [Role.Admin] }
