@@ -4,6 +4,7 @@ import { distinctUntilChanged } from 'rxjs/operators';
 import { PrettySidebarService } from 'src/app/components/pretty-sidebar/pretty-sidebar.service';
 import { SearchbarComponent } from 'src/app/components/searchbar/searchbar.component';
 import { SearchbarService } from 'src/app/components/searchbar/searchbar.service';
+import { FiliereEnum } from 'src/app/enums/filere.enum';
 import { PfeService } from './pfe.service';
 
 @Component({
@@ -23,9 +24,12 @@ export class PfeComponent implements OnInit {
   pfesSubject
   selectedItemSubject
   sidebar
+  pfe
+  edit: boolean;
   constructor(private pfeService: PfeService, private sidebarService: PrettySidebarService, private searchbarService: SearchbarService) { }
 
   ngOnInit(): void {
+    this.edit = false;
     this.searchFieldsSubject = this.searchbarService.subjectSearchFields
     this.searchFieldsSubject.subscribe((data) => this.search(data))
 
@@ -66,21 +70,21 @@ export class PfeComponent implements OnInit {
     // this is just for testing without having to run the backend
     this.pfes = [
       {
-        "cin": "66",
-        "firstname": "f 66",
-        "lastname": "l 66",
-        "student_id_number": 66,
-        "filiere": "RT",
+        "cin": "12345678",
+        "firstname": "Sirine",
+        "lastname": "Achour ",
+        "student_id_number": 222222,
+        "filiere": "GL",
         "soutenance": {
           "id": 2,
           "date": "0000-00-00",
           "pfe": {
             "id": 2,
             "state": "",
-            "subject": "b",
+            "subject": "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.",
             "private": false,
             "rapport": "",
-            "hosting_enterprise": "a",
+            "hosting_enterprise": "IUFBFDSJU FIH",
             "valid": true
           },
           "encadrants": [
@@ -298,6 +302,28 @@ export class PfeComponent implements OnInit {
       }
     ]
     this.pfes_to_display = this.pfes
+    this.pfe = {
+      "cin": "",
+      "firstname": "",
+      "lastname": "",
+      "student_id_number": 0,
+      "filiere": "",
+      "soutenance": {
+        "id": 0,
+        "date": "0000-00-00",
+        "pfe": {
+          "id": 0,
+          "state": "",
+          "subject": "",
+          "private": false,
+          "rapport": "",
+          "hosting_enterprise": "",
+          "valid": true
+        },
+        "encadrants": [
+        ]
+      }
+    }
 
   }
 
@@ -332,7 +358,13 @@ export class PfeComponent implements OnInit {
         })
       }
 
-      if (["GL", "RT", "IIA", "IMI", "BIO", "CH"].indexOf(this.filiere) > -1) {
+      if (Object.values(FiliereEnum).includes(this.filiere)) {
+        this.pfes_to_display = this.pfes_to_display.filter((p) => {
+          return p.filiere == this.filiere
+        })
+      }
+      if (this.filiere == "Master") {
+        // somehow filter Master
         this.pfes_to_display = this.pfes_to_display.filter((p) => {
           return p.filiere == this.filiere
         })
@@ -373,4 +405,23 @@ export class PfeComponent implements OnInit {
       return true
     })
   }
+
+  viewPFEDetails(pfe){
+    console.log(pfe)
+    this.edit=false
+    this.pfe = pfe;
+    // collapse the things when we view pfe
+    document.getElementById("collapseZero").classList.remove("show");
+    document.getElementById("collapseOne").classList.remove("show");
+    document.getElementById("collapseTwo").classList.remove("show");
+    document.getElementById("collapseThree").classList.remove("show");
+    document.getElementById("collapseFour").classList.remove("show");
+    const a_tags = document.getElementsByTagName("a");
+    for (let index = 0; index < a_tags.length; index++) {
+      a_tags[index].classList.add("collapsed")
+      a_tags[index].setAttribute("aria-expanded", "false");
+    }
+  }
+
+
 }

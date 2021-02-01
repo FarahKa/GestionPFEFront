@@ -8,8 +8,8 @@ export class Pfe {
     rapport: string;
     hosting_enterprise: string;
     valid: boolean;
-    constructor(id: number, state: PFEStateEnum, 
-        subject: string, private_: boolean, 
+    constructor(id: number, state: PFEStateEnum,
+        subject: string, private_: boolean,
         rapport: string, hosting_enterprise: string, valid: boolean) {
         this.id = id;
         this.state = state;
@@ -18,6 +18,6 @@ export class Pfe {
         this.rapport = rapport;
         this.hosting_enterprise = hosting_enterprise;
         this.valid = valid;
-        
+
     }
 }

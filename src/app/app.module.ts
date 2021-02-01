@@ -27,6 +27,8 @@ import { DetailEnseignantComponent } from './shared/detail-enseignant/detail-ens
 import { AlertComponent } from './shared/alert/alert.component';
 import { LoginComponent } from './login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ViewPfeDetailsComponent } from './components/view-pfe-details/view-pfe-details.component';
 
 //import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
 
@@ -42,6 +44,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DetailEnseignantComponent,
     AlertComponent,
     LoginComponent,
+    //ViewPfeDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,6 +59,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     EspaceEtudiantModule,
     CommonModule,
     NgbModule,
+    BrowserAnimationsModule,
 
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
