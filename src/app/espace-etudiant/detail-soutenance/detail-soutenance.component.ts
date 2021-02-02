@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-detail-soutenance',
@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailSoutenanceComponent implements OnInit {
 
+  @Input() student_id : number;
   constructor() { }
 
   ngOnInit(): void {

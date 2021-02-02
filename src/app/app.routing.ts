@@ -48,14 +48,14 @@ const APP_ROUTING: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'etudiant', component: EspaceEtudiantComponent,
+    path: 'etudiant/:id', component: EspaceEtudiantComponent,
     children: [
       {
         path: '',
         component: DetailPfeComponent,
       },
       {
-        path: 'detailSoutenance',
+        path: 'detailSoutenance/:id',
         component: DetailSoutenanceComponent,
       },
     ], canActivate: [AuthGuard]
