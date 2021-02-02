@@ -74,8 +74,9 @@ const APP_ROUTING: Routes = [
 
 {
   path: '',
-  component: AcceuilComponent,
-  canActivate: [AuthGuard]
+  //component: AcceuilComponent,
+  component: RegisterComponent,
+  //canActivate: [AuthGuard]
   },
   {
     path: '**',

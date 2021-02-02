@@ -21,7 +21,7 @@ export class UserService {
     return this.http.get<User>(this.url+`/users/` + cin);
   }
 
-  registerAdmin(user: User) {
+  registerUser(user: User) {
     return this.http.post(this.url+`/users/register`, user);
   }
 

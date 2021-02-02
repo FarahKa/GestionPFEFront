@@ -30,8 +30,7 @@ export class RegisterComponent implements OnInit {
     //private authenticationService: AuthentificationService,
     private userService: UserService,
     private alertService: AlertService,
-    private studentService: StudentService,
-    private enseignantService:EnseignantService
+
   ) {
     // redirect to home if already logged in
     /* if (this.authenticationService.currentUserValue) {
@@ -55,8 +54,6 @@ export class RegisterComponent implements OnInit {
       role: ['Admin', Validators.required],
 
     });
-    //this.registerForm.addControl('value', new FormControl('20',[Validators.required]) );
-    //this.registerForm.removeControl('value');
     this.fields = this.registerForm.controls;
   }
 
@@ -71,8 +68,8 @@ export class RegisterComponent implements OnInit {
     console.log(this.registerForm.invalid)
 
     this.loading = true;
-    
-    this.userService.registerAdmin(this.registerForm.value)
+ 
+    this.userService.registerUser(this.registerForm.value)
       .pipe(first())
       .subscribe(
         data => {
