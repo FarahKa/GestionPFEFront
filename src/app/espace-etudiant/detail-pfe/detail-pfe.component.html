@@ -1,12 +1,14 @@
-<h5 class="card-title">Pfe details</h5>
-<div class="card-text">
+
   <div class="row gutters-sm">
       <div class="col-md-10">
         <div class="card mb-5">
+          <div class="card-header">
+            <h2>Details PFE</h2>
+          </div>
           <div class="card-body">
             <div class="row">
-              <div class="col-sm-5">
-                <h6 class="mb-0">State</h6>
+              <div class="col-sm-5 text-primary">
+                <h4 class="mb-0">State</h4>
               </div>
               <div class="col-sm-7 text-secondary">
                   {{pfe.state}}
@@ -14,8 +16,8 @@
             </div>
             <hr>
             <div class="row">
-              <div class="col-sm-5">
-                <h6 class="mb-0">Sujet</h6>
+              <div class="col-sm-5 text-primary">
+                <h4 class="mb-0">Sujet</h4>
               </div>
               <div class="col-sm-7 text-secondary">
                 {{pfe.subject}}
@@ -23,8 +25,8 @@
           </div>
           <hr>
             <div class="row">
-              <div class="col-sm-5">
-                <h6 class="mb-0">Entreprise d'accueil</h6>
+              <div class="col-sm-5 text-primary">
+                <h4 class="mb-0">Entreprise d'accueil</h4>
               </div>
               <div class="col-sm-7 text-secondary">
                 {{pfe.hosting_enterprise}}
@@ -32,8 +34,8 @@
           </div>
           <hr>
             <div class="row">
-              <div class="col-sm-5">
-                <h6 class="mb-0">Rapport</h6>
+              <div class="col-sm-5 text-primary">
+                <h4 class="mb-0">Rapport</h4>
               </div>
               <div class="col-sm-7 text-secondary">
                   <a href="pfe.rapport">{{pfe.rapport}}</a> 
@@ -41,8 +43,8 @@
           </div>
           <hr>
           <div class="row">
-            <div class="col-sm-5">
-              <h6 class="mb-0">Valide</h6>
+            <div class="col-sm-5 text-primary">
+              <h4 class="mb-0">Valide</h4>
             </div>
             <div class="col-sm-7 text-secondary">
                 {{pfe.valid}}
@@ -51,8 +53,8 @@
 
         <hr>
           <div class="row">
-            <div class="col-sm-5">
-              <h6 class="mb-0">Privé</h6>
+            <div class="col-sm-5 text-primary">
+              <h4 class="mb-0">Privé</h4>
             </div>
             <div class="col-sm-7 text-secondary">
                 {{pfe.private_}}
@@ -116,5 +118,3 @@
                 </form>
             </div>
         </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
