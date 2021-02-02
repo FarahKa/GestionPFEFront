@@ -1,3 +1,5 @@
+import { AcceuilComponent } from './acceuil/acceuil.component';
+import { AppComponent } from './app.component';
 import { ImportComponent } from './espace-admin/import/import.component';
 import { AdminsComponent } from './espace-admin/admins/admins.component';
 import { AuthGuard } from './guard/auth.guard';
@@ -32,7 +34,7 @@ const APP_ROUTING: Routes = [
       { path: 'pfe', component: PfeComponent },
       { path: 'soutenances', component: SoutenancesComponent },
       { path: 'addSession', component: AddSessionComponent },
-      //{path :'addAdmin',component:RegisterAdminComponent},
+      {path :'addUser',component:RegisterComponent},
       {path :'import',component:ImportComponent},
       { path: 'modifySoutenance', component: ModifySoutenanceComponent },
       { path: 'modifySession', component: ModifySessionComponent },
@@ -72,8 +74,8 @@ const APP_ROUTING: Routes = [
 
 {
   path: '',
-  component: RegisterComponent,
-  //canActivate: [AuthGuard]
+  component: AcceuilComponent,
+  canActivate: [AuthGuard]
   },
   {
     path: '**',
