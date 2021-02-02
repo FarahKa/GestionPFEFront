@@ -33,6 +33,8 @@
     "bootstrap": "^4.4.0",
     "ng-sidebar": "^9.4.2",
     "ng2-file-upload": "^1.4.0",
+    "ngx-dropzone": "^3.0.0",
+    "ngx-papaparse": "^5.0.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.14.1",
     "zone.js": "~0.10.2"

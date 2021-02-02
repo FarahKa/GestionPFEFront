@@ -28,7 +28,8 @@ import { DateTimePickerModule,  DatePickerModule } from "@syncfusion/ej2-angular
 import { ModifySessionComponent } from './modify-session/modify-session.component';
 import { ViewPfeDetailsComponent } from '../components/view-pfe-details/view-pfe-details.component';
 import { SoutenanceFiliereComponent } from './soutenances/soutenance-filiere/soutenance-filiere.component';
-
+import { ImportComponent } from './import/import.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { SoutenanceFiliereComponent } from './soutenances/soutenance-filiere/sou
     ModifySessionComponent,
     ViewPfeDetailsComponent,
     SoutenanceFiliereComponent,
+    ImportComponent,
 
   ],
   exports: [AccordionComponent, ItemComponent, SearchbarComponent, ViewPfeDetailsComponent],
@@ -63,7 +65,8 @@ import { SoutenanceFiliereComponent } from './soutenances/soutenance-filiere/sou
     DropDownListModule,
     MultiSelectModule,
     DateTimePickerModule,
-    DatePickerModule
+    DatePickerModule,
+    NgxDropzoneModule 
   ],
   providers: []
 })

@@ -124,6 +124,7 @@ export class ModalEditComponent implements OnInit {
         data => {
           this.alertService.success('Update successful', { keepAfterRouteChange: true });
           this.loading = false;
+          this.modalService.dismissAll();
         },
         error => {
           this.alertService.error(error);

@@ -1,3 +1,4 @@
+import { ImportComponent } from './espace-admin/import/import.component';
 import { AdminsComponent } from './espace-admin/admins/admins.component';
 import { AuthGuard } from './guard/auth.guard';
 import { Role } from './models/role.model';
@@ -32,6 +33,7 @@ const APP_ROUTING: Routes = [
       { path: 'soutenances', component: SoutenancesComponent },
       { path: 'addSession', component: AddSessionComponent },
       //{path :'addAdmin',component:RegisterAdminComponent},
+      {path :'import',component:ImportComponent},
       { path: 'modifySoutenance', component: ModifySoutenanceComponent },
       { path: 'modifySession', component: ModifySessionComponent },
       { path: 'soutenances/filieres/:filiere', component: SoutenanceFiliereComponent }

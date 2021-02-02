@@ -29,7 +29,7 @@ import { LoginComponent } from './login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ViewPfeDetailsComponent } from './components/view-pfe-details/view-pfe-details.component';
-
+import { NgxDropzoneModule } from 'ngx-dropzone';
 //import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
 
 @NgModule({
@@ -60,6 +60,7 @@ import { ViewPfeDetailsComponent } from './components/view-pfe-details/view-pfe-
     CommonModule,
     NgbModule,
     BrowserAnimationsModule,
+    NgxDropzoneModule 
 
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
