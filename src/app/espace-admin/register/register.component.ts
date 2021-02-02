@@ -1,19 +1,25 @@
+import { EnseignantService } from '../../services/enseignant.service';
+import { StudentService } from '../../services/student.service';
+import { FiliereEnum } from '../../enums/filere.enum';
+import { DepEnum } from '../../enums/departement.enum';
 import { UserService } from 'src/app/services/user.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AlertService } from '../../services/alert.service';
 import { Role } from '../../models/role.model';
 @Component({
-  selector: 'app-register-admin',
-  templateUrl: './register-admin.component.html',
-  styleUrls: ['./register-admin.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class RegisterAdminComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
   loading: boolean;
   submitted: boolean;
+  departements= DepEnum;
+  fillieres= FiliereEnum;
   values;
   roles;
   fields;
@@ -23,7 +29,9 @@ export class RegisterAdminComponent implements OnInit {
     //private router: Router,
     //private authenticationService: AuthentificationService,
     private userService: UserService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private studentService: StudentService,
+    private enseignantService:EnseignantService
   ) {
     // redirect to home if already logged in
     /* if (this.authenticationService.currentUserValue) {
@@ -47,13 +55,15 @@ export class RegisterAdminComponent implements OnInit {
       role: ['Admin', Validators.required],
 
     });
+    //this.registerForm.addControl('value', new FormControl('20',[Validators.required]) );
+    //this.registerForm.removeControl('value');
     this.fields = this.registerForm.controls;
   }
 
   onSubmit() {
     this.submitted = true;
     // stop here if form is invalid
-    console.log(this.registerForm.invalid)
+    console.log(this.registerForm.value);
     if (this.registerForm.invalid) {
       console.log("invalid form");
       return;
@@ -61,6 +71,7 @@ export class RegisterAdminComponent implements OnInit {
     console.log(this.registerForm.invalid)
 
     this.loading = true;
+    
     this.userService.registerAdmin(this.registerForm.value)
       .pipe(first())
       .subscribe(
@@ -75,4 +86,21 @@ export class RegisterAdminComponent implements OnInit {
         });
 
   }
+  
+  onOptionsSelected(role:Role){
+     if (role==Role.Teacher)
+     { this.registerForm.addControl('departement',new FormControl ('Département Informatique et Mathématique',[Validators.required]) );
+       this.registerForm.removeControl('filiere');
+       this.registerForm.removeControl('ce');
+       this.registerForm.removeControl('year');
+    }
+       
+      else if(role == Role.Student)
+      {this.registerForm.addControl('filiere',new FormControl ('GL',[Validators.required]));
+       this.registerForm.addControl('ce',new FormControl ('',[Validators.required, Validators.pattern("^[0-9]*$"),Validators.maxLength(7),Validators.minLength(7)]));
+       this.registerForm.addControl('year',new FormControl ('',[Validators.required,Validators.pattern("^[0-9]*$"),Validators.maxLength(4),Validators.minLength(4)]));
+       this.registerForm.removeControl('departement');
+      }
+  }
 }
+

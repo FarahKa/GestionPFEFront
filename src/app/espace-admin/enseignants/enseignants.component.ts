@@ -1,3 +1,4 @@
+import { Role } from './../../models/role.model';
 import { Student } from './../../models/student.model';
 import { StudentService } from 'src/app/services/student.service';
 import { AuthentificationService } from 'src/app/services/authentification.service';
@@ -15,7 +16,7 @@ import { Subscription } from 'rxjs';
 })
 export class EnseignantsComponent implements OnInit {
   enseignants: Teacher[]
-
+  role:Role;
 
   ngOnInit(): void {
     this.enseignants = [
@@ -24,6 +25,7 @@ export class EnseignantsComponent implements OnInit {
       new Teacher("642", "mariem","chatar", "chatar@gmail", 8745, DepEnum.MathInfo)
     ]
     //this.loadAllUsers();
+    this.role=Role.Teacher;
   }
 
   filterEnseignantByDep(dep: DepEnum) {

@@ -64,9 +64,9 @@
 
                                
                                 <td>
-                                <!--edit modal of cin
-                            <app-modal-edit  [(cin)]="enseignant.cin"></app-modal-edit>
--->
+                              <!--[(role)]="user.Role"-->
+                            <app-modal-edit  [(cin)]="enseignant.cin" [(role)]="role" ></app-modal-edit>
+
                                 </td>
                                 <td class="text-right">
                                     <button (click)="deleteUser(enseignant.cin)" class="btn btn-danger ">
