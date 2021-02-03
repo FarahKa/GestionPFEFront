@@ -32,4 +32,5 @@ export class UserService {
   deleteAdmin(cin: number) {
     return this.http.delete(this.url+`/users/` + cin);
   }
+
 }

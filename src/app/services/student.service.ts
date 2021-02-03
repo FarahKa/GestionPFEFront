@@ -37,4 +37,8 @@ export class StudentService {
     deleteStudent(id: number) {
         return this.http.delete(this.studentUrl + id);
     }
+    importStudents(files: FormData){
+        console.log(files);
+       return this.http.post(this.studentUrl + `import/` ,files);
+    }
 }

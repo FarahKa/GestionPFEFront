@@ -76,12 +76,12 @@
                         </div>
 
                         <div class="form-group" *ngIf="fields.role.value=='Etudiant'">
-                            <label for="ce">Carte d'étudiant</label>
-                            <input type="text" formControlName="ce" class="form-control"
-                                [ngClass]="{ 'is-invalid': submitted && fields.ce.errors }"/>
-                            <div *ngIf="submitted && fields.ce.errors" class="invalid-feedback">
-                                <div *ngIf="fields.ce.errors.required">Carte d'étudiant est obligatoire</div>
-                                <div *ngIf="fields.ce.errors.minlength || fields.ce.errors.maxlength || fields.ce.errors.pattern">Carte d'étudiant doit être 7 nombres </div>
+                            <label for="student_id_number">Carte d'étudiant</label>
+                            <input type="text" formControlName="student_id_number" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && fields.student_id_number.errors }"/>
+                            <div *ngIf="submitted && fields.student_id_number.errors" class="invalid-feedback">
+                                <div *ngIf="fields.student_id_number.errors.required">Carte d'étudiant est obligatoire</div>
+                                <div *ngIf="fields.student_id_number.errors.minlength || fields.student_id_number.errors.maxlength || fields.student_id_number.errors.pattern">Carte d'étudiant doit être 7 nombres </div>
                             </div>
                         </div>
                         <div class="form-group" *ngIf="fields.role.value=='Etudiant'">

@@ -88,13 +88,13 @@ export class RegisterComponent implements OnInit {
      if (role==Role.Teacher)
      { this.registerForm.addControl('departement',new FormControl ('Département Informatique et Mathématique',[Validators.required]) );
        this.registerForm.removeControl('filiere');
-       this.registerForm.removeControl('ce');
+       this.registerForm.removeControl('student_id_number');
        this.registerForm.removeControl('year');
     }
        
       else if(role == Role.Student)
       {this.registerForm.addControl('filiere',new FormControl ('GL',[Validators.required]));
-       this.registerForm.addControl('ce',new FormControl ('',[Validators.required, Validators.pattern("^[0-9]*$"),Validators.maxLength(7),Validators.minLength(7)]));
+       this.registerForm.addControl('student_id_number',new FormControl ('',[Validators.required, Validators.pattern("^[0-9]*$"),Validators.maxLength(7),Validators.minLength(7)]));
        this.registerForm.addControl('year',new FormControl ('',[Validators.required,Validators.pattern("^[0-9]*$"),Validators.maxLength(4),Validators.minLength(4)]));
        this.registerForm.removeControl('departement');
       }

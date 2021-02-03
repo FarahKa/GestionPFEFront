@@ -122,7 +122,7 @@ export class ModalEditComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.alertService.success('Update successful', { keepAfterRouteChange: true });
+          this.alertService.success('Update successful');
           this.loading = false;
           this.modalService.dismissAll();
         },

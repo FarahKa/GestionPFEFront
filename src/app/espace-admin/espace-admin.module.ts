@@ -30,6 +30,7 @@ import { ViewPfeDetailsComponent } from '../components/view-pfe-details/view-pfe
 import { SoutenanceFiliereComponent } from './soutenances/soutenance-filiere/soutenance-filiere.component';
 import { ImportComponent } from './import/import.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { ImportModalComponent } from './import/import-modal/import-modal.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     ViewPfeDetailsComponent,
     SoutenanceFiliereComponent,
     ImportComponent,
+    ImportModalComponent,
 
   ],
   exports: [AccordionComponent, ItemComponent, SearchbarComponent, ViewPfeDetailsComponent],
