@@ -2,11 +2,12 @@
 <div class="card-deck">
   <div
     class="card"
-    *ngFor="let pfe of pfes_to_display"
+    *ngFor="let pfe of pfes_to_display | paginate: { itemsPerPage: 10, currentPage: page }"
     data-toggle="modal"
     data-target="#pfeModal"
     title="afficher détails"
     (click)="viewPFEDetails(pfe)"
+
   >
     <div class="card-content">
       <div class="card-header">
@@ -19,7 +20,7 @@
             }}<br />
             <strong>Numéro d'inscription : </strong>{{ pfe.student_id_number }}
             <hr />
-            <strong>Encadrant(s) : </strong>
+            <strong>Encadrant<span *ngIf="pfe.soutenance.encadrants.length>1">s</span> : </strong>
             <span
               *ngIf="
                 pfe.soutenance.encadrants &&
@@ -27,8 +28,11 @@
               "
             >
               <span *ngFor="let encadrant of pfe.soutenance.encadrants">
-                {{ encadrant.firstname }}
-                {{ encadrant.lastname }},
+                &nbsp; {{ encadrant.firstname }}
+                {{ encadrant.lastname }}
+                <span
+                *ngIf="encadrant.cin != pfe.soutenance.encadrants[pfe.soutenance.encadrants.length-1].cin"
+                >,</span>
               </span>
             </span>
             <span
@@ -44,7 +48,11 @@
     </div>
   </div>
 </div>
-
+<div>
+<div class="has-text-centered">
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+</div>
+</div>
 <!-- Modal -->
 <div
   class="modal fade"
@@ -58,6 +66,7 @@
       <div class="modal-header">
         <h5 class="modal-title">Détails PFE</h5>
         <button
+          id="close-modal-button"
           type="button"
           class="close"
           data-dismiss="modal"
@@ -69,9 +78,13 @@
       <br />
       <!--<hr />-->
       <div class="modal-body">
-        <app-view-pfe-details [(pfe)]="pfe" [allow_edit]="true"> </app-view-pfe-details>
+        <app-view-pfe-details
+          [pfe]="pfe"
+          [allow_edit]="true"
+          [(editEnabled)]="editEnabled"
+        >
+        </app-view-pfe-details>
       </div>
-
     </div>
   </div>
 </div>
