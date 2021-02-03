@@ -1,14 +1,25 @@
 
 <div class="container">
     <div class="main-body">
-    
         <div class="row gutters-sm">
             <div class="col-md-8">
               <div class="card mb-3">
+                <div class="card-header">
+                  <h2>Details Etudiant</h2>
+                </div>
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">First Name</h6>
+                    <div class="col-sm-3 text-primary">
+                      <h4 class="mb-0">CIN</h4>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{etudiant.cin}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3 text-primary">
+                      <h4 class="mb-0">First Name</h4>
                     </div>
                     <div class="col-sm-9 text-secondary">
                       {{etudiant.firstname}}
@@ -16,8 +27,8 @@
                   </div>
                   <hr>
                   <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Last Name</h6>
+                    <div class="col-sm-3 text-primary">
+                      <h4 class="mb-0">Last Name</h4>
                     </div>
                     <div class="col-sm-9 text-secondary">
                       {{etudiant.lastname}}
@@ -25,17 +36,17 @@
                   </div>
                   <hr>
                   <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Id Number</h6>
+                    <div class="col-sm-3 text-primary">
+                      <h4 class="mb-0">Id Number</h4>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      {{etudiant.id_number}}
+                      {{etudiant.student_id_number}}
                     </div>
                   </div>
                   <hr>
                   <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Filiere</h6>
+                    <div class="col-sm-3 text-primary">
+                      <h4 class="mb-0">Filiere</h4>
                     </div>
                     <div class="col-sm-9 text-secondary">
                       {{etudiant.filiere}}
@@ -43,8 +54,8 @@
                   </div>
                   <hr>
                   <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Year</h6>
+                    <div class="col-sm-3 text-primary">
+                      <h4 class="mb-0">Year</h4>
                     </div>
                     <div class="col-sm-9 text-secondary">
                       {{etudiant.year}}

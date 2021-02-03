@@ -1,20 +1,35 @@
-<app-detail-etudiant></app-detail-etudiant>
-<div class="row gutters-sm">
-    <div class="col-md-12">
-      <div class="card mb-8">
-        <div class="card-header">
-          <ul class="nav nav-pills card-header-pills">
-            <li class="nav-item" >
-              <a class="nav-link" routerLink="/etudiant" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">PFE</a>
+<app-detail-etudiant [etudiant]="student"></app-detail-etudiant>
+<div class="container">
+          <ul class="nav nav-tabsmb-3" id="detail" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a class="nav-link active"
+              id="tab-1"
+              data-toggle="tab"
+              role="tab"
+              aria-controls="tabs-1"
+              aria-selected="true"
+               href="#pfe">Pfe</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/etudiant/detailSoutenance" routerLinkActive="active">Soutenance</a>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link"
+              id="tab-2"
+              data-toggle="tab"
+              role="tab"
+              aria-controls="tabs-2"
+              aria-selected="false" 
+              href="#soutenance">Soutenance</a>
             </li>
           </ul>
+        
+        
+        <div class="tab-content">
+        <div id="pfe" class="tab-pane fade show active" 
+        role="tabpanel" aria-labelledby="tab-1">
+          <app-detail-pfe [student_id]="idStudent"></app-detail-pfe>
         </div>
-        <div class="card-body">
-            <router-outlet></router-outlet>
+        <div id="soutenance" class="tab-pane fade" 
+        role="tabpanel" aria-labelledby="tab-2">
+          <app-detail-soutenance></app-detail-soutenance>
         </div>
-      </div>
-    </div>
-  </div>
+</div>
+

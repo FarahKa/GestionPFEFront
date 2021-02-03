@@ -61,6 +61,46 @@
                                 <div *ngIf="fields.password.errors.minlength">mot de passe doit être au moins de 6 caractères</div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="role">Role</label>
+                            <select class="form-control" formControlName="role" (change)='onOptionsSelected(fields.role.value)'>
+                                <option *ngFor="let role of values(roles)">{{role}}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" *ngIf="fields.role.value=='Enseignant'">
+                            <label for="departement">Departement</label>
+                            <select class="form-control" formControlName="departement">
+                                <option *ngFor="let departement of values(departements)">{{departement}}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" *ngIf="fields.role.value=='Etudiant'">
+                            <label for="student_id_number">Carte d'étudiant</label>
+                            <input type="text" formControlName="student_id_number" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && fields.student_id_number.errors }"/>
+                            <div *ngIf="submitted && fields.student_id_number.errors" class="invalid-feedback">
+                                <div *ngIf="fields.student_id_number.errors.required">Carte d'étudiant est obligatoire</div>
+                                <div *ngIf="fields.student_id_number.errors.minlength || fields.student_id_number.errors.maxlength || fields.student_id_number.errors.pattern">Carte d'étudiant doit être 7 nombres </div>
+                            </div>
+                        </div>
+                        <div class="form-group" *ngIf="fields.role.value=='Etudiant'">
+                            <label for="filiere">Filiere</label>
+                            <select class="form-control" formControlName="filiere">
+                                <option *ngFor="let filiere of values(fillieres)">{{filiere}}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" *ngIf="fields.role.value=='Etudiant'">
+                            <label for="year">Année</label>
+                            <input type="text" formControlName="year" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && fields.year.errors }"/>
+                            <div *ngIf="submitted && fields.year.errors" class="invalid-feedback">
+                                <div *ngIf="fields.year.errors.required">année est obligatoire</div>
+                                <div *ngIf="fields.year.errors.minlength || fields.year.errors.maxlength || fields.year.errors.pattern">année est invalid </div>
+                            </div>
+                        </div>
+                    
                         <div class="text-center">
                             <div class="form-group">
                                 <button [disabled]="loading" class="btn btn-primary">Enregistrer</button>

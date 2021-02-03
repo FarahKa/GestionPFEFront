@@ -1,8 +1,10 @@
+import { AcceuilComponent } from './acceuil/acceuil.component';
+import { AppComponent } from './app.component';
+import { ImportComponent } from './espace-admin/import/import.component';
 import { AdminsComponent } from './espace-admin/admins/admins.component';
 import { AuthGuard } from './guard/auth.guard';
 import { Role } from './models/role.model';
-import { RegisterAdminComponent } from './espace-admin/register-admin/register-admin.component';
-import { RegisterEnseignantComponent } from './espace-admin/register-enseignant/register-enseignant.component';
+import { RegisterComponent } from './espace-admin/register/register.component';
 import { LoginComponent } from './login/login.component';
 
 import { elementEventFullName } from "@angular/compiler/src/view_compiler/view_compiler";
@@ -20,7 +22,8 @@ import { EspaceEtudiantComponent } from "./espace-etudiant/espace-etudiant/espac
 import { DetailEnseignantComponent } from "./shared/detail-enseignant/detail-enseignant.component";
 import { ListeEnseignantComponent } from "./shared/liste-enseignant/liste-enseignant.component";
 import { ListePfesComponent } from "./shared/liste-pfes/liste-pfes.component";
-import { RegisterEtudiantComponent } from './espace-admin/register-etudiant/register-etudiant.component';
+import { ModifySessionComponent } from './espace-admin/modify-session/modify-session.component';
+import { SoutenanceFiliereComponent } from './espace-admin/soutenances/soutenance-filiere/soutenance-filiere.component';
 
 const APP_ROUTING: Routes = [
   {
@@ -31,10 +34,11 @@ const APP_ROUTING: Routes = [
       { path: 'pfe', component: PfeComponent },
       { path: 'soutenances', component: SoutenancesComponent },
       { path: 'addSession', component: AddSessionComponent },
-      { path: 'addStudent', component: RegisterEtudiantComponent },
-      { path: 'addTeacher', component: RegisterEnseignantComponent },
-      //{path :'addAdmin',component:RegisterAdminComponent},
-      { path: 'modifySoutenance', component: ModifySoutenanceComponent }
+      {path :'addUser',component:RegisterComponent},
+      {path :'import',component:ImportComponent},
+      { path: 'modifySoutenance', component: ModifySoutenanceComponent },
+      { path: 'modifySession', component: ModifySessionComponent },
+      { path: 'soutenances/filieres/:filiere', component: SoutenanceFiliereComponent }
     ],
     canActivate: [AuthGuard],
     // data: { roles: [Role.Admin] }
@@ -44,14 +48,14 @@ const APP_ROUTING: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'etudiant', component: EspaceEtudiantComponent,
+    path: 'etudiant/:id', component: EspaceEtudiantComponent,
     children: [
       {
         path: '',
         component: DetailPfeComponent,
       },
       {
-        path: 'detailSoutenance',
+        path: 'detailSoutenance/:id',
         component: DetailSoutenanceComponent,
       },
     ], canActivate: [AuthGuard]
@@ -66,12 +70,13 @@ const APP_ROUTING: Routes = [
 {path: 'pfes', component: ListePfesComponent},
 {path: 'enseignant/:cin', component: DetailEnseignantComponent},
 
-  { path: 'login', component: LoginComponent },
+{ path: 'login', component: LoginComponent },
 
-  {
-    path: '',
-    component: RegisterAdminComponent,
-    //canActivate: [AuthGuard]
+{
+  path: '',
+  //component: AcceuilComponent,
+  component: RegisterComponent,
+  //canActivate: [AuthGuard]
   },
   {
     path: '**',

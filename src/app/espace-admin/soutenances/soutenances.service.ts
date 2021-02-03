@@ -7,6 +7,8 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class SoutenancesService {
 
+public currentFiliere : string;
+
 currentSoutenance : any;
 getCurrentSoutenance() : any {
 return this.currentSoutenance;
@@ -14,37 +16,46 @@ return this.currentSoutenance;
 setCurrentSoutenance(soutenance : any) : void {
 this.currentSoutenance = soutenance;
 }
+
+currentSession : any;
+getCurrentSession() : any {
+return this.currentSession;
+}
+setCurrentSession(session : any) : void {
+this.currentSession = session;
+}
+
   constructor(private http: HttpService) {}
 
    getFakeSessions(){
     let filieres : Filiere[] 
     let sessions : Session[]
-        filieres = [
-        {
-          nom: 'gl',
-          soutenances: [
-            { nom: 'une soutenance', etudiant: 'machintruc' },
-            { nom: 'une soutenance', etudiant: 'machintruc' },
-          ],
-        },
-        {
-          nom: 'rt',
-          soutenances: [
-            { nom: 'une soutenance', etudiant: 'machintruc' },
-            { nom: 'une soutenance', etudiant: 'machintruc' },
-          ],
-        },
-        {
-          nom: 'cd',
-          soutenances: [
-            { nom: 'une soutenance', etudiant: 'machintruc' },
-            { nom: 'une soutenance', etudiant: 'machintruc' },
-          ],
-        },
-      ];
+      //   filieres = [
+      //   {
+      //     nom: 'gl',
+      //     soutenances: [
+      //       { nom: 'une soutenance', etudiant: 'machintruc' },
+      //       { nom: 'une soutenance', etudiant: 'machintruc' },
+      //     ],
+      //   },
+      //   {
+      //     nom: 'rt',
+      //     soutenances: [
+      //       { nom: 'une soutenance', etudiant: 'machintruc' },
+      //       { nom: 'une soutenance', etudiant: 'machintruc' },
+      //     ],
+      //   },
+      //   {
+      //     nom: 'cd',
+      //     soutenances: [
+      //       { nom: 'une soutenance', etudiant: 'machintruc' },
+      //       { nom: 'une soutenance', etudiant: 'machintruc' },
+      //     ],
+      //   },
+      // ];
       sessions = [
-        { id:1, nom: 'session1', filieres: filieres, start_date: new Date(), end_date : new Date(), dates: "" },
-        { id:2, nom: 'session2', filieres: filieres, start_date: new Date(), end_date : new Date(), dates: ""  },
+        { id:1, nom: 'fake session1', filieres: filieres, start_date: new Date(), end_date : new Date(), dates: "" },
+        { id:2, nom: 'fake session2', filieres: filieres, start_date: new Date(), end_date : new Date(), dates: ""  },
       ];
       return sessions
 

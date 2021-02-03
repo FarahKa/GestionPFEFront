@@ -1,3 +1,4 @@
+import { Role } from './../../models/role.model';
 import { first } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { AuthentificationService } from 'src/app/services/authentification.service';
@@ -35,7 +36,7 @@ export class EtudiantsComponent implements OnInit {
   selectedItemSubject;
 
   filiere: String;
-
+  role:Role;
 
   constructor(
     private authenticationService: AuthentificationService,
@@ -45,6 +46,7 @@ export class EtudiantsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.role=Role.Student;
     this.filiere = ""
     this.option = "5ème"
     this.show_filieres = true
@@ -121,25 +123,25 @@ export class EtudiantsComponent implements OnInit {
 
   getEtudiantsMaster(): Student[] {
     return [
-      new Student("123", "people1", "people1", "people1@gamil", 123, 123, null, 2020),
-      new Student("462", "people2", "people2", "people2@gmail", 462, 462, null, 2020),
-      new Student("642", "people3", "people3", "people3@gmail", 8745, 8745, null, 2020)
+      new Student("123", "master1", "people1", "people1@gamil", 123, 123, null, 2020),
+      new Student("462", "master2", "people2", "people2@gmail", 462, 462, null, 2020),
+      new Student("642", "master3", "people3", "people3@gmail", 8745, 8745, null, 2020)
     ];
   }
 
   getEtudiantsLicence(): Student[] {
     return [
-      new Student("1230", "people1", "people1", "people1@gamil", 123, 123, FiliereEnum.gl, 2020),
-      new Student("4620", "people2", "people2", "people2@gmail", 462, 462, FiliereEnum.iia, 2020),
-      new Student("6420", "people3", "people3", "people3@gmail", 8745, 8745, FiliereEnum.rt, 2020)
+      new Student("1230", "license1", "people1", "people1@gamil", 123, 123, FiliereEnum.gl, 2020),
+      new Student("4620", "license2", "people2", "people2@gmail", 462, 462, FiliereEnum.iia, 2020),
+      new Student("6420", "license3", "people3", "people3@gmail", 8745, 8745, FiliereEnum.rt, 2020)
     ];
   }
 
   getEtudiants5eme(): Student[] {
     return [
-      new Student("123", "people1", "people1", "people1@gamil", 123, 123, FiliereEnum.gl, 2020),
-      new Student("462", "people2", "people2", "people2@gmail", 462, 462, FiliereEnum.imi, 2020),
-      new Student("642", "people3", "people3", "people3@gmail", 8745, 8745, FiliereEnum.bio, 2020)
+      new Student("123", "5eme1", "people1", "people1@gamil", 123, 123, FiliereEnum.gl, 2020),
+      new Student("462", "5eme2", "people2", "people2@gmail", 462, 462, FiliereEnum.imi, 2020),
+      new Student("642", "5eme3", "people3", "people3@gmail", 8745, 8745, FiliereEnum.bio, 2020)
     ];
   }
 

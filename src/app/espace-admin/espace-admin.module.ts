@@ -16,19 +16,25 @@ import { AddSessionComponent } from './add-session/add-session.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpService } from '../services/http.service';
 import { AppModule } from '../app.module';
-import { RegisterEtudiantComponent } from './register-etudiant/register-etudiant.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
-import { ModalEditAdminComponent } from './modal-edit-admin/modal-edit-admin.component';
+import { ModalEditComponent } from './modal-edit/modal-edit.component';
 import { ModifySoutenanceComponent } from './modify-soutenance/modify-soutenance.component';
-import { RegisterEnseignantComponent } from './register-enseignant/register-enseignant.component';
-import { RegisterAdminComponent } from './register-admin/register-admin.component';
+import { RegisterComponent } from './register/register.component';
 import { AdminsComponent } from './admins/admins.component';
 import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
 import { MultiSelectModule } from '@syncfusion/ej2-angular-dropdowns';
-import { DateTimePickerModule } from "@syncfusion/ej2-angular-calendars";
+import { DateTimePickerModule,  DatePickerModule } from "@syncfusion/ej2-angular-calendars";
+import { ModifySessionComponent } from './modify-session/modify-session.component';
 import { ViewPfeDetailsComponent } from '../components/view-pfe-details/view-pfe-details.component';
+<<<<<<< HEAD
 import { NgxPaginationModule } from 'ngx-pagination';
+=======
+import { SoutenanceFiliereComponent } from './soutenances/soutenance-filiere/soutenance-filiere.component';
+import { ImportComponent } from './import/import.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import { ImportModalComponent } from './import/import-modal/import-modal.component';
+>>>>>>> main
 
 @NgModule({
   declarations: [
@@ -40,13 +46,15 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ItemComponent,
     SearchbarComponent,
     AddSessionComponent,
-    RegisterEtudiantComponent,
-    ModalEditAdminComponent,
+    ModalEditComponent,
     ModifySoutenanceComponent,
-    RegisterEnseignantComponent,
-    RegisterAdminComponent,
+    RegisterComponent,
     AdminsComponent,
-    ViewPfeDetailsComponent
+    ModifySessionComponent,
+    ViewPfeDetailsComponent,
+    SoutenanceFiliereComponent,
+    ImportComponent,
+    ImportModalComponent,
 
   ],
   exports: [AccordionComponent, ItemComponent, SearchbarComponent, ViewPfeDetailsComponent],
@@ -63,7 +71,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     DropDownListModule,
     MultiSelectModule,
     DateTimePickerModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    DatePickerModule,
+    NgxDropzoneModule,
   ],
   providers: []
 })
