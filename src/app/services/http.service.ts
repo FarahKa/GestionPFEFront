@@ -55,4 +55,8 @@ export class HttpService {
   getJury(idSoutenance) {
     return this.http.get(this.url + "/soutenance/jury/" + idSoutenance)
   }
+
+  getSoutenancesByFiliere() {
+    return this.http.get(this.url + "/soutenance/soutenancesByFiliere")
+  }
 }
