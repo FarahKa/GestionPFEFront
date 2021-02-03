@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Soutenance } from 'src/app/models';
 import { AnneeScolaire } from 'src/app/models/anneeScolaire';
 import { Student } from 'src/app/models/student.model';
 import { PfeService } from 'src/app/services/pfe.service';
@@ -22,14 +23,13 @@ export class EspaceEtudiantComponent implements OnInit {
   ngOnInit(): void {
     this.studentService.getStudentById(this.idStudent).subscribe(
       student => {
-        this.year = new AnneeScolaire(student.year);
         console.log(student);
-        console.log("hi");
-        this.student = new Student(student.cin, student.firstname,
-          student.lastname, student.email, student.phoneNumber,
+        this.student = new Student(student.cin["cin"], student.firstname,
+          student.lastname, student.cin["email"], student.phoneNumber,
           student.student_id_number, student.filiere, student.year["year"]);
           this.idStudent = student.student_id_number;
         console.log(this.student);
+      
       }
     );
   }

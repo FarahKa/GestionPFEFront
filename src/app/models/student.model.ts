@@ -5,6 +5,7 @@ export class Student extends User{
   student_id_number: number;
   filiere: FiliereEnum;
   year: number;
+  soutenance: number;
   constructor(cin: string,
             firstname: string, lastname: string,
             email: string, phoneNumber: number,
