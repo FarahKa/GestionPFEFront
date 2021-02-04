@@ -21,12 +21,12 @@
     </tr>
     <tr>
         <td>Encadrant:</td>
-        <td>{{soutenance.encadrant.firstname}} {{soutenance.encadrant.lastname}}</td>
+        <td>{{soutenance.encadrant?.firstname}} {{soutenance.encadrant?.lastname}}</td>
     </tr>
     <tr>
         <td>Jury:</td>
         <td>
-            <p *ngFor="let jure of soutenance.jury">{{jure.firstname}} {{jure.lastname}}</p>
+            <p *ngFor="let jure of soutenance.jury">{{jure?.firstname}} {{jure?.lastname}}</p>
         </td>
     </tr>
     <tr>

@@ -11,8 +11,14 @@ import { SoutenancesService } from './soutenances.service';
   styleUrls: ['./soutenances.component.css'],
 })
 export class SoutenancesComponent implements OnInit {
-
   selectedItemSubject;
+  subscription;
+  switch: boolean = false;
+  soutenancesByFilieres: any;
+  soutenancesFiliere: any;
+  filiereInput: string;
+
+  filiereArray = ['GL', 'RT', 'IMI', 'IIA', 'CH', 'BIO'];
 
   sessions: Session[];
   filieres: Filiere[];
@@ -28,10 +34,11 @@ export class SoutenancesComponent implements OnInit {
     private soutenancesService: SoutenancesService,
     private http: HttpService,
     private router: Router,
-    private sidebarService : PrettySidebarService
+    private sidebarService: PrettySidebarService
   ) {}
 
   ngOnInit(): void {
+    this.switch = false;
     this.http.getRogues().subscribe(
       (response: any) => {
         response.forEach((soutenance) => {
@@ -73,7 +80,6 @@ export class SoutenancesComponent implements OnInit {
             this.http.getJury(soutenance.id).subscribe(
               (response) => {
                 soutenance.jury = response;
-                console.log(soutenance);
               },
               (error) => console.log(error)
             );
@@ -101,7 +107,7 @@ export class SoutenancesComponent implements OnInit {
           };
           sessionsng.push(sessionng);
         });
-        this.sessions = sessionsng
+        this.sessions = sessionsng;
         // .sort((a, b) => {
         //   var dateA = new Date(a.start_date);
         //   var dateB = new Date(b.start_date);
@@ -114,22 +120,46 @@ export class SoutenancesComponent implements OnInit {
         this.sessions = this.soutenancesService.getFakeSessions();
       }
     );
-      //TODO: delete this when in prod and roles work correctly
+
+    //TODO: delete this when in prod and roles work correctly
+
     localStorage.setItem('gestion_pfe_role', 'admin');
-    this.selectedItemSubject = this.sidebarService.subjectSelectedItem
-    this.selectedItemSubject.subscribe(
-      (item) => {
-        if(item.item==="Toutes les filières"){
-          console.log("toutes")
-          this.router.navigate(['/admin/soutenances']); 
-          return       
-        }
-        this.soutenancesService.currentFiliere = item.item
-        this.router.navigate(['/admin/soutenances/filieres', item.item])
-      })
+    this.selectedItemSubject = this.sidebarService.subjectSelectedItem;
+    this.subscription = this.selectedItemSubject.subscribe((item) => {
+      if (
+        this.filiereArray.includes(item.item)
+      ) {
+        console.log("does include")
+        this.filiereInput = item.item;
+        let input = item.item;
+        this.http.getSoutenancesByFiliere().subscribe(
+          (response) => {
+            this.soutenancesByFilieres = response;
 
-
+            let filiereFull = this.soutenancesByFilieres.find(
+              (filiere) => filiere.nom === input
+            );
+            if (filiereFull) {
+              this.soutenancesFiliere = filiereFull.soutenances;
+            } else {
+              this.soutenancesFiliere = [];
+            }
+            this.switch = true;
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      } else if (item.item === "Toutes les filières"){
+        this.switch = false;
+      }
+    });
   }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
   modifySoutenance(soutenance): void {
     this.soutenancesService.setCurrentSoutenance(soutenance);
     this.router.navigate(['/admin/modifySoutenance']);
