@@ -24,12 +24,6 @@ export class SoutenanceFiliereComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('this component exists');
-    // this.route.queryParamMap.subscribe((data : ParamMap) => {
-    //   console.log("what we got from route:" + data)
-    //   //this.filiere = params['filiere'];
-    // });
-    // console.log(this.route.snapshot.queryParams);
 
     this.filiere = this.soutenancesService.currentFiliere;
     this.http.getSoutenancesByFiliere().subscribe(
@@ -55,11 +49,20 @@ export class SoutenanceFiliereComponent implements OnInit {
     localStorage.setItem('gestion_pfe_role', 'admin');
     this.selectedItemSubject = this.sidebarService.subjectSelectedItem;
     this.selectedItemSubject.subscribe((item) => {
-      console.log('yo');
+      if(item.item==="Toutes les filières"){
+        this.router.navigate(['/admin/soutenances']);        
+      }
+      this.router.navigate(['/admin/soutenances/filieres', item.item]);
+
       this.soutenancesService.currentFiliere = item.item;
       this.filiere = item.item;
       this.http.getSoutenancesByFiliere().subscribe(
         (response) => {
+          if(item.item==="Toutes les filières"){
+            console.log("toutes")
+            this.router.navigate(['/admin/soutenances']); 
+            return       
+          }
           this.soutenancesByFiliere = response;
   
           let filiereFull = this.soutenancesByFiliere.find(
@@ -70,13 +73,12 @@ export class SoutenanceFiliereComponent implements OnInit {
           } else {
             this.soutenances = [];
           }
+          console.log(this.soutenances);
         },
         (error) => {
           console.log(error);
         }
       );
-      console.log(this.soutenances);
-      this.router.navigate(['/admin/soutenances/filieres', item.item]);
     });
   }
 }

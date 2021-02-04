@@ -119,6 +119,11 @@ export class SoutenancesComponent implements OnInit {
     this.selectedItemSubject = this.sidebarService.subjectSelectedItem
     this.selectedItemSubject.subscribe(
       (item) => {
+        if(item.item==="Toutes les filières"){
+          console.log("toutes")
+          this.router.navigate(['/admin/soutenances']); 
+          return       
+        }
         this.soutenancesService.currentFiliere = item.item
         this.router.navigate(['/admin/soutenances/filieres', item.item])
       })

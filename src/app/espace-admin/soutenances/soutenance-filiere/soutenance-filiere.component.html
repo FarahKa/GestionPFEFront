@@ -1,2 +1,39 @@
-<p>{{filiere}}</p>
-<p *ngFor="let soutenance of soutenances">{{soutenance.date}}</p>
+<h1>{{filiere}}</h1>
+
+<table>
+    <tr>
+        <th colspan="3">Filiere : {{filiere}}</th>
+
+    </tr>
+    <span *ngFor="let soutenance of soutenances">
+    <tr>
+        <td rowspan="6">{{soutenance.date | date:'short'}}</td>
+        <td>Candidat:</td>
+        <td>{{soutenance.etudiant.firstname}} {{soutenance.etudiant.lastname}}</td>
+    </tr>
+    <tr>
+        <td>Sujet:</td>
+        <td>{{soutenance.pfe.subject}}</td>
+    </tr>
+    <tr>
+        <td>Entreprise:</td>
+        <td>{{soutenance.pfe.hosting_enterprise}}</td>
+    </tr>
+    <tr>
+        <td>Encadrant:</td>
+        <td>{{soutenance.encadrant.firstname}} {{soutenance.encadrant.lastname}}</td>
+    </tr>
+    <tr>
+        <td>Jury:</td>
+        <td>
+            <p *ngFor="let jure of soutenance.jury">{{jure.firstname}} {{jure.lastname}}</p>
+        </td>
+    </tr>
+    <tr>
+        <td>Lien du rapport:</td>
+        <td>
+            {{soutenance.pfe.rapport}}
+        </td>
+    </tr>       
+    </span>
+</table>

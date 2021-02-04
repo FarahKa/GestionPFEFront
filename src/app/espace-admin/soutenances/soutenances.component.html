@@ -5,10 +5,10 @@
         <app-item [label]="session.nom + session.dates">
             <app-accordion>
                 <span  *ngFor="let filiere of session.filieres">
-                    <app-item [label]="filiere.nom">
+                    <app-item [label]="filiere.nom">   
                         <div  *ngFor="let soutenance of filiere.soutenances">
-                            <app-item [label]="soutenance.pfe.subject">
-                                Sujet: {{soutenance.pfe.subject}}  <span class="floatright">{{soutenance.date | date:"dd/MM/yyyy hh:mm a"}}</span>
+                            <app-item [label]="soutenance.pfe.subject">    
+                                Sujet: {{soutenance.pfe.subject}}  <span class="floatright">{{soutenance.date | date:"dd/MM/yyyy hh:mm a"}}</span> 
                                 <br> Etudiant: {{soutenance.etudiant.firstname}} {{soutenance.etudiant.lastname}} <br>
                                 <span *ngIf="soutenance.encadrant">Encadrant : {{soutenance.encadrant.firstname}} {{soutenance.encadrant.lastname}}</span>
                                 <br>
@@ -21,26 +21,12 @@
                                     </ul>
                                 </span>
                                 <button class="btn btn-dark floatright" (click)="modifySoutenance(soutenance)">Modifier</button>
-                                <br>
+                                <br>                                                
                             </app-item>
-                        </div>
+                        </div>            
                     </app-item>
                 </span>
-                <br />
-                Etudiant: {{ soutenance.etudiant.firstname }}
-                {{ soutenance.etudiant.lastname }} <br />
-                <button
-                  class="btn btn-dark floatright"
-                  (click)="modifySoutenance(soutenance)"
-                >
-                  Modifier
-                </button>
-                <br />
-              </app-item>
-            </div>
-          </app-item>
-        </span>
-      </app-accordion>
-    </app-item>
-  </div>
+            </app-accordion>
+        </app-item>
+    </div>
 </app-accordion>
