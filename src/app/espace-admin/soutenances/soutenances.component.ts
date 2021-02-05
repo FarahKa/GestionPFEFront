@@ -63,6 +63,9 @@ export class SoutenancesComponent implements OnInit {
 
     this.http.getSessions().subscribe(
       (reponse) => {
+        console.log("Sessions : ")
+        console.log(reponse)
+
         let sessions: any;
         sessions = reponse as Array<Object>;
         let sessionsng: Session[] = [];

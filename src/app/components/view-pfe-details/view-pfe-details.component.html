@@ -1,25 +1,25 @@
 <div>
-  <h6 class="float-left fix-padding">
+  <p class="float-left fix-padding">
     <span class="font-weight-bold"> NOM : </span>
     {{ pfe.lastname }}
     {{ pfe.firstname }}
-  </h6>
-  <h6 class="float-right fix-padding">
-    <span class="font-weight-bold"> CIN : </span>{{ pfe.cin }}
-  </h6>
+  </p>
+  <p class="float-right fix-padding">
+    <span class="font-weight-bold"> CIN : </span>{{ pfe.cin.cin }}
+  </p>
   <br />
 
   <br />
   <!--
           ADD NGIF BCH IF MASTER CHANGE TO DISPLAY MASTER CHNWA I THINK
           -->
-  <h6 class="float-left fix-padding">
+  <p class="float-left fix-padding">
     <span class="font-weight-bold"> FILIERE : </span>{{ pfe.filiere }}
-  </h6>
+  </p>
 
-  <h6 class="float-right fix-padding">
+  <p class="float-right fix-padding">
     <span class="font-weight-bold"> ID : </span>{{ pfe.student_id_number }}
-  </h6>
+  </p>
   <br />
 </div>
 <br />
@@ -27,7 +27,7 @@
   <!-- Accordion item 0 -->
   <div class="card accordion-card">
     <div id="hostent" class="card-header bg-white shadow-sm border-0">
-      <h6 class="mb-0 font-weight-bold">
+      <p class="mb-0 font-weight-bold">
         <a
           href="#"
           data-toggle="collapse"
@@ -37,7 +37,7 @@
           class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2"
           >Entreprise d'acceuil :</a
         >
-      </h6>
+      </p>
     </div>
     <div
       id="collapseZero"
@@ -51,13 +51,17 @@
             {{ pfe.soutenance.pfe.hosting_enterprise }}
           </span>
           <span *ngIf="!pfe.soutenance.pfe.hosting_enterprise">
-            Host ent not here
+            Pas d'entreprise d'acceuil
           </span>
         </p>
         <div *ngIf="editEnabled">
-          <textarea class="form-control">{{
-            pfe.soutenance.pfe.hosting_enterprise
-          }}</textarea>
+          <textarea
+            class="form-control"
+            id="entreprise-acceuil"
+            name="entreprise-acceuil"
+            [(ngModel)]="pfe.soutenance.pfe.hosting_enterprise"
+            >{{ pfe.soutenance.pfe.hosting_enterprise }}</textarea
+          >
         </div>
       </div>
     </div>
@@ -65,7 +69,7 @@
   <!-- Accordion item 1 -->
   <div class="card accordion-card">
     <div id="sujet" class="card-header bg-white shadow-sm border-0">
-      <h6 class="mb-0 font-weight-bold">
+      <p class="mb-0 font-weight-bold">
         <a
           href="#"
           data-toggle="collapse"
@@ -75,7 +79,7 @@
           class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2"
           >Sujet :</a
         >
-      </h6>
+      </p>
     </div>
     <div
       id="collapseOne"
@@ -91,9 +95,13 @@
           <span *ngIf="!pfe.soutenance.pfe.subject"> Pas de sujet </span>
         </p>
         <div *ngIf="editEnabled">
-          <textarea class="form-control">{{
-            pfe.soutenance.pfe.subject
-          }}</textarea>
+          <textarea
+            class="form-control"
+            id="subject"
+            name="subject"
+            [(ngModel)]="pfe.soutenance.pfe.subject"
+            >{{ pfe.soutenance.pfe.subject }}</textarea
+          >
         </div>
       </div>
     </div>
@@ -102,7 +110,7 @@
   <!-- Accordion item 2 -->
   <div class="card accordion-card">
     <div id="rapport" class="card-header bg-white shadow-sm border-0">
-      <h6 class="mb-0 font-weight-bold">
+      <p class="mb-0 font-weight-bold">
         <a
           href="#"
           data-toggle="collapse"
@@ -112,7 +120,7 @@
           class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2"
           >Rapport :</a
         >
-      </h6>
+      </p>
     </div>
     <div
       id="collapseTwo"
@@ -129,7 +137,7 @@
               (click)="
                 downloadPdf(
                   pfe.soutenance.pfe.rapport,
-                  pfe.cin + '_rapport_pfe'
+                  pfe.cin.cin + '_rapport_pfe'
                 )
               "
             >
@@ -154,7 +162,7 @@
   <!-- Accordion item 3 -->
   <div class="card accordion-card">
     <div id="encadrants" class="card-header bg-white shadow-sm border-0">
-      <h6 class="mb-0 font-weight-bold">
+      <p class="mb-0 font-weight-bold">
         <a
           href="#"
           data-toggle="collapse"
@@ -164,7 +172,7 @@
           class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2"
           >Encadrants :</a
         >
-      </h6>
+      </p>
     </div>
     <div
       id="collapseThree"
@@ -188,13 +196,13 @@
               <tbody>
                 <tr *ngFor="let enc of pfe.soutenance.encadrants">
                   <!--<th scope="row">{{ enc.cin }}</th>-->
-                  <td>{{ enc.cin }}</td>
+                  <td>{{ enc.cin.cin }}</td>
                   <td>{{ enc.firstname }}</td>
                   <td>{{ enc.lastname }}</td>
                   <td>enc.departement</td>
                   <td *ngIf="editEnabled">
                     <button
-                      (click)="removeMentor(enc.cin)"
+                      (click)="removeMentor(enc.cin.cin)"
                       class="btn btn-danger"
                     >
                       <svg
@@ -236,7 +244,7 @@
           >
             Ajouter Encadrant
           </button>
-          <br *ngIf="editEnabled">
+          <br *ngIf="editEnabled" />
         </p>
       </div>
     </div>
@@ -245,7 +253,7 @@
   <!-- Accordion item 4 -->
   <div class="card accordion-card">
     <div id="soutenance" class="card-header bg-white shadow-sm border-0">
-      <h6 class="mb-0 font-weight-bold">
+      <p class="mb-0 font-weight-bold">
         <a
           href="#"
           data-toggle="collapse"
@@ -255,7 +263,7 @@
           class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2"
           >Date soutenance :</a
         >
-      </h6>
+      </p>
     </div>
     <div
       id="collapseFour"
@@ -277,8 +285,8 @@
               >
                 Modifier Soutenance
               </button>
-              <br>
-              <br>
+              <br />
+              <br />
             </span>
           </span>
           <span *ngIf="!pfe.soutenance"> soutenance not here </span>
@@ -289,13 +297,13 @@
 </div>
 <br />
 <div class="fix-padding">
-  <h6 class="float-left">
+  <p class="float-left">
     <span class="font-weight-bold"> VISIBILITE : </span> &nbsp;
     <span *ngIf="!editEnabled">
       <span *ngIf="pfe.soutenance.pfe.private"> privé </span>
       <span *ngIf="!pfe.soutenance.pfe.private"> public </span>
     </span>
-  </h6>
+  </p>
   <div class="float-left" *ngIf="editEnabled">
     <input
       type="radio"
@@ -330,13 +338,13 @@
     />&nbsp;
     <label for="invalid">Non validé</label>
   </div>
-  <h6 class="float-right">
+  <p class="float-right">
     <span class="font-weight-bold"> ETAT : </span> &nbsp;
     <span *ngIf="!editEnabled">
       <span *ngIf="pfe.soutenance.pfe.valid"> validé </span>
       <span *ngIf="!pfe.soutenance.pfe.valid"> non validé </span>
     </span>
-  </h6>
+  </p>
 </div>
 <br />
 <hr />

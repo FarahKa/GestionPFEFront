@@ -1,8 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { distinctUntilChanged } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
 import { PrettySidebarService } from 'src/app/components/pretty-sidebar/pretty-sidebar.service';
-import { SearchbarComponent } from 'src/app/components/searchbar/searchbar.component';
 import { SearchbarService } from 'src/app/components/searchbar/searchbar.service';
 import { FiliereEnum } from 'src/app/enums/filere.enum';
 import { PfeService } from './pfe.service';
@@ -21,8 +18,10 @@ export class PfeComponent implements OnInit {
   all_pfes
   option
   filiere
+
   search_fields
   searchFieldsSubject
+
   pfesSubject
   selectedItemSubject
   sidebar

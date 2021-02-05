@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { PfeService } from 'src/app/espace-admin/pfe/pfe.service';
 import { SoutenancesService } from 'src/app/espace-admin/soutenances/soutenances.service';
 import { Pfe } from 'src/app/models/pfe.model';
 
@@ -23,10 +24,11 @@ export class ViewPfeDetailsComponent implements OnInit {
   @Output() editEnabledChange: EventEmitter<boolean>;
 
   constructor(
-    private soutenancesService:SoutenancesService,
+    private soutenancesService: SoutenancesService,
+    private pfeService: PfeService,
     private router: Router
-    ) {
-    this.editEnabledChange= new EventEmitter<boolean>()
+  ) {
+    this.editEnabledChange = new EventEmitter<boolean>()
   }
 
   ngOnInit(): void {
@@ -74,6 +76,16 @@ export class ViewPfeDetailsComponent implements OnInit {
     //this.editEnabled = false;
     this.editEnabledChange.emit(false)
     console.log(this.pfe)
+    let sent_data = {
+      "valid": document.getElementById("valid")["checked"],
+      "private": document.getElementById("private")["checked"],
+      "subject": this.pfe.soutenance.pfe.subject,
+      "hosting_enterprise": this.pfe.soutenance.pfe.hosting_enterprise,
+      "id": this.pfe.soutenance.pfe.id
+    }
+    console.log(sent_data)
+
+    console.log(this.pfeService.update_pfe(sent_data))
     //SAVE L MODIF
     //this.pfeChange.emit(this.pfe)
     //this.toggleEditEnabled.emit(false)
@@ -83,21 +95,21 @@ export class ViewPfeDetailsComponent implements OnInit {
     console.log("close modal")
   }
 
-  downloadPdf(pdfUrl: string, pdfName: string ) {
+  downloadPdf(pdfUrl: string, pdfName: string) {
     //const pdfUrl = './assets/sample.pdf';
     //const pdfName = 'your_pdf_file';
     FileSaver.saveAs(pdfUrl, pdfName);
   }
 
-  openDoc(pdfUrl: string ) {
+  openDoc(pdfUrl: string) {
     window.open(pdfUrl, '_blank', '', true);
   }
 
-  removeMentor(cin){
+  removeMentor(cin) {
     console.log(cin)
   }
 
-  modifySoutenance(soutenance) : void {
+  modifySoutenance(soutenance): void {
     document.getElementById("close-modal-button").click();
     this.soutenancesService.setCurrentSoutenance(soutenance);
     this.router.navigate(['/admin/modifySoutenance'])
