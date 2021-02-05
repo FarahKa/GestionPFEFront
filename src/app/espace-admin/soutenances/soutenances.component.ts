@@ -15,7 +15,7 @@ export class SoutenancesComponent implements OnInit {
   subscription;
   switch: boolean = false;
   soutenancesByFilieres: any;
-  soutenancesFiliere: any;
+  soutenancesFiliere: any = [];
   filiereInput: string;
 
   filiereArray = ['GL', 'RT', 'IMI', 'IIA', 'CH', 'BIO'];
@@ -107,12 +107,18 @@ export class SoutenancesComponent implements OnInit {
           };
           sessionsng.push(sessionng);
         });
-        this.sessions = sessionsng;
-        // .sort((a, b) => {
-        //   var dateA = new Date(a.start_date);
-        //   var dateB = new Date(b.start_date);
-        //   return dateA < dateB;
-        // });
+        // -1 a 9bal b
+        this.sessions = sessionsng.sort((a, b) => {
+          var dateA = new Date(a.start_date);
+          var dateB = new Date(b.start_date);
+          if(dateA < dateB){
+            return -1
+          } else if (dateA> dateB){
+            return 1
+          } else {
+            return 0
+          }
+        });
         this.sessions.unshift(this.rogues);
       },
       (error) => {
@@ -129,7 +135,6 @@ export class SoutenancesComponent implements OnInit {
       if (
         this.filiereArray.includes(item.item)
       ) {
-        console.log("does include")
         this.filiereInput = item.item;
         let input = item.item;
         this.http.getSoutenancesByFiliere().subscribe(
@@ -140,7 +145,17 @@ export class SoutenancesComponent implements OnInit {
               (filiere) => filiere.nom === input
             );
             if (filiereFull) {
-              this.soutenancesFiliere = filiereFull.soutenances;
+              this.soutenancesFiliere = filiereFull.soutenances.sort((a, b) => {
+                var dateA = new Date(a.date);
+                var dateB = new Date(b.date);
+                if(dateA < dateB){
+                  return -1
+                } else if (dateA> dateB){
+                  return 1
+                } else {
+                  return 0
+                }
+              });;
             } else {
               this.soutenancesFiliere = [];
             }
@@ -150,8 +165,21 @@ export class SoutenancesComponent implements OnInit {
             console.log(error);
           }
         );
-      } else if (item.item === "Toutes les filières"){
+      } else if (item.item === "Sessions"){
         this.switch = false;
+      } else if (item.item === "Toutes les filières") {
+        this.http.getSoutenancesByFiliere().subscribe(
+          (response : any) => {
+            this.filiereInput = item.item
+            response.forEach(filiere => {
+              this.soutenancesFiliere = [...this.soutenancesFiliere, ...filiere.soutenances]
+              
+            });
+            this.switch = true;
+
+
+          }
+        )
       }
     });
   }

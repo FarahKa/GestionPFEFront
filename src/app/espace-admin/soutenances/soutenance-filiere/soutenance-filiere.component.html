@@ -1,36 +1,35 @@
-<h1>{{filiere}}</h1>
+<h1>{{filiere}}</h1><div><button type="button" (click)="export()" class="btn btn-dark">Exporter</button></div>
 
-<table>
+<table id="content" #content>
     <tr>
-        <th colspan="3">Filiere : {{filiere}}</th>
-
+        <td colspan="3">Filiere : {{filiere}}</td>
     </tr>
     <span *ngFor="let soutenance of soutenances">
     <tr>
-        <td rowspan="6">{{soutenance.date | date:'short'}}</td>
-        <td>Candidat:</td>
+        <td rowspan="6">{{soutenance.date | date:'dd/MM/yy - HH:mm'}}</td>
+        <td><b>Candidat:</b></td>
         <td>{{soutenance.etudiant.firstname}} {{soutenance.etudiant.lastname}}</td>
     </tr>
     <tr>
-        <td>Sujet:</td>
+        <td><b>Sujet:</b></td>
         <td>{{soutenance.pfe.subject}}</td>
     </tr>
     <tr>
-        <td>Entreprise:</td>
+        <td><b>Entreprise:</b></td>
         <td>{{soutenance.pfe.hosting_enterprise}}</td>
     </tr>
     <tr>
-        <td>Encadrant:</td>
+        <td><b>Encadrant:</b></td>
         <td>{{soutenance.encadrant?.firstname}} {{soutenance.encadrant?.lastname}}</td>
     </tr>
     <tr>
-        <td>Jury:</td>
+        <td><b>Jury:</b></td>
         <td>
             <p *ngFor="let jure of soutenance.jury">{{jure?.firstname}} {{jure?.lastname}}</p>
         </td>
     </tr>
     <tr>
-        <td>Lien du rapport:</td>
+        <td><b>Lien du rapport:</b></td>
         <td>
             {{soutenance.pfe.rapport}}
         </td>
