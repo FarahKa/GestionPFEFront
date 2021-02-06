@@ -32,6 +32,7 @@ import { SoutenanceFiliereComponent } from './soutenances/soutenance-filiere/sou
 import { ImportComponent } from './import/import.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { ImportModalComponent } from './import/import-modal/import-modal.component';
+import { CreatePfeComponent } from './create-pfe/create-pfe.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ImportModalComponent } from './import/import-modal/import-modal.compone
     SoutenanceFiliereComponent,
     ImportComponent,
     ImportModalComponent,
+    CreatePfeComponent,
 
   ],
   exports: [AccordionComponent, ItemComponent, SearchbarComponent, ViewPfeDetailsComponent],

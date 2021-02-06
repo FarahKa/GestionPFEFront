@@ -5,7 +5,7 @@
     {{ pfe.firstname }}
   </h6>
   <h6 class="float-right fix-padding">
-    <span class="font-weight-bold"> CIN : </span>{{ pfe.cin }}
+    <span class="font-weight-bold"> CIN : </span>{{ pfe.cin.cin }}
   </h6>
   <br />
 
@@ -188,7 +188,7 @@
               <tbody>
                 <tr *ngFor="let enc of pfe.soutenance.encadrants">
                   <!--<th scope="row">{{ enc.cin }}</th>-->
-                  <td>{{ enc.cin }}</td>
+                  <td>{{ enc.cin.cin }}</td>
                   <td>{{ enc.firstname }}</td>
                   <td>{{ enc.lastname }}</td>
                   <td>enc.departement</td>
