@@ -40,6 +40,12 @@ export class CreatePfeComponent implements OnInit {
   }
   handleForm(formulaire : NgForm){
     console.log(formulaire.form.value)
+    this.pfeService.create_pfe(formulaire.form.value).subscribe((response) => {
+      console.log("pfe créé: " + response)
+      this.router.navigate(["/admin/pfe"])
+    }, error => {
+      console.log(error);
+    })
   }
   handleAnnuler() {
     this.router.navigate(["/admin/pfe"])
