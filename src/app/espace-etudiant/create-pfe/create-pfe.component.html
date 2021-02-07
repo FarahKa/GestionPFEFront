@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="main-body">
+      <div class="row gutters-sm">
+          <div class="col-md-8">
+            <div class="card mb-3">
+              <div class="card-header">Création d'un PFE</div>
+          <div class="card-body">
+            <form #formulaire="ngForm">
+              <label for="name">Sujet:</label><br />
+              <input
+                type="text"
+                id="sujet"
+                name="sujet"
+                ngModel
+                required
+                minlength="1"
+                maxlength="200"
+                class="form-control"
+              />
+              <label for="start_date">Entreprise:</label><br />
+              <input
+                type="text"
+                id="entreprise"
+                name="entreprise"
+                ngModel required
+                class="form-control"
+              />
+              <div class="form-group">
+                <label class="control-label">Rapport</label>
+                <div>
+                  <input type="file" id="rapport" name="rapport" ngModel 
+                  (change)="onChange($event)" required>
+                </div>
+              </div>
+              <label for="encadrant"
+              >Encadrant:</label
+            ><br />
+            <!-- make a select with all teachers, their id as value -->
+            <ejs-dropdownlist
+              ngModel
+              name="encadrant"
+              id="encadrant"
+              #samples
+              [dataSource]="enseignants"
+              [fields]="fieldsE"
+              [placeholder]="textE"
+            >
+              <ng-template #itemTemplate let-data>
+                <div>
+                  <div class="name">
+                    {{ data.firstname }} {{ data.lastname }}
+                  </div>
+                </div>
+              </ng-template>
+            </ejs-dropdownlist><br>
+            
+
+              <button
+                class="btn btn-primary"
+                [disabled]="formulaire.invalid"
+                (click)="createPFE(formulaire)"
+              >
+                Créer
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+  

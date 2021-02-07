@@ -1,42 +1,48 @@
-<h5 class="card-title">Pfe details</h5>
-<div class="card-text">
+
   <div class="row gutters-sm">
       <div class="col-md-10">
         <div class="card mb-5">
+          <div class="card-header">
+            <h2>Details Soutenance</h2>
+          </div>
           <div class="card-body">
             <div class="row">
-              <div class="col-sm-5">
-                <h6 class="mb-0">Date</h6>
+              <div class="col-sm-5 text-primary">
+                <h4 class="mb-0">Date</h4>
               </div>
               <div class="col-sm-7 text-secondary">
-                  01/02/2021
+                  {{soutenance.date}}
               </div>
             </div>
             <hr>
             <div class="row">
-              <div class="col-sm-5">
-                <h6 class="mb-0">session</h6>
+              <div class="col-sm-5 text-primary">
+                <h4 class="mb-0">session</h4>
               </div>
               <div class="col-sm-7 text-secondary">
-                session 5 
+                {{session.nom}} 
               </div>
           </div>
           <hr>
             <div class="row">
-              <div class="col-sm-5">
-                <h6 class="mb-0">President de session</h6>
+              <div class="col-sm-5 text-primary">
+                <h4 class="mb-0">President de session</h4>
               </div>
               <div class="col-sm-7 text-secondary">
-                foulen foulen
+                {{president.firstname}} {{president.lastname}}
               </div>
           </div>
           <hr>
             <div class="row">
-              <div class="col-sm-5">
-                <h6 class="mb-0">Membre du jury</h6>
+              <div class="col-sm-5 text-primary">
+                <h4 class="mb-0">Membre du jury</h4>
               </div>
               <div class="col-sm-7 text-secondary">
-                foulen1, foulen2 
+                <ul>
+                  <li *ngFor=" let enseignant of jury">
+                    {{enseignant.lastname}} {{enseignant.firstname}}
+                  </li>
+                </ul> 
               </div>
           </div>
-  </div>
+

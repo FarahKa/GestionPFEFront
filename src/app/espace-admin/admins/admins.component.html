@@ -1,0 +1,89 @@
+
+<div class="container">
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">All registered users:
+                </h3>
+                <div class="text-right">
+                               
+                    </div>
+
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class=" text-primary">
+                            <th>
+                                Carte d'identité
+                            </th>
+                            <th>
+                                Prénom
+                            </th>
+                            <th>
+                                Nom
+                            </th>
+                            <th>
+                                Email
+                            </th>
+                            <th>
+                                Téléphone
+                            </th>
+                            <th>
+                                Edit
+                            </th>
+                            <th class="text-right">
+                                Delete
+                            </th>
+                        </thead>
+                        <tbody>
+
+
+                            <tr *ngFor="let user of users">
+                                <td>
+                                    {{user.cin}}
+                                 </td>
+                                <td>
+                                    {{user.firstname}}
+                                </td>
+                                <td>
+                                    {{user.lastname}} 
+                                </td>
+                                <td>
+                                   {{user.email}}
+                                </td>
+                                <td>
+                                    {{user.phoneNumber}}
+                                 </td>
+                               
+                                <td>
+                                <!--edit modal of cin-->
+                            <app-modal-edit  [(cin)]="user.cin" [(role)]="user.Role"></app-modal-edit>
+
+                                </td>
+                                <td class="text-right">
+                                    <button (click)="deleteUser(user.cin)" class="btn btn-danger ">
+                                        <svg class="bi bi-x-circle" width="1.5em" height="1.5em" viewBox="0 0 16 16"
+                                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z"
+                                                clip-rule="evenodd" />
+                                            <path fill-rule="evenodd"
+                                                d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z"
+                                                clip-rule="evenodd" />
+                                            <path fill-rule="evenodd"
+                                                d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+
+                                    </button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

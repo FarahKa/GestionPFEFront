@@ -8,6 +8,7 @@
       position="left"
       keyClose="true"
       autoFocus="false"
+
     >
       <app-pretty-sidebar
         [sidebarMenuItems]="sidebarMenuItems"
@@ -20,8 +21,10 @@
         *ngIf="!hidden"
         (click)="toggleSidebar()"
       >
-       <fa-icon [icon]="sidebarIcon"></fa-icon>
+       <fa-icon [icon]="sidebarIcon" class="make-cursor-pointer"></fa-icon>
       </span>
+      <alert>
+      </alert>
       <router-outlet></router-outlet>
     </div>
   </ng-sidebar-container>

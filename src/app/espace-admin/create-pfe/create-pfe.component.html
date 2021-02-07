@@ -1,0 +1,74 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8 parent">
+        <div class="card card-addition">
+          <div class="card-header">Créer un PFE:</div>
+          <div class="card-body">
+            <p>Le seul champ obligatoire est l'étudiant.</p>
+            <form #formulaire="ngForm">
+              <label for="etudiant">Etudiant:</label><br />
+              <!-- make a select with all students, their id as value -->
+              <ejs-dropdownlist
+                ngModel
+                name="etudiant"
+                id="etudiant"
+                #samples
+                [dataSource]="etudiants"
+                [fields]="fieldsEtudiants"
+                [placeholder]="textEtudiants"
+              >
+              <ng-template #itemTemplate let-data>
+                <div>
+                  <div class="name">
+                    {{ data.firstname }} {{ data.lastname }}
+                  </div>
+                </div>
+              </ng-template>
+              </ejs-dropdownlist>
+              <label for="sujet">Sujet:</label><br>
+              <input ngModel name="sujet" id="sujet" type="text" class="form-control">
+              <br>
+              <label for="entreprise">Entreprise d'accueil:</label><br>
+              <input ngModel name="entreprise" id="entreprise" type="text" class="form-control"><br>
+              <label for="rapport">Lien du Rapport:</label><br>
+              <input ngModel name="rapport" id="rapport" type="text" class="form-control"> <br>            
+              <label for="encadrant"
+                >Encadrant:</label
+              ><br />
+              <!-- make a select with all teachers, their id as value -->
+              <ejs-dropdownlist
+                ngModel
+                name="encadrant"
+                id="encadrant"
+                #samples
+                [dataSource]="enseignants"
+                [fields]="fieldsE"
+                [placeholder]="textE"
+              >
+                <ng-template #itemTemplate let-data>
+                  <div>
+                    <div class="name">
+                      {{ data.firstname }} {{ data.lastname }}
+                    </div>
+                  </div>
+                </ng-template>
+              </ejs-dropdownlist><br>
+              <button
+                class="btn btn-primary m-1"
+                [disabled]="formulaire.invalid"
+                (click)="handleForm(formulaire)"
+              >
+                Modifier
+              </button>
+              <button (click)="handleAnnuler()" class="btn btn-secondary m-1">
+                Annuler
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+  

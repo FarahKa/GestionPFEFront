@@ -1,3 +1,24 @@
 .card{
-  width: 30%;
+  min-width: 97%;
+  max-width: 97%;
+  margin-bottom: 30px;
+  cursor: pointer;
+  border: 1px solid gray;
+}
+.modal-header{
+  margin-bottom: 16px;
+}
+.modal-body{
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.has-text-centered{
+  width:fit-content;
+  margin:auto;
+}
+
+.side-buttons{
+  margin : 10px;
 }

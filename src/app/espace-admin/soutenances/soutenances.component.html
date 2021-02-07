@@ -1,13 +1,28 @@
-<div class="side-buttons"><button type="button" [routerLink]="'/admin/addSession'" class="btn btn-dark">Nouvelle Session</button></div>
+<span *ngIf="!switch">
+<h2>Liste des Sessions: </h2><div class="side-buttons"><button type="button" [routerLink]="'/admin/addSession'" class="btn btn-dark">Nouvelle Session</button></div>
 <app-accordion>
     <div  *ngFor="let session of sessions">
-        <app-item [label]="session.nom">
+        <button *ngIf="session.id !== 999" class="btn btn-secondary floatright" (click)="modifySession(session)">Modifier Session</button>
+        <app-item [label]="session.nom + session.dates">
             <app-accordion>
                 <span  *ngFor="let filiere of session.filieres">
                     <app-item [label]="filiere.nom">   
                         <div  *ngFor="let soutenance of filiere.soutenances">
-                            <app-item [label]="soutenance.nom">    
-                                {{soutenance.nom}}                                                    
+                            <app-item [label]="soutenance.pfe.subject">    
+                                Sujet: {{soutenance.pfe.subject}}  <span class="floatright">{{soutenance.date | date:"dd/MM/yyyy hh:mm a"}}</span> 
+                                <br> Etudiant: {{soutenance.etudiant.firstname}} {{soutenance.etudiant.lastname}} <br>
+                                <span *ngIf="soutenance.encadrant">Encadrant : {{soutenance.encadrant.firstname}} {{soutenance.encadrant.lastname}}</span>
+                                <br>
+                                <span *ngIf="soutenance.jury">
+                                    Jury:
+                                    <ul>
+                                        <li *ngFor="let jure of soutenance.jury">
+                                            {{jure.firstname}} {{jure.lastname}}
+                                        </li>
+                                    </ul>
+                                </span>
+                                <button class="btn btn-dark floatright" (click)="modifySoutenance(soutenance)">Modifier</button>
+                                <br>                                                
                             </app-item>
                         </div>            
                     </app-item>
@@ -16,3 +31,5 @@
         </app-item>
     </div>
 </app-accordion>
+</span>
+<app-soutenance-filiere *ngIf="switch" [soutenances]="soutenancesFiliere" [filiere]="filiereInput"></app-soutenance-filiere>

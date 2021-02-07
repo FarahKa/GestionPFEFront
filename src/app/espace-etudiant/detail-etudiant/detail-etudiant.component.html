@@ -1,58 +1,116 @@
 
 <div class="container">
     <div class="main-body">
-    
         <div class="row gutters-sm">
             <div class="col-md-8">
               <div class="card mb-3">
+                <div class="card-header">
+                  <h2>Details Etudiant</h2>
+                </div>
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">First Name</h6>
+                    <div class="col-sm-3 text-primary">
+                      <h4 class="mb-0">CIN</h4>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      {{etudiant.firstname}}
+                      {{student.cin}}
                     </div>
                   </div>
                   <hr>
                   <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Last Name</h6>
+                    <div class="col-sm-3 text-primary">
+                      <h4 class="mb-0">First Name</h4>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      {{etudiant.lastname}}
+                      {{student.firstname}}
                     </div>
                   </div>
                   <hr>
                   <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Id Number</h6>
+                    <div class="col-sm-3 text-primary">
+                      <h4 class="mb-0">Last Name</h4>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      {{etudiant.id_number}}
+                      {{student.lastname}}
                     </div>
                   </div>
                   <hr>
                   <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Filiere</h6>
+                    <div class="col-sm-3 text-primary">
+                      <h4 class="mb-0">Email</h4>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      {{etudiant.filiere}}
+                      {{student.email}}
                     </div>
                   </div>
                   <hr>
                   <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Year</h6>
+                    <div class="col-sm-3 text-primary">
+                      <h4 class="mb-0">Id Number</h4>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      {{etudiant.year}}
+                      {{student.student_id_number}}
                     </div>
                   </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3 text-primary">
+                      <h4 class="mb-0">Filiere</h4>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{student.filiere}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3 text-primary">
+                      <h4 class="mb-0">Year</h4>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{student.year}}
+                    </div>
+                  </div>
+                  
                 </div>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAccountSettings">
+                  Paramèters du compte
+                </button>
               </div>
           </div>
         </div>
         </div>
     </div>
+    <!-- Modal HTML Markup -->
+<div id="ModalAccountSettings" class="modal fade">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h1 class="modal-title">Paramèters du compte</h1>
+          </div>
+          <div class="modal-body">
+              <form #editAccountForm="ngForm" >
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" class="form-control"
+                    ngModel   
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="password">Nouvelle mot de passe</label>
+                    <input type="password" class="form-control" name="password" id="password"
+                    ngModel>
+                   
+                </div>
+                  
+                  <div class="form-group">
+                      <div>
+                          <button type="submit" (click)="edit(editAccountForm)" [disabled]="editAccountForm.invalid" class="btn btn-success">
+                              Save
+                          </button>
+                      </div>
+                  </div>
+              </form>
+          </div>
+      </div>
+</div>
+</div>
