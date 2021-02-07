@@ -3,7 +3,7 @@
     <div class="row">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">All registered users:
+                <h3 class="card-title">All registered Admins:
                 </h3>
                 <div class="text-right">
                                
@@ -41,7 +41,7 @@
 
                             <tr *ngFor="let user of users">
                                 <td>
-                                    {{user.cin}}
+                                    {{user.cin.cin}}
                                  </td>
                                 <td>
                                     {{user.firstname}}
@@ -50,7 +50,7 @@
                                     {{user.lastname}} 
                                 </td>
                                 <td>
-                                   {{user.email}}
+                                   {{user.cin.email}}
                                 </td>
                                 <td>
                                     {{user.phoneNumber}}
@@ -58,11 +58,11 @@
                                
                                 <td>
                                 <!--edit modal of cin-->
-                            <app-modal-edit  [(cin)]="user.cin" [(role)]="user.Role"></app-modal-edit>
+                            <app-modal-edit  [(cin)]="user.cin.cin" [(role)]="user.Role"></app-modal-edit>
 
                                 </td>
                                 <td class="text-right">
-                                    <button (click)="deleteUser(user.cin)" class="btn btn-danger ">
+                                    <button (click)="deleteUser(user.cin.cin)" class="btn btn-danger ">
                                         <svg class="bi bi-x-circle" width="1.5em" height="1.5em" viewBox="0 0 16 16"
                                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd"

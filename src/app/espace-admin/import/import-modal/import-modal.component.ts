@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 import { AlertService } from './../../../services/alert.service';
 import { StudentService } from 'src/app/services/student.service';
 import { Role } from './../../../models/role.model';
@@ -16,7 +18,7 @@ export class ImportModalComponent {
   loading = false;
   formData = new FormData();
 
-  constructor(private modalService: NgbModal, private papa: Papa, private studentService: StudentService, private alertService: AlertService) {
+  constructor(private modalService: NgbModal, private papa: Papa, private userService: UserService, private alertService: AlertService,private router: Router,) {
 
   }
 
@@ -38,49 +40,6 @@ export class ImportModalComponent {
     }
   }
 
-
-
-
-
-  ConvertCSVtoJSON() {
-    console.log(JSON.stringify(this.test));
-    // let csvData = '"Hello","World!"';
-    // this.papa.parse(csvData, {
-    //   complete: (results) => {
-    //     console.log('Parsed  : ', results.data[0][1]);
-    //     // console.log(results.data.length);
-    //   }
-    // });
-  }
-  test = [];
-  handleFileSelect(evt) {
-    var files = evt.target.files; // FileList object
-    var file = files[0];
-    var reader = new FileReader();
-    reader.readAsText(file);
-    reader.onload = (event: any) => {
-      var csv = event.target.result; // Content of CSV file
-      this.papa.parse(csv, {
-        skipEmptyLines: true,
-        header: true,
-        complete: (results) => {
-          for (let i = 0; i < results.data.length; i++) {
-            let orderDetails = {
-              order_id: results.data[i].Address,
-              age: results.data[i].Age
-            };
-            this.test.push(orderDetails);
-          }
-          // console.log(this.test);
-          console.log('Parsed: k', results.data);
-        }
-      });
-    }
-  }
-
-
-
-
   title = 'dropzone';
   files: File[] = [];
   onSelect(event) {
@@ -99,15 +58,15 @@ export class ImportModalComponent {
       this.formData.append("files[]", this.files[i],this.files[i].name);
     }
 
-    if (this.userType == Role.Student) {
-      this.studentService.importStudents(this.formData)
+
+      this.userService.importUsers(this.formData)
         .subscribe(
           (res) => {
             this.alertService.success('Importation reussite', { keepAfterRouteChange: true });
             this.loading = false;
             this.files=[];
             this.formData = new FormData();
-
+            this. reloadCurrentRoute();
           },
           (error) => {
             this.alertService.error('Probleme lors de l\'importation');
@@ -117,14 +76,16 @@ export class ImportModalComponent {
           }
         )
 
-    }
-    else {
-
-
-    }
+  
 
     this.modalService.dismissAll();
   }
+  reloadCurrentRoute() {
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate([currentUrl]);
+    });
+}
 
 
 
