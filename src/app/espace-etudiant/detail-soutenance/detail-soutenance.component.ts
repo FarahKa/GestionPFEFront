@@ -16,35 +16,40 @@ export class DetailSoutenanceComponent implements OnInit {
 
   @Input() student_id : number;
   soutenance: any;
-  session: Session;
+  noSoutenance = true;
+  session: Session= new Session(11, "session5", new Date(), new Date());;
   president: Teacher;
-  jury: Teacher[];
+  jury: Teacher[]=[];
   constructor(private soutenanceService: SoutenanceService,
     private httpService: HttpService ) { }
 
   ngOnInit(): void {
-    this.soutenance = new Soutenance(5, new Date(), 15, 17);
-    this.session = new Session(11, "session5", new Date(), new Date());
     this.soutenanceService.getSoutenanceByStudentId(this.student_id).subscribe(
       soutenance => {
-        this.soutenance = new Soutenance(soutenance.id, soutenance.date, soutenance.pfe["id"], soutenance.session["id"]);
+        if (soutenance.session){
+          this.noSoutenance = false;
+        }
+        console.log("soutenance here",soutenance);
+        this.soutenance = new Soutenance(soutenance.id, soutenance.session.start_date, soutenance.pfe["id"], soutenance.session["id"]);
         this.session = new Session(soutenance.session.id, soutenance.session.name,
         soutenance.session["start_date"], soutenance.session["end_date"]);
         this.httpService.getPresident(this.session.id).subscribe(
           president => 
         {
+          console.log("president here", president);
           this.president = new Teacher(president.cin.cin, president.firstname, president.lastname, 
             president.cin.email, president.phoneNumber, president.departement);
         });
         this.httpService.getJury(this.soutenance.id).subscribe(
           jury => {
+            console.log("jury here", jury);
             jury.forEach(enseignant => {
               this.jury.push(new Teacher(enseignant.cin , enseignant.firstname,
                 enseignant.firstname, enseignant.lastname, enseignant.phoneNumber,
                 enseignant.departement));
             });
           }
-        ) 
+        )
         });
     
     

@@ -59,7 +59,6 @@ onUpload() {
       (response) => {
         console.log("got a good response");
         console.log(response);
-        this.router.navigate(["/etudiant"]);
       },
       error => console.log(error)
     )

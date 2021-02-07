@@ -32,8 +32,6 @@ export class EspaceEtudiantComponent implements OnInit {
           student.lastname, student.cin["email"], student.phoneNumber,
           student.student_id_number, student.filiere, student.year["year"]);
           this.idStudent = student.student_id_number;
-          console.log("heree")
-          console.log(this.student);
           this.soutenance=(student.soutenance!==null);
           this.new=!this.soutenance;
         console.log(this.soutenance);

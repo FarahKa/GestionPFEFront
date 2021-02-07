@@ -13,7 +13,9 @@ import { UploadFileService } from 'src/app/services/upload-file.service';
 })
 export class DetailPfeComponent implements OnInit {
 
-  pfe: Pfe = null;
+  pfe: Pfe =new Pfe(14, PFEStateEnum.s1
+  , "application de gestion des pfe", true, "link",
+  "fssm", true); ;
   @Input() student_id : number;
   state1 = PFEStateEnum.s1;
   state2 = PFEStateEnum.s2;
@@ -24,9 +26,7 @@ export class DetailPfeComponent implements OnInit {
     private uploadFileService: UploadFileService) { }
 
   ngOnInit(): void {
-    //this.pfe = new Pfe(14, PFEStateEnum.s1
-    //  , "application de gestion des pfe", true, "link",
-    // "fssm", true);
+    
     this.pfeService.getPfeByStudentId(this.student_id).subscribe(
         pfe => {
           console.log("pfe");
