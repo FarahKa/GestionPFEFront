@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreatePfeComponent } from './create-pfe.component';
+import { CreatePfeEtudiantComponent } from './create-pfe-etudiant.component';
 
 describe('CreatePfeComponent', () => {
-  let component: CreatePfeComponent;
-  let fixture: ComponentFixture<CreatePfeComponent>;
+  let component: CreatePfeEtudiantComponent;
+  let fixture: ComponentFixture<CreatePfeEtudiantComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreatePfeComponent ]
+      declarations: [ CreatePfeEtudiantComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreatePfeComponent);
+    fixture = TestBed.createComponent(CreatePfeEtudiantComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
