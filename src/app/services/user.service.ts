@@ -11,14 +11,15 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getAllAdmins() {
-    return this.http.get<User[]>(this.url+`/users`);
+    return this.http.get<User[]>(this.url+`/admin/all`);
   }
   getAllUsers() {
     return this.http.get<User[]>(this.url+`/users`);
   }
 
-  getAdminById(cin: number) {
-    return this.http.get<User>(this.url+`/users/` + cin);
+  getAdminById(cin: string) {
+    console.log("sadsad",this.url+`/admin/` + cin);
+    return this.http.get<any>(this.url+`/admin/` + cin);
   }
 
   getUserByCin(cin: string) {
@@ -32,11 +33,15 @@ export class UserService {
   }
 
   updateAdmin(user: User) {
-    return this.http.put(this.url+`/users/` + user.cin, user);
+    return this.http.put(this.url+`/admin/update/` + user.cin, user);
   }
 
-  deleteAdmin(cin: number) {
-    return this.http.delete(this.url+`/users/` + cin);
+  deleteAdmin(cin: string) {
+    return this.http.delete(this.url+`/admin/delete/` + cin);
   }
 
+  importUsers(files: FormData){
+    console.log(files);
+   return this.http.post(this.url + `/users/import/` ,files);
+}
 }

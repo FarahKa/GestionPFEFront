@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { AuthentificationService } from 'src/app/services/authentification.service';
 
 import { User } from './../../models/user.model';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-admins',
@@ -20,7 +20,8 @@ export class AdminsComponent implements OnInit {
 
   constructor(
       private authenticationService: AuthentificationService,
-      private userService: UserService
+      private userService: UserService,
+      private cdr:ChangeDetectorRef
   ) {
       this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
           this.currentUser = user;
@@ -40,7 +41,7 @@ export class AdminsComponent implements OnInit {
   }
 
   
-  deleteUser(id: number) {
+  deleteUser(id: string) {
       this.userService.deleteAdmin(id).pipe(first()).subscribe(() => {
           this.loadAllUsers()
       });

@@ -24,6 +24,7 @@ export const ROUTES: RouteInfo[] = [
   { path: '/admin/etudiants', title: 'Etudiants', icon: 'content_paste', class: '' },
   { path: '/admin/enseignants', title: 'Enseignants', icon: 'library_books', class: '' },
   { path: '/calendrier', title: 'Calendrier', icon: 'bubble_chart', class: '' },
+  { path: '/admin/admins', title: 'Admins', icon: 'person', class: '' },
 ];
 
 @Component({

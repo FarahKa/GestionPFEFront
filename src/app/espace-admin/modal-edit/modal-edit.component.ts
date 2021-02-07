@@ -27,7 +27,7 @@ import { User } from '../../models/user.model';
 })
 export class ModalEditComponent implements OnInit {
   form: FormGroup;
-  @Input() cin: number;
+  @Input() cin: string;
   loading = false;
   submitted = false;
   user: User;
@@ -89,9 +89,10 @@ export class ModalEditComponent implements OnInit {
         console.log("dsfds", user);
         this.fields.firstname.setValue(user.firstname);
         this.fields.lastname.setValue(user.lastname);
-        this.fields.cin.setValue(user.cin);
+        this.fields.cin.setValue(user.cin.cin);
         this.fields.phoneNumber.setValue(user.phoneNumber);
-        this.fields.email.setValue(user.email);
+        this.fields.email.setValue(user.cin.email);
+        this.fields.password.setValue('');
       });
 
   }
@@ -117,20 +118,26 @@ export class ModalEditComponent implements OnInit {
   }
 
   private updateUser() {
-
+   
     this.userService.updateAdmin(this.form.value)
       .pipe(first())
       .subscribe(
         data => {
-          this.alertService.success('Update successful');
           this.loading = false;
           this.modalService.dismissAll();
+          this.reloadCurrentRoute();
+          this.alertService.success('Update successful');
         },
         error => {
           this.alertService.error(error);
           this.loading = false;
         });
   }
-
+  reloadCurrentRoute() {
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate([currentUrl]);
+    });
+}
 
 }

@@ -1,6 +1,10 @@
 <br>
 <br>
+<div style="float: right;">
+    <app-import></app-import>
+</div>
 <div class="container">
+
     <div class="row">
         <div class="card">
             <div class="card-header">
@@ -52,10 +56,10 @@
 
                             <tr *ngFor="let etudiant of etudiants_to_display">
                                 <td>
-                                    {{etudiant.cin}}
+                                    {{etudiant.cin.cin}}
                                  </td>
                                  <td>
-                                    {{etudiant.id_number}}
+                                    {{etudiant.student_id_number}}
                                  </td>
                                 <td>
                                     {{etudiant.firstname}}
@@ -64,7 +68,7 @@
                                     {{etudiant.lastname}}
                                 </td>
                                 <td>
-                                   {{etudiant.email}}
+                                   {{etudiant.cin.email}}
                                 </td>
                                 <td>
                                     {{etudiant.phoneNumber}}
@@ -73,7 +77,7 @@
                                     {{etudiant.filiere}}
                                  </td>
                                  <td>
-                                    {{etudiant.year}}
+                                    {{etudiant.year.year}}
                                  </td>
 
                                 <td>

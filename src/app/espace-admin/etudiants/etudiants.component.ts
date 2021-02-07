@@ -138,11 +138,18 @@ export class EtudiantsComponent implements OnInit {
   }
 
   getEtudiants5eme(): Student[] {
-    return [
+   this.studentService.getAllStudents().subscribe((data)=>
+   {
+   
+    this.etudiants=data 
+   });
+   return this.etudiants
+  
+   /* return [
       new Student("123", "5eme1", "people1", "people1@gamil", 123, 123, FiliereEnum.gl, 2020),
       new Student("462", "5eme2", "people2", "people2@gmail", 462, 462, FiliereEnum.imi, 2020),
       new Student("642", "5eme3", "people3", "people3@gmail", 8745, 8745, FiliereEnum.bio, 2020)
-    ];
+    ];*/
   }
 
 
