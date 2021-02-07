@@ -8,11 +8,12 @@ import { DetailEtudiantComponent } from './detail-etudiant/detail-etudiant.compo
 import { DetailPfeComponent } from './detail-pfe/detail-pfe.component';
 import { DetailSoutenanceComponent } from './detail-soutenance/detail-soutenance.component';
 import { HeaderComponent } from './header/header.component';
-
+import { CreatePfeEtudiantComponent } from './create-pfe/create-pfe-etudiant.component';
 import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
 
+
 @NgModule({
-  declarations: [ EspaceEtudiantComponent, DetailEtudiantComponent, DetailPfeComponent, DetailSoutenanceComponent,HeaderComponent, CreatePfeComponent],
+  declarations: [ EspaceEtudiantComponent, DetailEtudiantComponent, DetailPfeComponent, DetailSoutenanceComponent,HeaderComponent, CreatePfeEtudiantComponent],
  exports: [ EspaceEtudiantComponent ],
   imports: [
     CommonModule,
