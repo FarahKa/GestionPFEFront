@@ -8,7 +8,6 @@ export class Teacher extends User{
         email: string, phoneNumber: number,
         departement: DepEnum
         ) {
-
         super(cin, firstname, lastname, email, phoneNumber);
         this.departement = departement;
 }

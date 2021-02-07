@@ -11,7 +11,7 @@
                 <h4 class="mb-0">Date</h4>
               </div>
               <div class="col-sm-7 text-secondary">
-                  01/02/2021
+                  {{soutenance.date}}
               </div>
             </div>
             <hr>
@@ -20,7 +20,7 @@
                 <h4 class="mb-0">session</h4>
               </div>
               <div class="col-sm-7 text-secondary">
-                session 5 
+                {{session.nom}} 
               </div>
           </div>
           <hr>
@@ -29,7 +29,7 @@
                 <h4 class="mb-0">President de session</h4>
               </div>
               <div class="col-sm-7 text-secondary">
-                foulen foulen
+                {{president.firstname}} {{president.lastname}}
               </div>
           </div>
           <hr>
@@ -38,7 +38,11 @@
                 <h4 class="mb-0">Membre du jury</h4>
               </div>
               <div class="col-sm-7 text-secondary">
-                foulen1, foulen2 
+                <ul>
+                  <li *ngFor=" let enseignant of jury">
+                    {{enseignant.lastname}} {{enseignant.firstname}}
+                  </li>
+                </ul> 
               </div>
           </div>
 

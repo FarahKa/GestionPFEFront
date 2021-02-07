@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Soutenance } from 'src/app/models';
 import { AnneeScolaire } from 'src/app/models/anneeScolaire';
 import { Student } from 'src/app/models/student.model';
 import { PfeService } from 'src/app/services/pfe.service';

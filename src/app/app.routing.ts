@@ -24,6 +24,7 @@ import { ListeEnseignantComponent } from "./shared/liste-enseignant/liste-enseig
 import { ListePfesComponent } from "./shared/liste-pfes/liste-pfes.component";
 import { ModifySessionComponent } from './espace-admin/modify-session/modify-session.component';
 import { SoutenanceFiliereComponent } from './espace-admin/soutenances/soutenance-filiere/soutenance-filiere.component';
+import { CreatePfeComponent } from './espace-etudiant/create-pfe/create-pfe.component';
 
 const APP_ROUTING: Routes = [
   {
@@ -47,7 +48,8 @@ const APP_ROUTING: Routes = [
     path: 'calendrier', component: CalendrierComponent,
     canActivate: [AuthGuard]
   },
-  {
+  {path: 'createPFE', component: CreatePfeComponent},
+  { 
     path: 'etudiant/:id', component: EspaceEtudiantComponent,
     children: [
       {

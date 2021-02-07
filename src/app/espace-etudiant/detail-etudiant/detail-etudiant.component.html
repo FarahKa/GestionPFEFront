@@ -61,9 +61,53 @@
                       {{etudiant.year}}
                     </div>
                   </div>
+                  
                 </div>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAccountSettings">
+                  Paramèters du compte
+                </button>
               </div>
           </div>
         </div>
         </div>
     </div>
+    <!-- Modal HTML Markup -->
+<div id="ModalAccountSettings" class="modal fade">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h1 class="modal-title">Paramèters du compte</h1>
+          </div>
+          <div class="modal-body">
+              <form (ngSubmit)="onSubmit()" [formGroup="editAccountForm"]>
+                  <input type="hidden" name="_token" value="">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" formControlName="email" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && fields.email.errors }" />
+                    <div *ngIf="submitted && fields.email.errors" class="invalid-feedback">
+                        <div *ngIf="fields.email.errors.required">Email est obligatoire</div>
+                        <div *ngIf="fields.email.errors.email">Email est invalide</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">mot de passe</label>
+                    <input type="password" formControlName="password" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && fields.password.errors }" />
+                    <div *ngIf="submitted && fields.password.errors" class="invalid-feedback">
+                        <div *ngIf="fields.password.errors.required">mot de passe est obligatoire</div>
+                        <div *ngIf="fields.password.errors.minlength">mot de passe doit être au moins de 6 caractères</div>
+                    </div>
+                </div>
+                  
+                  <div class="form-group">
+                      <div>
+                          <button type="submit" class="btn btn-success">
+                              Save
+                          </button>
+                      </div>
+                  </div>
+              </form>
+          </div>
+      </div><!-- /.modal-content -->
+</div>

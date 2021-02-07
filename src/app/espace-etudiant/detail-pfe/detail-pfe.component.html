@@ -1,4 +1,4 @@
-
+<div *ngIf="pfe">
   <div class="row gutters-sm">
       <div class="col-md-10">
         <div class="card mb-5">
@@ -59,11 +59,12 @@
             <div class="col-sm-7 text-secondary">
                 {{pfe.private_}}
             </div>
-        </div>
+          </div>
   </div>
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalLoginForm">
     Edit
   </button>
+
 <!-- Modal HTML Markup -->
 <div id="ModalLoginForm" class="modal fade">
     <div class="modal-dialog" role="document">
@@ -74,14 +75,6 @@
             <div class="modal-body">
                 <form (ngSubmit)="onSubmit(formulaire)" #formulaire="ngForm">
                     <input type="hidden" name="_token" value="">
-                    <div class="form-group">
-                        <label class="control-label">State</label>
-                        <div>
-                            <select class="form-control" name="state" [(ngModel)]="pfe.state">
-                                <option value="state1">state1</option>
-                                <option value="State2">state2</option>
-                              </select></div>
-                    </div>
                     <div class="form-group">
                         <label class="control-label">Sujet</label>
                         <div>
@@ -98,12 +91,11 @@
                       <div class="form-group">
                         <label class="control-label">Rapport</label>
                         <div>
-                          <input type="file" id="rapport" name="rapport"   required>
+                          <input type="file" id="rapport" name="rapport" (change)="onChange($event)"
+                           required>
                         </div>
                       </div>
                       <div class="form-check">
-                      <input type="checkbox" class="form-check-input" id="valid" name="valid" value="valid">
-                      <label class="form-check-label" for="valid"> Valide </label><br>
                       <input type="checkbox" class="form-check-input" id="private" name="private" value="private">
                       <label class="form-check-label" for="private"> Privé </label><br>
                     </div>
@@ -118,3 +110,7 @@
                 </form>
             </div>
         </div><!-- /.modal-content -->
+</div>
+<div *ngIf="!pfe">
+  <app-create-pfe></app-create-pfe>
+</div>
