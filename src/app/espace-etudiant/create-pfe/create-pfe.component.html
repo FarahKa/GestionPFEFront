@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8 parent">
+        <div class="card card-addition">
+          <div class="card-header">Création d'un PFE</div>
+          <div class="card-body">
+            <form #formulaire="ngForm">
+              <label for="name">Sujet:</label><br />
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                ngModel
+                required
+                minlength="1"
+                maxlength="200"
+                class="form-control"
+              />
+              <label for="start_date">Entreprise:</label><br />
+              <input
+                type="text"
+                id="entreprise"
+                name="entreprise"
+                ngModel required
+                class="form-control"
+              />
+              <div class="form-group">
+                <label class="control-label">Rapport</label>
+                <div>
+                  <input type="file" id="rapport" name="rapport" ngModel 
+                  (change)="onChange($event)" required>
+                </div>
+              </div>
+              <div class="form-check">
+             <input type="checkbox" class="form-check-input" id="private" name="private" value="private" ngModel required>
+              <label class="form-check-label" for="private"> Privé </label><br>
+            </div>
+
+              <button
+                class="btn btn-primary"
+                [disabled]="formulaire.invalid"
+                (click)="createPFE(formulaire)"
+              >
+                Créer
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+  

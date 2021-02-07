@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Teacher } from '../models/teacher.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +25,9 @@ export class HttpService {
   getSessions(){
     return this.http.get(this.url + "/session/all")
   }
+  getSession(id: number): any {
+    return this.http.get(this.url + "/session/"+ id);
+  }
 
   getEnseignants(){
     console.log("trying to get all teachers")
@@ -37,7 +42,7 @@ export class HttpService {
     return this.http.get(this.url + "/soutenance/encadrant/" + idS)   
   }
 
-  getPresident(idS : number){
+  getPresident(idS : number): any{
     return this.http.get(this.url + "/session/president/" + idS)   
   }
 
@@ -52,8 +57,8 @@ export class HttpService {
     return this.http.get(this.url + "/soutenance/rogue")
   }
 
-  getJury(idSoutenance) {
-    return this.http.get(this.url + "/soutenance/jury/" + idSoutenance)
+  getJury(idSoutenance): Observable<Teacher[]>{
+    return this.http.get<Teacher[]>(this.url + "/soutenance/jury/" + idSoutenance)
   }
 
   getSoutenancesByFiliere() {

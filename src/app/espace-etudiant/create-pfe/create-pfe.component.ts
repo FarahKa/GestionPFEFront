@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { PfeService } from 'src/app/espace-admin/pfe/pfe.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { PfeService } from 'src/app/services/pfe.service';
 import { UploadFileService } from 'src/app/services/upload-file.service';
 
 @Component({
-  selector: 'app-edit-pfe',
-  templateUrl: './edit-pfe.component.html',
-  styleUrls: ['./edit-pfe.component.css']
+  selector: 'app-create-pfe',
+  templateUrl: './create-pfe.component.html',
+  styleUrls: ['./create-pfe.component.css']
 })
-export class EditPfeComponent implements OnInit {
+export class CreatePfeComponent implements OnInit {
 
   shortLink: string = ""; 
   loading: boolean = false; // Flag variable 
@@ -36,6 +37,15 @@ onUpload() {
             } 
         } 
     ); 
-}
-
+} 
+  createPFE(formulaire : NgForm) {
+    console.log(formulaire.form.value)
+    this.pfeService.createPfe(formulaire.form.value).subscribe(
+      (response) => {
+        console.log("got a good response");
+        console.log(response);
+      },
+      error => console.log(error)
+    )
+  }
 }
