@@ -4,11 +4,11 @@ import { PfeService } from 'src/app/services/pfe.service';
 import { UploadFileService } from 'src/app/services/upload-file.service';
 
 @Component({
-  selector: 'app-create-pfe',
-  templateUrl: './create-pfe.component.html',
-  styleUrls: ['./create-pfe.component.css']
+  selector: 'app-create-pfe-etudiant',
+  templateUrl: './create-pfe-etudiant.component.html',
+  styleUrls: ['./create-pfe-etudiant.component.css']
 })
-export class CreatePfeComponent implements OnInit {
+export class CreatePfeEtudiantComponent implements OnInit {
 
   shortLink: string = ""; 
   loading: boolean = false; // Flag variable 
