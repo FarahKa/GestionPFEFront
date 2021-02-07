@@ -11,11 +11,11 @@ export class PfeService {
   constructor(private http: HttpClient) { }
 
   getPfeByStudentId(id: number) {
-    return this.http.get<Pfe>(this.base_url+ `pfes_by_student_id_year/` + id);
+    return this.http.get<Pfe>(this.base_url+ `student/` + id);
   }
-
-  createPfe(pfe: any) {
-    return this.http.post(this.base_url, `create/`, pfe);
+  
+  createPfe(data: any){
+    return this.http.post<Pfe>(this.base_url+`create`, data);
   }
 
   editPfe(pfe: any) {

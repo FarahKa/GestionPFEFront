@@ -25,11 +25,6 @@ export class DetailSoutenanceComponent implements OnInit {
   ngOnInit(): void {
     this.soutenance = new Soutenance(5, new Date(), 15, 17);
     this.session = new Session(11, "session5", new Date(), new Date());
-    this.president = new Teacher("11",
-      "aymoun", "laa",
-      "aymen@gmail", 235,DepEnum.MathInfo);
-    this.jury = [new Teacher("11",
-    "aymoun", "laa","aymen@gmail", 235,DepEnum.MathInfo)];
     this.soutenanceService.getSoutenanceByStudentId(this.student_id).subscribe(
       soutenance => {
         this.soutenance = new Soutenance(soutenance.id, soutenance.date, soutenance.pfe["id"], soutenance.session["id"]);

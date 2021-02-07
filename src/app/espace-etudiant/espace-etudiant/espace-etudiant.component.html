@@ -1,5 +1,8 @@
-<app-detail-etudiant [etudiant]="student"></app-detail-etudiant>
-<div class="container">
+<app-detail-etudiant [cin]="cin"  [student]="student"></app-detail-etudiant>
+<div *ngIf="new">
+  <app-create-pfe [studentCin]="cin"></app-create-pfe>
+</div>
+<div class="container" *ngIf="soutenance">
           <ul class="nav nav-tabsmb-3" id="detail" role="tablist">
             <li class="nav-item" role="presentation">
               <a class="nav-link active"
@@ -32,4 +35,3 @@
           <app-detail-soutenance [student_id]="idStudent"></app-detail-soutenance>
         </div>
 </div>
-

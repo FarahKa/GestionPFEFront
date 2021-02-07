@@ -39,7 +39,8 @@ export class DetailPfeComponent implements OnInit {
   onSubmit(formulaire: NgForm) {
     console.log(formulaire);
     this.pfeService.editPfe(formulaire.form.value)
-  } onChange(event) { 
+  } 
+  onChange(event) { 
     this.file = event.target.files[0]; 
 } 
 

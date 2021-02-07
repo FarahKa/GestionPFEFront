@@ -21,6 +21,12 @@ export class UserService {
     return this.http.get<User>(this.url+`/users/` + cin);
   }
 
+  getUserByCin(cin: string) {
+    return this.http.get<User>(this.url+ `/users/` + cin)
+  }
+  updateUser(data:any) {
+    return this.http.put(this.url+`/users/` + data.cin, data);
+  }
   registerUser(user: User) {
     return this.http.post(this.url+`/users/register`, user);
   }

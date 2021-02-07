@@ -19,6 +19,9 @@ export class StudentService {
     getStudentById(id: number) {
         return this.http.get<Student>(this.studentUrl + `etudiant/` + id);
     }
+    getStudentByCin(cin: string) {
+        return this.http.get<Student>(this.studentUrl + `etudiantByCin/` + cin)
+    }
 
     registerStudent(student: Student) {
        return this.http.post(`/students/register`, student);
@@ -28,6 +31,7 @@ export class StudentService {
     updateStudent(student: Student, idSoutenance: number) {
         return this.http.put(this.studentUrl + `update/` + student.student_id_number, idSoutenance);
     }
+    
 
     getStudentsByFiliere(filiere: FiliereEnum) {
         return this.http.get<Student[]>(this.studentUrl + filiere)

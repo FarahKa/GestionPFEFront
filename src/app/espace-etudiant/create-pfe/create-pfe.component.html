@@ -1,16 +1,16 @@
 <div class="container">
-    <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-8 parent">
-        <div class="card card-addition">
-          <div class="card-header">Création d'un PFE</div>
+  <div class="main-body">
+      <div class="row gutters-sm">
+          <div class="col-md-8">
+            <div class="card mb-3">
+              <div class="card-header">Création d'un PFE</div>
           <div class="card-body">
             <form #formulaire="ngForm">
               <label for="name">Sujet:</label><br />
               <input
                 type="text"
-                id="subject"
-                name="subject"
+                id="sujet"
+                name="sujet"
                 ngModel
                 required
                 minlength="1"
@@ -32,10 +32,28 @@
                   (change)="onChange($event)" required>
                 </div>
               </div>
-              <div class="form-check">
-             <input type="checkbox" class="form-check-input" id="private" name="private" value="private" ngModel required>
-              <label class="form-check-label" for="private"> Privé </label><br>
-            </div>
+              <label for="encadrant"
+              >Encadrant:</label
+            ><br />
+            <!-- make a select with all teachers, their id as value -->
+            <ejs-dropdownlist
+              ngModel
+              name="encadrant"
+              id="encadrant"
+              #samples
+              [dataSource]="enseignants"
+              [fields]="fieldsE"
+              [placeholder]="textE"
+            >
+              <ng-template #itemTemplate let-data>
+                <div>
+                  <div class="name">
+                    {{ data.firstname }} {{ data.lastname }}
+                  </div>
+                </div>
+              </ng-template>
+            </ejs-dropdownlist><br>
+            
 
               <button
                 class="btn btn-primary"

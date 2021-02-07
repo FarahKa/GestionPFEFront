@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { HttpService } from 'src/app/services/http.service';
 import { PfeService } from 'src/app/services/pfe.service';
 import { UploadFileService } from 'src/app/services/upload-file.service';
 
@@ -10,13 +12,23 @@ import { UploadFileService } from 'src/app/services/upload-file.service';
 })
 export class CreatePfeComponent implements OnInit {
 
+  @Input() studentCin:string;
   shortLink: string = ""; 
   loading: boolean = false; // Flag variable 
   file: File = null;
+  fieldsE = { text: 'lastname', value: 'cin.cin' };
+  textE = "Choisir l'encadrant";
+  enseignants : any;
   constructor(private pfeService: PfeService,
+    private router: Router,
+    private http: HttpService,
     private uploadFileService: UploadFileService) { }
 
   ngOnInit(): void {
+    this.http.getEnseignants().subscribe((response : any) => {
+      console.log(response)
+      this.enseignants= response
+    })
   }
   onChange(event) { 
     this.file = event.target.files[0]; 
@@ -38,12 +50,16 @@ onUpload() {
         } 
     ); 
 } 
+
   createPFE(formulaire : NgForm) {
-    console.log(formulaire.form.value)
+    
+    formulaire.form.value["etudiant"]= this.studentCin;
+    console.log(formulaire.form.value);
     this.pfeService.createPfe(formulaire.form.value).subscribe(
       (response) => {
         console.log("got a good response");
         console.log(response);
+        this.router.navigate(["/etudiant"]);
       },
       error => console.log(error)
     )
