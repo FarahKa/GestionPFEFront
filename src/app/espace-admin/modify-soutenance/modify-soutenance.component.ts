@@ -22,10 +22,10 @@ export class ModifySoutenanceComponent implements OnInit {
   sessionName : string;
 
 
-  public fieldsE = { text: 'lastname', value: 'cin' }
+  public fieldsE = { text: 'lastname', value: 'cin.cin' }
   public textE: string = "Changer Encadrant";
 
-  public fieldsJ = { text: 'lastname', value: 'cin' }
+  public fieldsJ = { text: 'lastname', value: 'cin.cin' }
   public placeholderJ: string = "Changer Jury";
 
   public fieldsS = { text: 'name', value: 'id' }
@@ -48,9 +48,11 @@ export class ModifySoutenanceComponent implements OnInit {
       this.http.getEnseignants().subscribe((response : any) => {
         this.enseignants= response
         this.enseignantsSansEncadrant= this.enseignants.filter((enseignant) => enseignant.cin !== this.encadrant.cin);
+        console.log(this.enseignants)
       })
       this.http.getSessions().subscribe((response) => {
         this.sessions = response
+        console.log(this.sessions)
       })
     }
   }

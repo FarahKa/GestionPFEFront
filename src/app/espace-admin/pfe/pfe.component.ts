@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { PrettySidebarService } from 'src/app/components/pretty-sidebar/pretty-sidebar.service';
@@ -14,6 +14,8 @@ import { PfeService } from './pfe.service';
 })
 export class PfeComponent implements OnInit {
 
+  page: number = 1;
+
   pfes //initially only has current PFEs then if we want all then we get all
   pfes_to_display
   all_pfes
@@ -25,11 +27,12 @@ export class PfeComponent implements OnInit {
   selectedItemSubject
   sidebar
   pfe
-  edit: boolean;
+
+  editEnabled:boolean;
   constructor(private pfeService: PfeService, private sidebarService: PrettySidebarService, private searchbarService: SearchbarService) { }
 
   ngOnInit(): void {
-    this.edit = false;
+    this.editEnabled = false;
     this.searchFieldsSubject = this.searchbarService.subjectSearchFields
     this.searchFieldsSubject.subscribe((data) => this.search(data))
 
@@ -83,7 +86,7 @@ export class PfeComponent implements OnInit {
             "state": "",
             "subject": "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.",
             "private": false,
-            "rapport": "",
+            "rapport": "./assets/sample.pdf",
             "hosting_enterprise": "IUFBFDSJU FIH",
             "valid": true
           },
@@ -108,9 +111,9 @@ export class PfeComponent implements OnInit {
           "pfe": {
             "id": 1,
             "state": "",
-            "subject": "a",
+            "subject": "a 2 encadrabts",
             "private": false,
-            "rapport": "",
+            "rapport": "./assets/sample.pdf",
             "hosting_enterprise": "",
             "valid": true
           },
@@ -119,6 +122,11 @@ export class PfeComponent implements OnInit {
               "cin": "34",
               "firstname": "f 34",
               "lastname": "l 34"
+            },
+            {
+              "cin": "99",
+              "firstname": "firdts yay",
+              "lastname": "last woohoo"
             }
           ]
         }
@@ -137,7 +145,7 @@ export class PfeComponent implements OnInit {
             "state": "",
             "subject": "b",
             "private": false,
-            "rapport": "",
+            "rapport": "./assets/sample.pdf",
             "hosting_enterprise": "a",
             "valid": true
           },
@@ -164,7 +172,7 @@ export class PfeComponent implements OnInit {
             "state": "",
             "subject": "a",
             "private": false,
-            "rapport": "",
+            "rapport": "./assets/sample.pdf",
             "hosting_enterprise": "",
             "valid": false
           },
@@ -196,7 +204,7 @@ export class PfeComponent implements OnInit {
             "state": "",
             "subject": "b",
             "private": false,
-            "rapport": "",
+            "rapport": "./assets/sample.pdf",
             "hosting_enterprise": "a",
             "valid": false
           },
@@ -223,7 +231,7 @@ export class PfeComponent implements OnInit {
             "state": "",
             "subject": "a",
             "private": false,
-            "rapport": "",
+            "rapport": "./assets/sample.pdf",
             "hosting_enterprise": "",
             "valid": false
           },
@@ -255,7 +263,7 @@ export class PfeComponent implements OnInit {
             "state": "",
             "subject": "b",
             "private": false,
-            "rapport": "",
+            "rapport": "./assets/sample.pdf",
             "hosting_enterprise": "a",
             "valid": false
           },
@@ -282,7 +290,7 @@ export class PfeComponent implements OnInit {
             "state": "",
             "subject": "a",
             "private": false,
-            "rapport": "",
+            "rapport": "./assets/sample.pdf",
             "hosting_enterprise": "",
             "valid": false
           },
@@ -316,7 +324,7 @@ export class PfeComponent implements OnInit {
           "state": "",
           "subject": "",
           "private": false,
-          "rapport": "",
+          "rapport": "./assets/sample.pdf",
           "hosting_enterprise": "",
           "valid": true
         },
@@ -408,8 +416,8 @@ export class PfeComponent implements OnInit {
 
   viewPFEDetails(pfe){
     console.log(pfe)
-    this.edit=false
     this.pfe = pfe;
+    this.editEnabled = false;
     // collapse the things when we view pfe
     document.getElementById("collapseZero").classList.remove("show");
     document.getElementById("collapseOne").classList.remove("show");
@@ -422,6 +430,4 @@ export class PfeComponent implements OnInit {
       a_tags[index].setAttribute("aria-expanded", "false");
     }
   }
-
-
 }

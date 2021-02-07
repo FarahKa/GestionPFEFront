@@ -1,28 +1,28 @@
-<div class="modal-header">
-  <div class="fix-padding">
-    <h6 class="float-left student-info">
-      <span class="font-weight-bold"> NOM : </span>{{ pfe.lastname }}
-      {{ pfe.firstname }}
-    </h6>
-    <h6 class="float-right student-info">
-      <span class="font-weight-bold"> CIN : </span>{{ pfe.cin }}
-    </h6>
-  </div>
+<div>
+  <h6 class="float-left fix-padding">
+    <span class="font-weight-bold"> NOM : </span>
+    {{ pfe.lastname }}
+    {{ pfe.firstname }}
+  </h6>
+  <h6 class="float-right fix-padding">
+    <span class="font-weight-bold"> CIN : </span>{{ pfe.cin.cin }}
+  </h6>
   <br />
-  <div class="fix-padding">
-    <!--
+
+  <br />
+  <!--
           ADD NGIF BCH IF MASTER CHANGE TO DISPLAY MASTER CHNWA I THINK
           -->
-    <h6 class="float-left student-info">
-      <span class="font-weight-bold"> FILIERE : </span>{{ pfe.filiere }}
-    </h6>
-    <h6 class="float-right student-info">
-      <span class="font-weight-bold"> ID : </span>{{ pfe.student_id_number }}
-    </h6>
-    <br />
-  </div>
-</div>
+  <h6 class="float-left fix-padding">
+    <span class="font-weight-bold"> FILIERE : </span>{{ pfe.filiere }}
+  </h6>
 
+  <h6 class="float-right fix-padding">
+    <span class="font-weight-bold"> ID : </span>{{ pfe.student_id_number }}
+  </h6>
+  <br />
+</div>
+<br />
 <div class="accordion">
   <!-- Accordion item 0 -->
   <div class="card accordion-card">
@@ -46,7 +46,7 @@
       class="collapse"
     >
       <div class="card-body p-5">
-        <p class="font-weight-light m-0" *ngIf="!edit">
+        <p class="font-weight-light m-0" *ngIf="!editEnabled">
           <span *ngIf="pfe.soutenance.pfe.hosting_enterprise">
             {{ pfe.soutenance.pfe.hosting_enterprise }}
           </span>
@@ -54,7 +54,7 @@
             Host ent not here
           </span>
         </p>
-        <div *ngIf="edit">
+        <div *ngIf="editEnabled">
           <textarea class="form-control">{{
             pfe.soutenance.pfe.hosting_enterprise
           }}</textarea>
@@ -84,13 +84,13 @@
       class="collapse"
     >
       <div class="card-body p-5">
-        <p class="font-weight-light m-0" *ngIf="!edit">
+        <p class="font-weight-light m-0" *ngIf="!editEnabled">
           <span *ngIf="pfe.soutenance.pfe.subject">
             {{ pfe.soutenance.pfe.subject }}
           </span>
-          <span *ngIf="!pfe.soutenance.pfe.subject"> Sujet not here </span>
+          <span *ngIf="!pfe.soutenance.pfe.subject"> Pas de sujet </span>
         </p>
-        <div *ngIf="edit">
+        <div *ngIf="editEnabled">
           <textarea class="form-control">{{
             pfe.soutenance.pfe.subject
           }}</textarea>
@@ -122,8 +122,31 @@
     >
       <div class="card-body p-5">
         <p class="font-weight-light m-0">
-          <span *ngIf="pfe.soutenance.pfe.rapport"> Rapport here </span>
-          <span *ngIf="!pfe.soutenance.pfe.rapport"> Rapport not here </span>
+          <span *ngIf="pfe.soutenance.pfe.rapport">
+            <button
+              type="button"
+              class="btn btn-success btn-sm"
+              (click)="
+                downloadPdf(
+                  pfe.soutenance.pfe.rapport,
+                  pfe.cin + '_rapport_pfe'
+                )
+              "
+            >
+              Télécharger PDF
+            </button>
+            &nbsp;
+            <button
+              type="button"
+              class="btn btn-primary btn-sm"
+              (click)="openDoc(pfe.soutenance.pfe.rapport)"
+            >
+              Ouvrir dans le navigateur
+            </button>
+          </span>
+          <span *ngIf="!pfe.soutenance.pfe.rapport">
+            Rapport pas encore remis
+          </span>
         </p>
       </div>
     </div>
@@ -151,8 +174,69 @@
     >
       <div class="card-body p-5">
         <p class="font-weight-light m-0">
-          <span *ngIf="pfe.soutenance.encadrants"> loop encadrants here </span>
-          <span *ngIf="!pfe.soutenance.encadrants"> encadrants not here </span>
+          <span *ngIf="pfe.soutenance.encadrants">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">CIN</th>
+                  <th scope="col">Nom</th>
+                  <th scope="col">Prénom</th>
+                  <th scope="col">Département</th>
+                  <th scope="col" *ngIf="editEnabled"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let enc of pfe.soutenance.encadrants">
+                  <!--<th scope="row">{{ enc.cin }}</th>-->
+                  <td>{{ enc.cin.cin }}</td>
+                  <td>{{ enc.firstname }}</td>
+                  <td>{{ enc.lastname }}</td>
+                  <td>enc.departement</td>
+                  <td *ngIf="editEnabled">
+                    <button
+                      (click)="removeMentor(enc.cin)"
+                      class="btn btn-danger"
+                    >
+                      <svg
+                        class="bi bi-x-circle"
+                        width="1.5em"
+                        height="1.5em"
+                        viewBox="0 0 16 16"
+                        fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z"
+                          clip-rule="evenodd"
+                        />
+                        <path
+                          fill-rule="evenodd"
+                          d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z"
+                          clip-rule="evenodd"
+                        />
+                        <path
+                          fill-rule="evenodd"
+                          d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </span>
+          <span *ngIf="!pfe.soutenance.encadrants"> Pas d'encadrants </span>
+          <button
+            *ngIf="editEnabled"
+            type="button"
+            class="btn btn-primary float-right"
+            (click)="modifierPFE()"
+          >
+            Ajouter Encadrant
+          </button>
+          <br *ngIf="editEnabled">
         </p>
       </div>
     </div>
@@ -169,7 +253,7 @@
           aria-expanded="false"
           aria-controls="collapseFour"
           class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2"
-          >Soutenance :</a
+          >Date soutenance :</a
         >
       </h6>
     </div>
@@ -181,7 +265,22 @@
     >
       <div class="card-body p-5">
         <p class="font-weight-light m-0">
-          <span *ngIf="pfe.soutenance"> soutenance here </span>
+          <span *ngIf="pfe.soutenance">
+            <span class="floatright">
+              {{ pfe.soutenance.date | date: "dd/MM/yyyy hh:mm a" }}
+            </span>
+            <span *ngIf="editEnabled" class="float-right">
+              <br />
+              <button
+                class="btn btn-dark floatright"
+                (click)="modifySoutenance(pfe.soutenance)"
+              >
+                Modifier Soutenance
+              </button>
+              <br>
+              <br>
+            </span>
+          </span>
           <span *ngIf="!pfe.soutenance"> soutenance not here </span>
         </p>
       </div>
@@ -190,71 +289,78 @@
 </div>
 <br />
 <div class="fix-padding">
-  <h6 class="float-left student-info" *ngIf="!edit">
-    <span class="font-weight-bold"> IDK : </span>
-    <span *ngIf="pfe.soutenance.pfe.private"> privé </span>
-    <span *ngIf="!pfe.soutenance.pfe.private"> public </span>
+  <h6 class="float-left">
+    <span class="font-weight-bold"> VISIBILITE : </span> &nbsp;
+    <span *ngIf="!editEnabled">
+      <span *ngIf="pfe.soutenance.pfe.private"> privé </span>
+      <span *ngIf="!pfe.soutenance.pfe.private"> public </span>
+    </span>
   </h6>
-  <div class="float-left student-info" *ngIf="edit">
+  <div class="float-left" *ngIf="editEnabled">
     <input
       type="radio"
       id="public"
       name="pub_priv"
       value="public"
       [attr.checked]="!pfe.soutenance.pfe.private ? 'checked' : null"
-    />
-    <label for="public">Public</label> &nbsp;&nbsp;
+    />&nbsp; <label for="public">Public</label> &nbsp;&nbsp;&nbsp;
     <input
       type="radio"
       id="private"
       name="pub_priv"
       value="private"
       [attr.checked]="pfe.soutenance.pfe.private ? 'checked' : null"
-    />
+    />&nbsp;
     <label for="private">Privé</label>
   </div>
-
-  <h6 class="float-right student-info" *ngIf="!edit">
-    <span class="font-weight-bold"> IDK : </span>
-    <span *ngIf="pfe.soutenance.pfe.valid"> validé </span>
-    <span *ngIf="!pfe.soutenance.pfe.valid"> non validé </span>
-  </h6>
-  <div class="float-right student-info" *ngIf="edit">
+  <div class="float-right" *ngIf="editEnabled">
     <input
       type="radio"
       id="valid"
       name="val"
       value="valid"
       [attr.checked]="pfe.soutenance.pfe.valid ? 'checked' : null"
-    />
-    <label for="valid">Validé</label>&nbsp;&nbsp;
+    />&nbsp; <label for="valid">Validé</label>&nbsp;&nbsp;&nbsp;
     <input
       type="radio"
       id="invalid"
       name="val"
       value="invalid"
       [attr.checked]="!pfe.soutenance.pfe.valid ? 'checked' : null"
-    />
+    />&nbsp;
     <label for="invalid">Non validé</label>
   </div>
+  <h6 class="float-right">
+    <span class="font-weight-bold"> ETAT : </span> &nbsp;
+    <span *ngIf="!editEnabled">
+      <span *ngIf="pfe.soutenance.pfe.valid"> validé </span>
+      <span *ngIf="!pfe.soutenance.pfe.valid"> non validé </span>
+    </span>
+  </h6>
 </div>
 <br />
 <hr />
 <br />
-<div class="fix-padding float-right">
+<div class="fix-padding float-right" *ngIf="allow_edit">
   <button
-    *ngIf="!edit"
+    *ngIf="!editEnabled"
     type="button"
     class="btn btn-primary"
     (click)="modifierPFE()"
   >
     Modifier
   </button>
-  <button *ngIf="edit" type="button" class="btn btn-primary" (click)="save()">
+  <button
+    *ngIf="editEnabled"
+    type="button"
+    class="btn btn-primary"
+    (click)="save()"
+  >
     Enregistrer
   </button>
+  &nbsp; &nbsp;
   <button
-    *ngIf="edit"
+    *ngIf="editEnabled"
     type="button"
     class="btn btn-secondary"
     (click)="cancel()"

@@ -1,3 +1,4 @@
+<span *ngIf="!switch">
 <h2>Liste des Sessions: </h2><div class="side-buttons"><button type="button" [routerLink]="'/admin/addSession'" class="btn btn-dark">Nouvelle Session</button></div>
 <app-accordion>
     <div  *ngFor="let session of sessions">
@@ -30,3 +31,5 @@
         </app-item>
     </div>
 </app-accordion>
+</span>
+<app-soutenance-filiere *ngIf="switch" [soutenances]="soutenancesFiliere" [filiere]="filiereInput"></app-soutenance-filiere>

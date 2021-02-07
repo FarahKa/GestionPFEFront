@@ -27,10 +27,12 @@ import { MultiSelectModule } from '@syncfusion/ej2-angular-dropdowns';
 import { DateTimePickerModule,  DatePickerModule } from "@syncfusion/ej2-angular-calendars";
 import { ModifySessionComponent } from './modify-session/modify-session.component';
 import { ViewPfeDetailsComponent } from '../components/view-pfe-details/view-pfe-details.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { SoutenanceFiliereComponent } from './soutenances/soutenance-filiere/soutenance-filiere.component';
 import { ImportComponent } from './import/import.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { ImportModalComponent } from './import/import-modal/import-modal.component';
+import { CreatePfeComponent } from './create-pfe/create-pfe.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,7 @@ import { ImportModalComponent } from './import/import-modal/import-modal.compone
     SoutenanceFiliereComponent,
     ImportComponent,
     ImportModalComponent,
+    CreatePfeComponent,
 
   ],
   exports: [AccordionComponent, ItemComponent, SearchbarComponent, ViewPfeDetailsComponent],
@@ -67,8 +70,9 @@ import { ImportModalComponent } from './import/import-modal/import-modal.compone
     DropDownListModule,
     MultiSelectModule,
     DateTimePickerModule,
+    NgxPaginationModule,
     DatePickerModule,
-    NgxDropzoneModule 
+    NgxDropzoneModule,
   ],
   providers: []
 })

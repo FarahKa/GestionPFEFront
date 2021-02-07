@@ -1,6 +1,11 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
-import { EventEmitter } from 'events';
+import { EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+import { SoutenancesService } from 'src/app/espace-admin/soutenances/soutenances.service';
 import { Pfe } from 'src/app/models/pfe.model';
+
+declare var require: any
+const FileSaver = require("file-saver")
 
 @Component({
   selector: 'app-view-pfe-details',
@@ -9,16 +14,24 @@ import { Pfe } from 'src/app/models/pfe.model';
 })
 export class ViewPfeDetailsComponent implements OnInit {
 
+  // subject for l edit issue
   @Input() pfe;
-  //@Output() pfeChange = new EventEmitter();
 
-  @Input() allow_edit:boolean;
-  edit:boolean;
-  constructor() { }
+  @Input() allow_edit: boolean;
+
+  @Input() editEnabled: boolean;
+  @Output() editEnabledChange: EventEmitter<boolean>;
+
+  constructor(
+    private soutenancesService:SoutenancesService,
+    private router: Router
+    ) {
+    this.editEnabledChange= new EventEmitter<boolean>()
+  }
 
   ngOnInit(): void {
     this.allow_edit = true;
-    this.edit = false;
+    this.editEnabledChange.emit(false)
     this.pfe = {
       "cin": "",
       "firstname": "",
@@ -41,22 +54,53 @@ export class ViewPfeDetailsComponent implements OnInit {
         ]
       }
     }
+
   }
 
-  modifierPFE(){
-    this.edit=true;
+
+  modifierPFE() {
+    //this.editEnabled = true;
+    //this.toggleEditEnabled.emit(true)
+    this.editEnabledChange.emit(true)
   }
 
-  cancel(){
-    this.edit=false;
+  cancel() {
+    //this.editEnabled = false;
+    //this.toggleEditEnabled.emit(false)
+    this.editEnabledChange.emit(false)
   }
 
-  save(){
-    this.edit=false;
+  save() {
+    //this.editEnabled = false;
+    this.editEnabledChange.emit(false)
+    console.log(this.pfe)
+    //SAVE L MODIF
+    //this.pfeChange.emit(this.pfe)
+    //this.toggleEditEnabled.emit(false)
   }
 
-  closee(){
+  closee() {
     console.log("close modal")
   }
 
+  downloadPdf(pdfUrl: string, pdfName: string ) {
+    //const pdfUrl = './assets/sample.pdf';
+    //const pdfName = 'your_pdf_file';
+    FileSaver.saveAs(pdfUrl, pdfName);
+  }
+
+  openDoc(pdfUrl: string ) {
+    window.open(pdfUrl, '_blank', '', true);
+  }
+
+  removeMentor(cin){
+    console.log(cin)
+  }
+
+  modifySoutenance(soutenance) : void {
+    document.getElementById("close-modal-button").click();
+    this.soutenancesService.setCurrentSoutenance(soutenance);
+    this.router.navigate(['/admin/modifySoutenance'])
+
+  }
 }

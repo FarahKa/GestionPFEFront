@@ -225,15 +225,12 @@ export class AppComponent {
 
     this.soutenances = [
       {
+        "item": "Sessions"
+      },      
+      {
         "item": "Soutenances",
         "children": filieres
       },
-      {
-        "item": "Calendrier"
-      },
-      {
-        "item": "Export PDF"
-      }
     ]
 
     this.navigationService.subjectSelectedItem.pipe(distinctUntilChanged()).subscribe(

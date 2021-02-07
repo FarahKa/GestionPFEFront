@@ -24,7 +24,7 @@ export class ModifySessionComponent implements OnInit {
   sessionName : string;
 
 
-  public fieldsE = { text: 'lastname', value: 'cin' }
+  public fieldsE = { text: 'lastname', value: 'cin.cin' }
   public textE: string = "Changer President";
 
 
